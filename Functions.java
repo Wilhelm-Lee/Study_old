@@ -1,4 +1,5 @@
 /** When ask for targetFile, please remember to use @targetFile.getParentFile() as the default combination for file accessing. */
+/** Trying to use assert for testing. */
 package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
