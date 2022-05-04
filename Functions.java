@@ -30,12 +30,9 @@ public class Functions {
 			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
 			return scn.next().equalsIgnoreCase( "y" );
 		}
-		public void creating(@NotNull File targetObject, String targetType) throws IOException {
+		public void creating(@NotNull File targetObject, @NotNull String targetType) throws IOException {
 			String action = "Creating";
 			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile() : "mkdir " + targetObject;
-			// Test
-			System.out.println("-> Bash\t" + cmd);
-			// Test OVER
 			// Ask
 			if ( ifAsk(targetObject, action) ) {
 				runtime = Runtime.getRuntime();
@@ -71,7 +68,6 @@ public class Functions {
 		}
 		public boolean Preparation(File targetFile) throws IOException {
 			try {
-				/** Why does targetFile path cannot be specified into a file-unit? */
 
 				// Check existence of the path
 					// Not:
@@ -99,20 +95,20 @@ public class Functions {
 					if ( !checkExistence(this.targetFile.getAbsoluteFile(), "file") ) {
 						isAnomalous = true;
 						warnings("Target file does not seem to be existed" );
-						creating(targetFile.getAbsoluteFile(), "file");
+						creating(this.targetFile.getAbsoluteFile(), "file");
 						// Retry
 						Preparation(targetPath);
 					} else {
 						// targetFile exists
 						isAnomalous = false;
-						information("Target file " + targetFile.getAbsoluteFile() + " exists");
+						information("Target file " + this.targetFile.getAbsoluteFile() + " exists");
 					}
 				}
 
-				return !isAnomalous;
-			} finally {
-				creating(targetFile.getAbsoluteFile(), "file");
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			return !isAnomalous;
 		}
 		public boolean onCreate() throws IOException {
 
