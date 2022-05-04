@@ -1,6 +1,5 @@
 /** When ask for targetFile, please remember to use @targetFile.getAbsoluteFile() as the default combination for file accessing. */
-/** Trying to use assert for testing. */
-/** Trying to use finally for coding */
+/** Suggest avoiding using targetType with isFile() instead. */
 package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,12 +27,15 @@ public class Functions {
 		public static boolean isAnomalous = false;
 
 		public boolean ifAsk(@NotNull File targetObject, String action) {
-			request("Would you like to " + action + " " + targetObject + " ? y/n" );
+			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
 			return scn.next().equalsIgnoreCase( "y" );
 		}
 		public void creating(@NotNull File targetObject, String targetType) throws IOException {
 			String action = "Creating";
-			String cmd = targetType.equalsIgnoreCase( "File" ) ? "touch " + targetObject.getParentFile() : "mkdir " + targetObject;
+			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile() : "mkdir " + targetObject;
+			// Test
+			System.out.println("-> Bash\t" + cmd);
+			// Test OVER
 			// Ask
 			if ( ifAsk(targetObject, action) ) {
 				runtime = Runtime.getRuntime();
@@ -42,7 +44,7 @@ public class Functions {
 				requestDenied(targetObject, targetType);
 			}
 		}
-		public void loading(@NotNull File targetObject, String targetType) {
+		public void loading(@NotNull File targetObject, @NotNull String targetType) {
 			if ( targetType.equalsIgnoreCase("File") ) {
 				targetFile = targetObject.getAbsoluteFile();
 			} else {
@@ -52,7 +54,7 @@ public class Functions {
 		public void requestDenied(@NotNull File targetObject, String targetType) {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
 		}
-		public boolean checkExistence(@NotNull File targetObject, String targetType) {
+		public boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
 			return targetType.equalsIgnoreCase("File") ? targetObject.getAbsoluteFile().exists() : targetObject.exists();
 		}
 		public void request(String content) {
@@ -75,13 +77,13 @@ public class Functions {
 					// Not:
 						// Create path
 						// isAnomalous = true;
-					// Load on path
+						// Load on path
 					// isAnomalous = false;
 				// Check existence of the file
 					// Not:
 						// Create file
 						// isAnomalous = true;
-					// Aim file
+						// Aim file
 					// isAnomalous = false;
 
 				if( !checkExistence(targetPath, "path") ) {
@@ -89,27 +91,27 @@ public class Functions {
 					warnings("Target path does not seem to be existed" );
 					creating( targetPath, "path");
 					// Retry
-					Preparation(targetFile);
+					Preparation(targetFile.getAbsoluteFile());
 				} else {
 					isAnomalous = false;
 					information("Target path " + targetPath + " exists" );
 					// Judge whether the targetFile exists or not
-					if ( !checkExistence(this.targetFile, "file") ) {
+					if ( !checkExistence(this.targetFile.getAbsoluteFile(), "file") ) {
 						isAnomalous = true;
 						warnings("Target file does not seem to be existed" );
-						creating(targetFile, "file");
+						creating(targetFile.getAbsoluteFile(), "file");
 						// Retry
 						Preparation(targetPath);
 					} else {
 						// targetFile exists
 						isAnomalous = false;
-						information("Target file " + targetFile + " exists");
+						information("Target file " + targetFile.getAbsoluteFile() + " exists");
 					}
 				}
 
 				return !isAnomalous;
 			} finally {
-				creating(targetFile, "file");
+				creating(targetFile.getAbsoluteFile(), "file");
 			}
 		}
 		public boolean onCreate() throws IOException {
@@ -125,11 +127,11 @@ public class Functions {
 
 			// The targetPath & targetFile has been confirmed
 			// Load AbsolutePath & CanonicalPath
-			targetFile_AbsolutePath = targetFile.getParentFile().getAbsolutePath();
-			targetFile_CanonicalPath = targetFile.getParentFile().getCanonicalPath();
+			targetFile_AbsolutePath = targetFile.getAbsolutePath();
+			targetFile_CanonicalPath = targetFile.getCanonicalPath();
 
-			fileReader = new FileReader(this.targetFile);
-			fileWriter = new FileWriter(this.targetFile);
+			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
+			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 			targetFileContent.add( (char)fileReader.read() );
 
 			// Test
