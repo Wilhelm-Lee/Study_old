@@ -120,6 +120,7 @@ public class Functions {
 				for (int i; (i = fileReader.read()) != -1; targetFileContent.add( (char) i ) );
 				System.out.println(targetFileContent);
 			// Tset OVER
+			fileReader.close();
 
 			return isAnomalous;
 		} // onCreate(File)
