@@ -1,6 +1,5 @@
 package com.MichealWilliam;
 
-import com.MichealWilliam.Functions.*;
 import java.io.*;
 
 public class Main {
@@ -10,8 +9,5 @@ public class Main {
         Functions.TodoList todoList = new Functions.TodoList();
 
         System.out.println(todoList.onCreate());
-
     }
-
-
 }
