@@ -1,5 +1,6 @@
-/** When ask for targetFile, please remember to use @targetFile.getParentFile() as the default combination for file accessing. */
+/** When ask for targetFile, please remember to use @targetFile.getAbsoluteFile() as the default combination for file accessing. */
 /** Trying to use assert for testing. */
+/** Trying to use finally for coding */
 package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
@@ -52,7 +53,7 @@ public class Functions {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
 		}
 		public boolean checkExistence(@NotNull File targetObject, String targetType) {
-			return targetType.equalsIgnoreCase("File") ? targetObject.getParentFile().exists() : targetObject.exists();
+			return targetType.equalsIgnoreCase("File") ? targetObject.getAbsoluteFile().exists() : targetObject.exists();
 		}
 		public void request(String content) {
 			System.out.print( "Request: " + content);
@@ -67,47 +68,49 @@ public class Functions {
 			System.out.println( "Error: " + content);
 		}
 		public boolean Preparation(File targetFile) throws IOException {
-			/** Why does targetFile path cannot be specified into a file-unit? */
+			try {
+				/** Why does targetFile path cannot be specified into a file-unit? */
 
-			// Check existence of the path
-				// Not:
-					// Create path
-					// isAnomalous = true;
-				// Load on path
-				// isAnomalous = false;
-			// Check existence of the file
-				// Not:
-					// Create file
-					// isAnomalous = true;
-				// Aim file
-				// isAnomalous = false;
+				// Check existence of the path
+					// Not:
+						// Create path
+						// isAnomalous = true;
+					// Load on path
+					// isAnomalous = false;
+				// Check existence of the file
+					// Not:
+						// Create file
+						// isAnomalous = true;
+					// Aim file
+					// isAnomalous = false;
 
-			if( !checkExistence(targetPath, "path") ) {
-				isAnomalous = true;
-				warnings("Target path does not seem to be existed" );
-				// Auto doing, no asks
-				creating( targetPath, "path");
-				// Retry
-				Preparation(targetFile);
-			} else {
-				isAnomalous = false;
-				information("Target path " + targetPath + " exists" );
-				// Judge whether the targetFile exists or not
-				if ( !checkExistence(this.targetFile, "file") ) {
+				if( !checkExistence(targetPath, "path") ) {
 					isAnomalous = true;
-					warnings("Target file does not seem to be existed" );
-					// Auto doing, no ask
-					creating(targetFile, "file");
+					warnings("Target path does not seem to be existed" );
+					creating( targetPath, "path");
 					// Retry
-					Preparation(targetPath);
+					Preparation(targetFile);
 				} else {
-					// targetFile exists
 					isAnomalous = false;
-					information("Target file " + targetFile + " exists");
+					information("Target path " + targetPath + " exists" );
+					// Judge whether the targetFile exists or not
+					if ( !checkExistence(this.targetFile, "file") ) {
+						isAnomalous = true;
+						warnings("Target file does not seem to be existed" );
+						creating(targetFile, "file");
+						// Retry
+						Preparation(targetPath);
+					} else {
+						// targetFile exists
+						isAnomalous = false;
+						information("Target file " + targetFile + " exists");
+					}
 				}
-			}
 
-			return !isAnomalous;
+				return !isAnomalous;
+			} finally {
+				creating(targetFile, "file");
+			}
 		}
 		public boolean onCreate() throws IOException {
 
