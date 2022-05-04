@@ -113,14 +113,12 @@ public class Functions {
 			targetFile_CanonicalPath = targetFile.getCanonicalPath();
 
 			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
-			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 
-			// Test
-				// Read File
-				for (int i; (i = fileReader.read()) != -1; targetFileContent.add( (char) i ) );
-				System.out.println(targetFileContent);
-			// Tset OVER
+			// Must use FileWriter before using FileReader, otherwise the targetFile would get content erasing.
+			
 			fileReader.close();
+
+//			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 
 			return isAnomalous;
 		} // onCreate(File)
