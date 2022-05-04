@@ -26,8 +26,7 @@ public class Functions {
 		public char[] targetFileContentChar = new char[50];
 		public String targetFileContent = "";
 		public static boolean isAnomalous = false;
-//		public int fileReadCharMax = 5000;
-
+		
 		public boolean ifAsk(@NotNull File targetObject, String action) {
 			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
 			return scn.next().equalsIgnoreCase( "y" );
