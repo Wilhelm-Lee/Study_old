@@ -68,20 +68,6 @@ public class Functions {
 		}
 		public boolean Preparation(File targetFile) throws IOException {
 			try {
-
-				// Check existence of the path
-					// Not:
-						// Create path
-						// isAnomalous = true;
-						// Load on path
-					// isAnomalous = false;
-				// Check existence of the file
-					// Not:
-						// Create file
-						// isAnomalous = true;
-						// Aim file
-					// isAnomalous = false;
-
 				if( !checkExistence(targetPath, "path") ) {
 					isAnomalous = true;
 					warnings("Target path does not seem to be existed" );
@@ -104,7 +90,6 @@ public class Functions {
 						information("Target file " + this.targetFile.getAbsoluteFile() + " exists");
 					}
 				}
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -120,8 +105,7 @@ public class Functions {
 				isAnomalous = true;
 				return false;
 			}
-
-			// The targetPath & targetFile has been confirmed
+			// The targetPath & targetFile has been ensured
 			// Load AbsolutePath & CanonicalPath
 			targetFile_AbsolutePath = targetFile.getAbsolutePath();
 			targetFile_CanonicalPath = targetFile.getCanonicalPath();
@@ -130,12 +114,7 @@ public class Functions {
 			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 			targetFileContent.add( (char)fileReader.read() );
 
-			// Test
-			System.out.println(targetFileContent);
-			// Test OVER
 			return isAnomalous;
 		} // onCreate(File)
-
-
 	}
 }
