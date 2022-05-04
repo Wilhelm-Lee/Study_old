@@ -4,7 +4,6 @@ package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Functions {
@@ -17,14 +16,17 @@ public class Functions {
 
 	public static class TodoList extends Functions {
 
+		public String targetFileName = "TodoList.study";
 		public File targetPath = new File(fileHomePath, "/Documents/StudyFiles" );
-		public File targetFile = new File(targetPath, "/TodoList.study");
+		public File targetFile = new File(targetPath, "/" + targetFileName);
 		public FileReader fileReader;
 		public FileWriter fileWriter;
 		public String targetFile_AbsolutePath;
 		public String targetFile_CanonicalPath;
-		public ArrayList<Character> targetFileContent;
+		public char[] targetFileContentChar = new char[50];
+		public String targetFileContent = "";
 		public static boolean isAnomalous = false;
+//		public int fileReadCharMax = 5000;
 
 		public boolean ifAsk(@NotNull File targetObject, String action) {
 			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
@@ -43,9 +45,9 @@ public class Functions {
 		}
 		public void loading(@NotNull File targetObject, @NotNull String targetType) {
 			if ( targetType.equalsIgnoreCase("File") ) {
-				targetFile = targetObject.getAbsoluteFile();
+				this.targetFile = targetObject.getAbsoluteFile();
 			} else {
-				targetPath = targetObject.getAbsoluteFile();
+				this.targetPath = targetObject.getAbsoluteFile(); // It won't influence
 			}
 		}
 		public void requestDenied(@NotNull File targetObject, String targetType) {
@@ -97,8 +99,6 @@ public class Functions {
 		}
 		public boolean onCreate() throws IOException {
 
-			targetFileContent = new ArrayList<>(0);
-
 			// Use @isAnomalous to judge whether onCreate(File) is anomalous
 			if ( !Preparation(targetPath) ) {
 				errors( "Preparation(File) was not prepared properly" );
@@ -112,7 +112,15 @@ public class Functions {
 
 			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
 			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
-			targetFileContent.add( (char)fileReader.read() );
+
+			fileReader.read(targetFileContentChar);
+
+			// Test
+			for(int i = 0; i < targetFileContentChar.length; i ++) {
+				targetFileContent += targetFileContentChar[i];
+			}
+			System.out.println(targetFileContent);
+			// Tset OVER
 
 			return isAnomalous;
 		} // onCreate(File)
