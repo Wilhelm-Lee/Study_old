@@ -4,6 +4,7 @@ package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Functions {
@@ -23,10 +24,9 @@ public class Functions {
 		public FileWriter fileWriter;
 		public String targetFile_AbsolutePath;
 		public String targetFile_CanonicalPath;
-		public char[] targetFileContentChar = new char[50];
-		public String targetFileContent = "";
+		public ArrayList<Character> targetFileContent = new ArrayList<>(0);
 		public static boolean isAnomalous = false;
-		
+
 		public boolean ifAsk(@NotNull File targetObject, String action) {
 			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
 			return scn.next().equalsIgnoreCase( "y" );
@@ -38,6 +38,9 @@ public class Functions {
 			if ( ifAsk(targetObject, action) ) {
 				runtime = Runtime.getRuntime();
 				process = runtime.exec(cmd);
+				// Test
+				System.out.println(cmd);
+				// Test OVER
 			} else {
 				requestDenied(targetObject, targetType);
 			}
@@ -112,13 +115,10 @@ public class Functions {
 			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
 			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 
-			fileReader.read(targetFileContentChar);
-
 			// Test
-			for(int i = 0; i < targetFileContentChar.length; i ++) {
-				targetFileContent += targetFileContentChar[i];
-			}
-			System.out.println(targetFileContent);
+				// Read File
+				for (int i; (i = fileReader.read()) != -1; targetFileContent.add( (char) i ) );
+				System.out.println(targetFileContent);
 			// Tset OVER
 
 			return isAnomalous;
