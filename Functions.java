@@ -17,32 +17,39 @@ public class Functions {
 
 	public static class TodoList extends Functions {
 
-		public String targetFileName = "TodoList.study";
+		public String targetFileName = "TodoList";
+		public String targetFileType = ".study";
 		public File targetPath = new File(fileHomePath, "/Documents/StudyFiles" );
-		public File targetFile = new File(targetPath, "/" + targetFileName);
+		public File targetFile = new File(targetPath, "/" + targetFileName + targetFileType);
 		public FileReader fileReader;
 		public FileWriter fileWriter;
-		public String targetFile_AbsolutePath;
-		public String targetFile_CanonicalPath;
 		public ArrayList<Character> targetFileContent = new ArrayList<>(0);
 		public static boolean isAnomalous = false;
+		public File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName + "Copy" + targetFileType);
 
 		public boolean ifAsk(@NotNull File targetObject, String action) {
 			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
 			return scn.next().equalsIgnoreCase( "y" );
 		}
-		public void creating(@NotNull File targetObject, @NotNull String targetType) throws IOException {
+		public void creating(@NotNull File targetObject, @NotNull String targetType, boolean ifAskNeeded) throws IOException {
 			String action = "Creating";
 			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile() : "mkdir " + targetObject;
-			// Ask
-			if ( ifAsk(targetObject, action) ) {
-				runtime = Runtime.getRuntime();
-				process = runtime.exec(cmd);
-				// Test
-				System.out.println(cmd);
-				// Test OVER
+			// if not exists
+			if ( !targetObject.exists() ) {
+				// Ask
+				if (ifAskNeeded) {
+					if ( ifAsk(targetObject, action) ) {
+						runtime = Runtime.getRuntime();
+						process = runtime.exec(cmd);
+					} else {
+						requestDenied(targetObject, targetType);
+					}
+				} else {
+					runtime = Runtime.getRuntime();
+					process = runtime.exec(cmd);
+				}
 			} else {
-				requestDenied(targetObject, targetType);
+				information(targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
 			}
 		}
 		public void loading(@NotNull File targetObject, @NotNull String targetType) {
@@ -51,6 +58,34 @@ public class Functions {
 			} else {
 				this.targetPath = targetObject.getAbsoluteFile(); // It won't influence
 			}
+		}
+		public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
+			String action_formmer = "Coping";
+			String action_latter = "to";
+			String cmd;
+			// targetType
+			if ( ifAskNeeded ) {
+				if ( targetType.equalsIgnoreCase("Content") ) {
+					if ( destinationType.equalsIgnoreCase("File") || destinationType.equalsIgnoreCase("Content")) {
+						ArrayList<Character> tmp = new ArrayList<>(0);
+						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
+						tmp.add((char) this.fileReader.read());
+					} else {
+						// destination is a path, gotta create a file for it, located & named by ask()
+
+					}
+				} else {
+					if ( targetType.equalsIgnoreCase("File") ) {
+
+					} else {
+						if ( targetType.equalsIgnoreCase("Path") ) {
+							warnings( targetType + " does not support " + action_formmer.toUpperCase() + ". Action stopped");
+							information("Suggested using \"Creating(File, String, boolean) throws IOException\" to create a path");
+						}
+					}
+				}
+			}
+
 		}
 		public void requestDenied(@NotNull File targetObject, String targetType) {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
@@ -70,22 +105,34 @@ public class Functions {
 		public void errors(String content) {
 			System.out.println( "Error: " + content);
 		}
+		public boolean ask( @NotNull File targetObject, @NotNull String targetType, String action_formmer, String action_middle, String action_latter ) {
+			// Ask
+			if ( targetType.equalsIgnoreCase("File") ) {
+				if ( ifAsk(targetObject.getAbsoluteFile(), action_formmer + "-" + action_middle + "-" + action_latter) ) {
+					
+				}
+			} else if ( targetType.equalsIgnoreCase("Path") ){
+				if ( ifAsk(targetObject, action_formmer + "-" + action_middle + "-" + action_latter) ) {
+
+				}
+			}
+		}
 		public boolean Preparation(File targetFile) throws IOException {
 			try {
 				if( !checkExistence(targetPath, "path") ) {
 					isAnomalous = true;
 					warnings("Target path does not seem to be existed" );
-					creating( targetPath, "path");
+					creating( targetPath, "path", false);
 					// Retry
 					Preparation(targetFile.getAbsoluteFile());
 				} else {
 					isAnomalous = false;
-					information("Target path " + targetPath + " exists" );
+					information("Target path " + this.targetPath.getAbsoluteFile() + " exists" );
 					// Judge whether the targetFile exists or not
 					if ( !checkExistence(this.targetFile.getAbsoluteFile(), "file") ) {
 						isAnomalous = true;
 						warnings("Target file does not seem to be existed" );
-						creating(this.targetFile.getAbsoluteFile(), "file");
+						creating(this.targetFile.getAbsoluteFile(), "file", false);
 						// Retry
 						Preparation(targetPath);
 					} else {
@@ -109,13 +156,14 @@ public class Functions {
 			}
 			// The targetPath & targetFile has been ensured
 			// Load AbsolutePath & CanonicalPath
-			targetFile_AbsolutePath = targetFile.getAbsolutePath();
-			targetFile_CanonicalPath = targetFile.getCanonicalPath();
 
 			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
-
+			targetFileContent.add( (char) fileReader.read() );
 			// Must use FileWriter before using FileReader, otherwise the targetFile would get content erasing.
-			
+			// Therefor, just copy the targetFile as a cloneFile and mortify it via fileWriter.
+//			coping(this.targetFile, this.targetFileCopy.getParentFile(), "file", false);
+			creating(targetFileCopy, "file", false);
+
 			fileReader.close();
 
 //			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
