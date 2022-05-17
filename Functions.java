@@ -177,7 +177,7 @@ public class Functions {
 			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
 			targetFileContent.add( (char) fileReader.read() );
 			// Must use FileWriter before using FileReader, otherwise the targetFile would get content erased.
-			// Therefor, just copy the targetFile as a cloneFile and mortify it via fileWriter.
+			// Therefor, just copy the targetFile as cloneFile and mortify it via fileWriter.
 //			coping(this.targetFile, this.targetFileCopy.getParentFile(), "file", false);
 			creating(targetFileCopy, "file", false);
 
