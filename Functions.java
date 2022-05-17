@@ -103,7 +103,8 @@ public class Functions {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
 		}
 		public boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
-			return targetType.equalsIgnoreCase("File") ? targetObject.getAbsoluteFile().exists() : targetObject.exists();
+			return targetType.equalsIgnoreCase("File") ?
+					targetObject.getAbsoluteFile().exists() : targetObject.exists();
 		}
 		public void request(String content) {
 			System.out.print( "Request: " + content);
@@ -117,10 +118,12 @@ public class Functions {
 		public void errors(String content) {
 			System.out.println( "Error: " + content);
 		}
-		public boolean ask( @NotNull File targetObject, @NotNull String targetType, String action_formmer, String action_middle, String action_latter ) {
+		public boolean ask( @NotNull File targetObject, @NotNull String targetType,
+							String action_formmer, String action_middle, String action_latter ) {
 			// Ask
 			if ( targetType.equalsIgnoreCase("File") ) {
-				if ( ifAsk(targetObject.getAbsoluteFile(), action_formmer + "-" + action_middle + "-" + action_latter) ) {
+				if ( ifAsk(targetObject.getAbsoluteFile(), action_formmer + "-" +
+						action_middle + "-" + action_latter) ) {
 					// TODO
 				}
 			} else if ( targetType.equalsIgnoreCase("Path") ){
