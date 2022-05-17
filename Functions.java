@@ -25,15 +25,21 @@ public class Functions {
 		public FileWriter fileWriter;
 		public ArrayList<Character> targetFileContent = new ArrayList<>(0);
 		public static boolean isAnomalous = false;
-		public File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName + "Copy" + targetFileType);
+		public File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName +
+											  "Copy" + targetFileType);
 
 		public boolean ifAsk(@NotNull File targetObject, String action) {
-			request( targetObject.isFile() ? "Would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n" : "Would you like to " + action + " " + targetObject + " ? y/n" );
+			request( targetObject.isFile() ? "How would you like to " + action + " " +
+					 targetObject.getAbsoluteFile() + " ? y/n"
+					 : "Would you like to " + action + " " + targetObject + " ? y/n" );
+
 			return scn.next().equalsIgnoreCase( "y" );
 		}
-		public void creating(@NotNull File targetObject, @NotNull String targetType, boolean ifAskNeeded) throws IOException {
+		public void creating(@NotNull File targetObject, @NotNull String targetType,
+							 boolean ifAskNeeded) throws IOException {
 			String action = "Creating";
-			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile() : "mkdir " + targetObject;
+			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile()
+						 : "mkdir " + targetObject;
 			// if not exists
 			if ( !targetObject.exists() ) {
 				// Ask
@@ -59,19 +65,23 @@ public class Functions {
 				this.targetPath = targetObject.getAbsoluteFile(); // It won't influence
 			}
 		}
-		public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
+		public void coping(@NotNull File targetObject, @NotNull File destination,
+						   @NotNull String targetType, @NotNull String destinationType,
+						   boolean ifAskNeeded) throws IOException {
 			String action_formmer = "Coping";
 			String action_latter = "to";
 			String cmd;
 			// targetType
 			if ( ifAskNeeded ) {
 				if ( targetType.equalsIgnoreCase("Content") ) {
-					if ( destinationType.equalsIgnoreCase("File") || destinationType.equalsIgnoreCase("Content")) {
+					if ( destinationType.equalsIgnoreCase("File") ||
+						 destinationType.equalsIgnoreCase("Content")) {
+
 						ArrayList<Character> tmp = new ArrayList<>(0);
 						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
 						tmp.add((char) this.fileReader.read());
 					} else {
-						// destination is a path, gotta create a file for it, located & named by ask()
+						//TODO: destination is a path, gotta create a file for it, located & named by ask()
 
 					}
 				} else {
@@ -79,8 +89,10 @@ public class Functions {
 
 					} else {
 						if ( targetType.equalsIgnoreCase("Path") ) {
-							warnings( targetType + " does not support " + action_formmer.toUpperCase() + ". Action stopped");
-							information("Suggested using \"Creating(File, String, boolean) throws IOException\" to create a path");
+							warnings( targetType + " does not support " + action_formmer.toUpperCase() +
+									  ". Action stopped");
+							information("Suggested using " +
+									"\"Creating(File, String, boolean) throws IOException\" to create a path");
 						}
 					}
 				}
@@ -109,13 +121,15 @@ public class Functions {
 			// Ask
 			if ( targetType.equalsIgnoreCase("File") ) {
 				if ( ifAsk(targetObject.getAbsoluteFile(), action_formmer + "-" + action_middle + "-" + action_latter) ) {
-					
+					// TODO
 				}
 			} else if ( targetType.equalsIgnoreCase("Path") ){
 				if ( ifAsk(targetObject, action_formmer + "-" + action_middle + "-" + action_latter) ) {
-
+					// TODO
 				}
 			}
+			//TODO: Fix return token
+			return true;
 		}
 		public boolean Preparation(File targetFile) throws IOException {
 			try {
