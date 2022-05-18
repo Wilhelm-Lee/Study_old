@@ -10,35 +10,33 @@ import java.util.Scanner;
 
 public class Functions {
 
-	public Scanner scn = new Scanner(System.in);
-	public File fileHomePath = new File( "/home/william" );
-	public String systemType = System.getProperty( "os.name" );
-	public Runtime runtime;
-	public Process process;
-	public String[] cmd = new String[1];
+	protected final Scanner scn = new Scanner(System.in);
+	protected final File fileHomePath = new File( "/home/william" );
+	protected String systemType = System.getProperty( "os.name" );
+	protected Runtime runtime;
+	protected Process process;
+	protected final String[] cmd = new String[1];
 
-	public static class TodoList extends Functions {
+	protected static class TodoList extends Functions {
 
-		public String targetFileName = "TodoList";
-		public String targetFileType = ".study";
-		public File targetPath = new File(fileHomePath, "/Documents/StudyFiles" );
-		public File targetFile = new File(targetPath, "/" + targetFileName + targetFileType);
-		public FileReader fileReader;
-		public FileWriter fileWriter;
-		public ArrayList<Character> targetFileContent = new ArrayList<>(0);
-		public static boolean isAnomalous = false;
-		public File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName +
-											  "Copy" + targetFileType);
+		private final String targetFileName = "TodoList";
+		private final String targetFileType = ".study";
+		private File targetPath = new File(fileHomePath, "/Documents/StudyFiles" );
+		private File targetFile = new File(targetPath, "/" + targetFileName + targetFileType);
+		private FileReader fileReader;
+		private FileWriter fileWriter;
+		private ArrayList<Character> targetFileContent = new ArrayList<>(0);
+		private static boolean isAnomalous = false;
+		private final File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName + "Copy" + targetFileType);
 
-		public boolean ifAsk(@NotNull File targetObject, String action) {
+		private boolean ifAsk(@NotNull File targetObject, String action) {
 			request( targetObject.isFile()
 					 ? "How would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n"
 					 : "Would you like to " + action + " " + targetObject + " ? y/n" );
 
 			return scn.next().equalsIgnoreCase( "y" );
 		}
-		public void creating(@NotNull File targetObject, @NotNull String targetType,
-							 boolean ifAskNeeded) throws IOException {
+		private void creating(@NotNull File targetObject, @NotNull String targetType, boolean ifAskNeeded) throws IOException {
 			String action = "Creating";
 			this.cmd[1] = targetType.equalsIgnoreCase("File")
 						  ? "touch " + targetObject.getAbsoluteFile()
@@ -62,24 +60,21 @@ public class Functions {
 				information(targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
 			}
 		}
-		public void loading(@NotNull File targetObject, @NotNull String targetType) {
+		private void loading(@NotNull File targetObject, @NotNull String targetType) {
 			if ( targetType.equalsIgnoreCase("File") ) {
 				this.targetFile = targetObject.getAbsoluteFile();
 			} else {
-				this.targetPath = targetObject.getAbsoluteFile(); // It does not matter
+				this.targetPath = targetObject.getAbsoluteFile(); // Using .getAbsoluteFile() does not matter
 			}
 		}
-		public void coping(@NotNull File targetObject, @NotNull File destination,
-						   @NotNull String targetType, @NotNull String destinationType,
-						   boolean ifAskNeeded) throws IOException {
+		private void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
 			String action = "Coping";
 			// targetType
 			if ( ifAskNeeded ) {
 				if ( targetType.equalsIgnoreCase("Content") ) {
-					if ( destinationType.equalsIgnoreCase("File")
-						 || destinationType.equalsIgnoreCase("Content")) {
-
+					if ( destinationType.equalsIgnoreCase("File") || destinationType.equalsIgnoreCase("Content")) {
 						ArrayList<Character> tmp = new ArrayList<>(0);
+
 						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
 						tmp.add((char) this.fileReader.read());
 					} else {
@@ -87,41 +82,41 @@ public class Functions {
 
 					}
 				} else {
+					// not "Content"
 					if ( targetType.equalsIgnoreCase("File") ) {
+						// cmd[1] = "cp ...";
 
 					} else {
 						if ( targetType.equalsIgnoreCase("Path") ) {
-							warnings( targetType + " does not support " + action.toUpperCase() +
-									  ". Action stopped");
-							information("Suggested using " +
-									"\"Creating(File, String, boolean) throws IOException\" to create a path");
+							
 						}
 					}
 				}
+			} else {
+				// no ask()
 			}
 
 		}
-		public void requestDenied(@NotNull File targetObject, String targetType) {
+		private void requestDenied(@NotNull File targetObject, String targetType) {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
 		}
-		public boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
+		private boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
 			return targetType.equalsIgnoreCase("File") ?
 					targetObject.getAbsoluteFile().exists() : targetObject.exists();
 		}
-		public void request(String content) {
+		private void request(String content) {
 			System.out.print( "Request: " + content);
 		}
-		public void information(String content) {
+		private void information(String content) {
 			System.out.println( "Info: " + content);
 		}
-		public void warnings(String content) {
+		private void warnings(String content) {
 			System.out.println( "Warning: " + content);
 		}
-		public void errors(String content) {
+		private void errors(String content) {
 			System.out.println( "Error: " + content);
 		}
-		public boolean ask( @NotNull File targetObject, @NotNull String targetType,
-							String action ) throws IOException {
+		private boolean ask( @NotNull File targetObject, @NotNull String targetType, String action ) throws IOException {
 			// Ask
 			if ( targetType.equalsIgnoreCase("File") ) {
 				if ( ifAsk(targetObject.getAbsoluteFile(), action) ) {
@@ -143,7 +138,7 @@ public class Functions {
 			//TODO: Fix return token
 			return true;
 		}
-		public boolean Preparation(File targetFile) throws IOException {
+		private boolean Preparation(File targetFile) throws IOException {
 			try {
 				if( !checkExistence(targetPath, "path") ) {
 					isAnomalous = true;
