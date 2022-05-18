@@ -5,6 +5,7 @@ package com.MichealWilliam;
 import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Functions {
@@ -14,6 +15,7 @@ public class Functions {
 	public String systemType = System.getProperty( "os.name" );
 	public Runtime runtime;
 	public Process process;
+	public String[] cmd = new String[1];
 
 	public static class TodoList extends Functions {
 
@@ -29,8 +31,8 @@ public class Functions {
 											  "Copy" + targetFileType);
 
 		public boolean ifAsk(@NotNull File targetObject, String action) {
-			request( targetObject.isFile() ? "How would you like to " + action + " " +
-					 targetObject.getAbsoluteFile() + " ? y/n"
+			request( targetObject.isFile()
+					 ? "How would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n"
 					 : "Would you like to " + action + " " + targetObject + " ? y/n" );
 
 			return scn.next().equalsIgnoreCase( "y" );
@@ -38,8 +40,10 @@ public class Functions {
 		public void creating(@NotNull File targetObject, @NotNull String targetType,
 							 boolean ifAskNeeded) throws IOException {
 			String action = "Creating";
-			String cmd = targetType.equalsIgnoreCase("File") ? "touch " + targetObject.getAbsoluteFile()
-						 : "mkdir " + targetObject;
+			this.cmd[1] = targetType.equalsIgnoreCase("File")
+						  ? "touch " + targetObject.getAbsoluteFile()
+					 	  : "mkdir " + targetObject;
+
 			// if not exists
 			if ( !targetObject.exists() ) {
 				// Ask
@@ -62,26 +66,24 @@ public class Functions {
 			if ( targetType.equalsIgnoreCase("File") ) {
 				this.targetFile = targetObject.getAbsoluteFile();
 			} else {
-				this.targetPath = targetObject.getAbsoluteFile(); // It won't influence
+				this.targetPath = targetObject.getAbsoluteFile(); // It does not matter
 			}
 		}
 		public void coping(@NotNull File targetObject, @NotNull File destination,
 						   @NotNull String targetType, @NotNull String destinationType,
 						   boolean ifAskNeeded) throws IOException {
-			String action_formmer = "Coping";
-			String action_latter = "to";
-			String cmd;
+			String action = "Coping";
 			// targetType
 			if ( ifAskNeeded ) {
 				if ( targetType.equalsIgnoreCase("Content") ) {
-					if ( destinationType.equalsIgnoreCase("File") ||
-						 destinationType.equalsIgnoreCase("Content")) {
+					if ( destinationType.equalsIgnoreCase("File")
+						 || destinationType.equalsIgnoreCase("Content")) {
 
 						ArrayList<Character> tmp = new ArrayList<>(0);
 						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
 						tmp.add((char) this.fileReader.read());
 					} else {
-						//TODO: destination is a path, gotta create a file for it, located & named by ask()
+						//TODO: destination is only a path, gotta create a file for it, located & named by ask()
 
 					}
 				} else {
@@ -89,7 +91,7 @@ public class Functions {
 
 					} else {
 						if ( targetType.equalsIgnoreCase("Path") ) {
-							warnings( targetType + " does not support " + action_formmer.toUpperCase() +
+							warnings( targetType + " does not support " + action.toUpperCase() +
 									  ". Action stopped");
 							information("Suggested using " +
 									"\"Creating(File, String, boolean) throws IOException\" to create a path");
@@ -119,15 +121,22 @@ public class Functions {
 			System.out.println( "Error: " + content);
 		}
 		public boolean ask( @NotNull File targetObject, @NotNull String targetType,
-							String action_formmer, String action_middle, String action_latter ) {
+							String action ) throws IOException {
 			// Ask
 			if ( targetType.equalsIgnoreCase("File") ) {
-				if ( ifAsk(targetObject.getAbsoluteFile(), action_formmer + "-" +
-						action_middle + "-" + action_latter) ) {
-					// TODO
+				if ( ifAsk(targetObject.getAbsoluteFile(), action) ) {
+					if (action.equalsIgnoreCase("Creating")) {
+						creating(targetObject, targetType, false);
+
+					} else if (action.equalsIgnoreCase("Coping")){
+						warnings("coping() is yet to be finished");
+
+					} else if (action.equalsIgnoreCase("Loading")) {
+						loading(targetObject, targetType);
+					}
 				}
-			} else if ( targetType.equalsIgnoreCase("Path") ){
-				if ( ifAsk(targetObject, action_formmer + "-" + action_middle + "-" + action_latter) ) {
+			} else if ( targetType.equalsIgnoreCase("Path") ) {
+				if ( ifAsk(targetObject, action) ) {
 					// TODO
 				}
 			}
