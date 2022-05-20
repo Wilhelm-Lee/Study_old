@@ -1,11 +1,12 @@
-/** When ask for targetFile, please remember to use @targetFile.getAbsoluteFile() as the default combination for file accessing. */
-/** Suggest avoiding using targetType with isFile() instead. */
+/**
+ * When ask for targetFile, please remember to use @targetFile.getAbsoluteFile() as the default combination for file accessing.
+ * Suggest avoiding using targetType with isFile() instead.
+*/
 package com.MichealWilliam;
 
 import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Functions {
@@ -26,7 +27,7 @@ public class Functions {
 		private FileReader fileReader;
 		private FileWriter fileWriter;
 		private ArrayList<Character> targetFileContent = new ArrayList<>(0);
-		private static boolean isAnomalous = false;
+		private static boolean isAnnomalous = false;
 		private final File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName + "Copy" + targetFileType);
 
 		private boolean ifAsk(@NotNull File targetObject, String action) {
@@ -64,7 +65,7 @@ public class Functions {
 			if ( targetType.equalsIgnoreCase("File") ) {
 				this.targetFile = targetObject.getAbsoluteFile();
 			} else {
-				this.targetPath = targetObject.getAbsoluteFile(); // Using .getAbsoluteFile() does not matter
+				this.targetPath = targetObject.getAbsoluteFile(); // Using getAbsoluteFile() does not matter
 			}
 		}
 		private void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
@@ -72,14 +73,33 @@ public class Functions {
 			// targetType
 			if ( ifAskNeeded ) {
 				if ( targetType.equalsIgnoreCase("Content") ) {
-					if ( destinationType.equalsIgnoreCase("File") || destinationType.equalsIgnoreCase("Content")) {
+					if ( destinationType.equalsIgnoreCase("Content") ) {
 						ArrayList<Character> tmp = new ArrayList<>(0);
 
 						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
 						tmp.add((char) this.fileReader.read());
-					} else {
-						//TODO: destination is only a path, gotta create a file for it, located & named by ask()
+						fileReader.close();
 
+						// if File does exist
+						if ( checkExistence(targetObject, "file") ) {
+							fileWriter = new FileWriter(targetObject.getAbsoluteFile());
+							fileWriter.write(tmp.toString());
+							fileWriter.close();
+
+						} else {
+							// Does not exist
+							creating(targetObject, "file", true);
+							coping(targetObject, destination, targetType, destinationType, true);
+						}
+
+					} else if( destinationType.equalsIgnoreCase("File") ){
+							this.cmd[1] = "cp " + targetObject.getAbsoluteFile() + " " + destination.getAbsoluteFile();
+							runtime = Runtime.getRuntime();
+							process = runtime.exec(cmd);
+
+					} else {
+						// TODO: destination is only a path, gotta create a file for it, located & named by ask()
+						creating(targetObject, "path", true);
 					}
 				} else {
 					// not "Content"
@@ -88,7 +108,7 @@ public class Functions {
 
 					} else {
 						if ( targetType.equalsIgnoreCase("Path") ) {
-							
+							// Check if path exits
 						}
 					}
 				}
@@ -101,8 +121,9 @@ public class Functions {
 			warnings(targetType + " " + targetObject + " failed, caused & canceled by user" );
 		}
 		private boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
-			return targetType.equalsIgnoreCase("File") ?
-					targetObject.getAbsoluteFile().exists() : targetObject.exists();
+			return targetType.equalsIgnoreCase("File")
+				   ? targetObject.getAbsoluteFile().exists()
+				   : targetObject.exists();
 		}
 		private void request(String content) {
 			System.out.print( "Request: " + content);
@@ -124,55 +145,65 @@ public class Functions {
 						creating(targetObject, targetType, false);
 
 					} else if (action.equalsIgnoreCase("Coping")){
+						// TODO: coping()
 						warnings("coping() is yet to be finished");
 
 					} else if (action.equalsIgnoreCase("Loading")) {
 						loading(targetObject, targetType);
 					}
-				}
+				} // no else
 			} else if ( targetType.equalsIgnoreCase("Path") ) {
-				if ( ifAsk(targetObject, action) ) {
-					// TODO
+				if ( ifAsk(targetObject.getAbsoluteFile(), action) ) {
+					if ( action.equalsIgnoreCase("Coping") ) {
+						request("Please input your destination for " + action + " ! (AbsolutePath)\nLike: \"/home/${USER_NAME}/.../${TARGET_PATH}\"\nDestination == ");
+						String destinationS = scn.next();
+						File destination = new File(destinationS);
+						request("Please input the type of destination! (\"File\", \"Path\", \"Content\")\nDestinationType == ");
+						String destinationType = scn.next();
+						coping(targetObject, destination, targetType, destinationType, true);
+					} else if (action.equalsIgnoreCase( "Creating" )) {
+
+					}
 				}
 			}
-			//TODO: Fix return token
+			//TODO: Fix token, return below
 			return true;
 		}
 		private boolean Preparation(File targetFile) throws IOException {
 			try {
 				if( !checkExistence(targetPath, "path") ) {
-					isAnomalous = true;
+					isAnnomalous = true;
 					warnings("Target path does not seem to be existed" );
 					creating( targetPath, "path", false);
 					// Retry
 					Preparation(targetFile.getAbsoluteFile());
 				} else {
-					isAnomalous = false;
+					isAnnomalous = false;
 					information("Target path " + this.targetPath.getAbsoluteFile() + " exists" );
 					// Judge whether the targetFile exists or not
 					if ( !checkExistence(this.targetFile.getAbsoluteFile(), "file") ) {
-						isAnomalous = true;
+						isAnnomalous = true;
 						warnings("Target file does not seem to be existed" );
 						creating(this.targetFile.getAbsoluteFile(), "file", false);
 						// Retry
 						Preparation(targetPath);
 					} else {
 						// targetFile exists
-						isAnomalous = false;
+						isAnnomalous = false;
 						information("Target file " + this.targetFile.getAbsoluteFile() + " exists");
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return !isAnomalous;
+			return !isAnnomalous;
 		}
 		public boolean onCreate() throws IOException {
 
-			// Use @isAnomalous to judge whether onCreate(File) is anomalous
+			// Use @isAnnomalous to judge whether onCreate(File) is anomalous
 			if ( !Preparation(targetPath) ) {
 				errors( "Preparation(File) was not prepared properly" );
-				isAnomalous = true;
+				isAnnomalous = true;
 				return false;
 			}
 			// The targetPath & targetFile has been ensured
@@ -189,7 +220,7 @@ public class Functions {
 
 //			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 
-			return isAnomalous;
+			return isAnnomalous;
 		} // onCreate(File)
 	}
 }
