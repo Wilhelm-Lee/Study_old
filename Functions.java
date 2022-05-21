@@ -49,13 +49,13 @@ public class Functions {
 				if (ifAskNeeded) {
 					if ( ifAsk(targetObject, action) ) {
 						runtime = Runtime.getRuntime();
-						process = runtime.exec(cmd);
+						process = runtime.exec(this.cmd);
 					} else {
 						requestDenied(targetObject, targetType);
 					}
 				} else {
 					runtime = Runtime.getRuntime();
-					process = runtime.exec(cmd);
+					process = runtime.exec(this.cmd);
 				}
 			} else {
 				information(targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
@@ -70,50 +70,21 @@ public class Functions {
 		}
 		private void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
 			String action = "Coping";
-			// targetType
-			if ( ifAskNeeded ) {
-				if ( targetType.equalsIgnoreCase("Content") ) {
-					if ( destinationType.equalsIgnoreCase("Content") ) {
-						ArrayList<Character> tmp = new ArrayList<>(0);
 
-						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
-						tmp.add((char) this.fileReader.read());
-						fileReader.close();
-
-						// if File does exist
-						if ( checkExistence(targetObject, "file") ) {
-							fileWriter = new FileWriter(targetObject.getAbsoluteFile());
-							fileWriter.write(tmp.toString());
-							fileWriter.close();
-
-						} else {
-							// Does not exist
-							creating(targetObject, "file", true);
-							coping(targetObject, destination, targetType, destinationType, true);
-						}
-
-					} else if( destinationType.equalsIgnoreCase("File") ){
-							this.cmd[1] = "cp " + targetObject.getAbsoluteFile() + " " + destination.getAbsoluteFile();
-							runtime = Runtime.getRuntime();
-							process = runtime.exec(cmd);
-
-					} else {
-						// TODO: destination is only a path, gotta create a file for it, located & named by ask()
-						creating(targetObject, "path", true);
-					}
+			if( targetType.equalsIgnoreCase("Path") && destinationType.equalsIgnoreCase("Path") ){
+				// Existence
+				if( !checkExistence(destination, "path") ){
+					creating(destination, destinationType, ifAskNeeded);
+					// Retry
+					coping(targetObject, destination, targetType, destinationType, ifAskNeeded);
 				} else {
-					// not "Content"
-					if ( targetType.equalsIgnoreCase("File") ) {
-						// cmd[1] = "cp ...";
-
-					} else {
-						if ( targetType.equalsIgnoreCase("Path") ) {
-							// Check if path exits
-						}
-					}
+					// Path exists. Then loading(), now copy path"@String@" based on this.targetPath
+					this.targetPath = new File(this.targetPath + destination.toString());
+					// Use "mkdir -p" + this.targetPath
+					this.cmd[1] = "mkdir -p " + this.targetPath;
+					runtime	= Runtime.getRuntime();
+					process = runtime.exec(this.cmd);
 				}
-			} else {
-				// no ask()
 			}
 
 		}
@@ -152,7 +123,7 @@ public class Functions {
 						loading(targetObject, targetType);
 					}
 				} // no else
-			} else if ( targetType.equalsIgnoreCase("Path") ) {
+			} else if ( targetType.equalsIgnoreCase("Path") ) { // What does code below do?
 				if ( ifAsk(targetObject.getAbsoluteFile(), action) ) {
 					if ( action.equalsIgnoreCase("Coping") ) {
 						request("Please input your destination for " + action + " ! (AbsolutePath)\nLike: \"/home/${USER_NAME}/.../${TARGET_PATH}\"\nDestination == ");
@@ -224,3 +195,61 @@ public class Functions {
 		} // onCreate(File)
 	}
 }
+/*
+			// targetType
+			// TRUE
+			if ( ifAskNeeded ) {
+				// TRUE_Content
+				if ( targetType.equalsIgnoreCase("Content") ) {
+					// TRUE_Content_Content
+					if ( destinationType.equalsIgnoreCase("Content") ) {
+						ArrayList<Character> tmp = new ArrayList<>(0);
+
+						this.fileReader = new FileReader(targetFile.getAbsoluteFile());
+						tmp.add((char) this.fileReader.read());
+						fileReader.close();
+
+						// if File does exist
+						// TRUE_Content_Content_TRUE
+						if ( checkExistence(targetObject, "file") ) {
+							fileWriter = new FileWriter(targetObject.getAbsoluteFile());
+							fileWriter.write(tmp.toString());
+							fileWriter.close();
+
+						// TRUE_Content_Content_FALSE
+						} else {
+							// Does not exist
+							creating(targetObject, "file", true);
+							// Retry coping(,,,,)
+							coping(targetObject, destination, targetType, destinationType, true);
+						}
+					// TRUE_Content_File
+					} else if( destinationType.equalsIgnoreCase("File") ){
+							this.cmd[1] = "cp " + targetObject.getAbsoluteFile() + " " + destination.getAbsoluteFile();
+							runtime = Runtime.getRuntime();
+							process = runtime.exec(cmd);
+
+					// TRUE_Content_Path
+					} else {
+						// TODO: destination is only a path, gotta create a file for it, located & named by ask()
+						creating(targetObject, "path", true);
+					}
+				} else {
+					// not "Content"
+					// TRUE_File
+					if ( targetType.equalsIgnoreCase("File") ) {
+						// cmd[1] = "cp ...";
+
+						// TRUE_File_Content
+
+					} else {
+						if ( targetType.equalsIgnoreCase("Path") ) {
+							// Check if path exits
+						}
+					}
+				}
+			// FALSE
+			} else {
+				// no ask()
+			}
+ */
