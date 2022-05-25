@@ -27,7 +27,7 @@ public class Functions {
 		private FileReader fileReader;
 		private FileWriter fileWriter;
 		private ArrayList<Character> targetFileContent = new ArrayList<>(0);
-		private static boolean isAnnomalous = false;
+		private static boolean isAnomalous = false;
 		private final File targetFileCopy = new File(targetFile.getParent() + "/" + targetFileName + "Copy" + targetFileType);
 
 		private boolean ifAsk(@NotNull File targetObject, String action) {
@@ -65,26 +65,23 @@ public class Functions {
 			if ( targetType.equalsIgnoreCase("File") ) {
 				this.targetFile = targetObject.getAbsoluteFile();
 			} else {
-				this.targetPath = targetObject.getAbsoluteFile(); // Using getAbsoluteFile() does not matter
+				this.targetPath = targetObject.getAbsoluteFile();
 			}
 		}
 		private void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String targetType, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
 			String action = "Coping";
 
-			if( targetType.equalsIgnoreCase("Path") && destinationType.equalsIgnoreCase("Path") ){
+			if (targetType.equalsIgnoreCase("File") && destinationType.equalsIgnoreCase("Path")) {
 				// Existence
 				if( !checkExistence(destination, "path") ){
 					creating(destination, destinationType, ifAskNeeded);
 					// Retry
 					coping(targetObject, destination, targetType, destinationType, ifAskNeeded);
-				} else {
-					// Path exists. Then loading(), now copy path"@String@" based on this.targetPath
-					this.targetPath = new File(this.targetPath + destination.toString());
-					// Use "mkdir -p" + this.targetPath
-					this.cmd[1] = "mkdir -p " + this.targetPath;
-					runtime	= Runtime.getRuntime();
-					process = runtime.exec(this.cmd);
 				}
+
+				this.cmd[1] = "cp " + targetObject.getAbsoluteFile() + " " + destination;
+				runtime = Runtime.getRuntime();
+				process = runtime.exec(cmd);
 			}
 
 		}
@@ -126,7 +123,7 @@ public class Functions {
 			} else if ( targetType.equalsIgnoreCase("Path") ) { // What does code below do?
 				if ( ifAsk(targetObject.getAbsoluteFile(), action) ) {
 					if ( action.equalsIgnoreCase("Coping") ) {
-						request("Please input your destination for " + action + " ! (AbsolutePath)\nLike: \"/home/${USER_NAME}/.../${TARGET_PATH}\"\nDestination == ");
+						request("Please input your destination for " + action + " ! (AbsolutePath)\nSuch as: \"/home/${USER_NAME}/.../${TARGET_PATH}\"\nDestination == ");
 						String destinationS = scn.next();
 						File destination = new File(destinationS);
 						request("Please input the type of destination! (\"File\", \"Path\", \"Content\")\nDestinationType == ");
@@ -143,38 +140,38 @@ public class Functions {
 		private boolean Preparation(File targetFile) throws IOException {
 			try {
 				if( !checkExistence(targetPath, "path") ) {
-					isAnnomalous = true;
+					isAnomalous = true;
 					warnings("Target path does not seem to be existed" );
 					creating( targetPath, "path", false);
 					// Retry
 					Preparation(targetFile.getAbsoluteFile());
 				} else {
-					isAnnomalous = false;
+					isAnomalous = false;
 					information("Target path " + this.targetPath.getAbsoluteFile() + " exists" );
 					// Judge whether the targetFile exists or not
 					if ( !checkExistence(this.targetFile.getAbsoluteFile(), "file") ) {
-						isAnnomalous = true;
+						isAnomalous = true;
 						warnings("Target file does not seem to be existed" );
 						creating(this.targetFile.getAbsoluteFile(), "file", false);
 						// Retry
 						Preparation(targetPath);
 					} else {
 						// targetFile exists
-						isAnnomalous = false;
+						isAnomalous = false;
 						information("Target file " + this.targetFile.getAbsoluteFile() + " exists");
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return !isAnnomalous;
+			return !isAnomalous;
 		}
 		public boolean onCreate() throws IOException {
 
-			// Use @isAnnomalous to judge whether onCreate(File) is anomalous
+			// Use @isAnomalous to judge whether onCreate(File) is anomalous
 			if ( !Preparation(targetPath) ) {
 				errors( "Preparation(File) was not prepared properly" );
-				isAnnomalous = true;
+				isAnomalous = true;
 				return false;
 			}
 			// The targetPath & targetFile has been ensured
@@ -191,7 +188,7 @@ public class Functions {
 
 //			fileWriter = new FileWriter(this.targetFile.getAbsoluteFile());
 
-			return isAnnomalous;
+			return isAnomalous;
 		} // onCreate(File)
 	}
 }
