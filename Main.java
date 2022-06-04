@@ -1,14 +1,16 @@
-package com.MichealWilliam;
+package com.michealwilliam;
 
-import java.io.*;
+import java.io.IOException;
 
+/**
+ * @author william
+ */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Functions functions = new Functions();
-        Functions.TodoList todoList = new Functions.TodoList();
+	public static void main(String[] args) throws IOException {
+		Functions functions = new Functions();
+		Functions.TodoList todoList = new Functions.TodoList();
 
-        System.out.println(todoList.onCreate());
-
-    }
+		System.out.println(todoList.onCreate());
+	}
 }

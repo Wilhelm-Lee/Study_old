@@ -1,4 +1,4 @@
-package com.MichealWilliam;
+package com.michealwilliam;
 
 import java.io.*;
 
