@@ -9,9 +9,10 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-		Functions.TodoList todoList = new Functions.TodoList();
+		Functions functions = new Functions();
+		Settings settings = new Settings();
 
-
+		System.out.println(settings.formatter.format(settings.localDateTime));
 
 	}
 }

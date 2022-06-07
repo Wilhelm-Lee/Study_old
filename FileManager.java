@@ -8,12 +8,17 @@ import java.util.Scanner;
 
 public class FileManager {
 
-	Scanner scn = new Scanner(System.in);
-	Functions.TodoList todoList = new Functions.TodoList();
 	public final File fileHomePath = new File("/home/william");
+	public final String[] cmd = new String[1];
 	public Runtime runtime;
 	public Process process;
-	public final String[] cmd = new String[1];
+
+	/**
+	 * @param isAnomalous
+	 */
+
+	Scanner scn = new Scanner(System.in);
+//	Functions.TodoList todoList = new Functions.TodoList();
 //	final ArrayList<Character> targetFileContent = new ArrayList<>(0);
 	boolean isAnomalous = false;
 
@@ -100,26 +105,26 @@ public class FileManager {
 	}
 	public boolean preparation(File targetFile) {
 		try {
-			if (!checkExistence(todoList.targetPath, "path")) {
+			if (!checkExistence(Functions.TodoList.targetPath, "path")) {
 				isAnomalous = true;
 				warnings("Target path does not seem to be existed");
-				creating(todoList.targetPath, "path", false);
+				creating(Functions.TodoList.targetPath, "path", false);
 				// Retry
 				preparation(targetFile.getAbsoluteFile());
 			} else {
 				isAnomalous = false;
-				information("Target path " + todoList.targetPath.getAbsoluteFile() + " exists");
+				information("Target path " + Functions.TodoList.targetPath.getAbsoluteFile() + " exists");
 				// Judge whether the targetFile exists or not
-				if (!checkExistence(todoList.targetFile.getAbsoluteFile(), "File")) {
+				if (!checkExistence(Functions.TodoList.targetFile.getAbsoluteFile(), "File")) {
 					isAnomalous = true;
 					warnings("Target file does not seem to be existed");
-					creating(this.todoList.targetFile.getAbsoluteFile(), "File", false);
+					creating(Functions.TodoList.targetFile.getAbsoluteFile(), "File", false);
 					// Retry
-					preparation(todoList.targetPath);
+					preparation(Functions.TodoList.targetPath);
 				} else {
 					// targetFile exists
 					isAnomalous = false;
-					information("Target file " + todoList.targetFile.getAbsoluteFile() + " exists");
+					information("Target file " + Functions.TodoList.targetFile.getAbsoluteFile() + " exists");
 				}
 			}
 		} catch (Exception e) {

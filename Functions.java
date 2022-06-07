@@ -14,15 +14,15 @@ import java.util.ArrayList;
  */
 public class Functions {
 
-	FileManager fm = new FileManager();
 	protected static final ArrayList<String> TOOLS = new ArrayList<>(0);
 
 	protected static class TodoList extends Functions {
 
 		public static final String TARGET_FILE_NAME = "TodoList";
 		public static final String TARGET_FILE_TYPE = ".study";
-		public final File targetPath = new File(fm.fileHomePath, "/Documents/StudyFiles");
-		public final File targetFile = new File(targetPath, "/" + TARGET_FILE_NAME + TARGET_FILE_TYPE);
+		static FileManager fm = new FileManager();
+		public static final File targetPath = new File(fm.fileHomePath, "/Documents/StudyFiles");
+		public static final File targetFile = new File(targetPath, "/" + TARGET_FILE_NAME + TARGET_FILE_TYPE);
 
 		public boolean onCreate() throws IOException {
 
