@@ -7,12 +7,24 @@ import java.io.IOException;
  */
 public class Main {
 
+	/*
+		These are the classes/methods witch need
+		to create realizations (Non-static):
+			1. Functions.TodoList				[class]
+			2. BasicOutput.greetings(String)	[method]
+	 */
+
 	public static void main(String[] args) throws IOException {
 
-		Functions functions = new Functions();
-		Settings settings = new Settings();
+//		Functions functions = new Functions();
+//		Settings settings = new Settings();
+		BasicOutput bo = new BasicOutput();
 
-		System.out.println(settings.formatter.format(settings.localDateTime));
+		// Permanent code
+		Functions.TodoList todoList = new Functions.TodoList();
+		// Permanent code OVER
+
+		BasicOutput.information("Study", todoList.onCreate());
 
 	}
 }

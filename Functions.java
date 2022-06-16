@@ -8,42 +8,35 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.michealwilliam.BasicOutput.errors;
+
 /**
  * @author william
  * @version PROTOTYPE_0.5
  */
+
 public class Functions {
 
+	public static FileManager fm = new FileManager();
+	public static final File targetPath = new File(fm.fileHomePath, "/Documents/StudyFiles");
+	public static final File TODOLIST_FILE = new File(targetPath, "TodoList.study");
+	public static final String TODOLIST_FILE_NAME = "TodoList";
+	public static final String TODOLIST_FILE_TYPE = ".study";
 	protected static final ArrayList<String> TOOLS = new ArrayList<>(0);
 
 	protected static class TodoList extends Functions {
 
-		public static final String TARGET_FILE_NAME = "TodoList";
-		public static final String TARGET_FILE_TYPE = ".study";
-		static FileManager fm = new FileManager();
-		public static final File targetPath = new File(fm.fileHomePath, "/Documents/StudyFiles");
-		public static final File targetFile = new File(targetPath, "/" + TARGET_FILE_NAME + TARGET_FILE_TYPE);
+		public static final File targetFile = new File(targetPath, "/" + "TodoList.study");
 
 		public boolean onCreate() throws IOException {
 
 			// Use @isAnomalous to judge whether onCreate(File) is anomalous
 			if (!fm.preparation(targetPath)) {
-				fm.errors("preparation(File) was not prepared properly");
-				fm.isAnomalous = true;
-				return false;
+				errors("Functions.TodoList.<boolean>onCreate()", "Unsolvable problem met (kernel code problem), program is exiting");
+				return fm.isAnomalous = true;
 			}
-			// The targetPath & targetFile has been ensured
-			// Load AbsolutePath & CanonicalPath
 
-//			fileReader = new FileReader(this.targetFile.getAbsoluteFile());
-//			targetFileContent.add((char) fileReader.read());
-			// Must use FileWriter before using FileReader, otherwise the targetFile would get content erased.
-			// Therefor, just COPY the targetFile as cloneFile and mortify it via fileWriter.
-//			creating(targetFileCopy, "File", false);
-
-//			fileReader.close();
-
-			return fm.isAnomalous;
+			return !fm.isAnomalous;
 		}
 	}
 }
