@@ -4,6 +4,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.michealwilliam.BasicOutput.*;
@@ -13,12 +15,11 @@ public class FileManager {
 	/**
 	 * @author william
 	 * @param isAnomalous
-
 	 */
 
 	public Scanner scn = new Scanner(System.in);
 	public final File fileHomePath = new File("/home/william");
-	public final String[] cmd = new String[1];
+	public List<String> cmd = new ArrayList<String>(0);
 	public Runtime runtime;
 	public Process process;
 
@@ -37,27 +38,33 @@ public class FileManager {
 
 		String action = "Creating";
 
-		this.cmd[0] = "File".equalsIgnoreCase(targetType) ?
-				  "touch " + targetObject
-				: "mkdir -p " + targetObject;
+		if ( "File".equalsIgnoreCase(targetType) ) {
+			this.cmd.add("touch");
+			this.cmd.add( targetObject.getAbsolutePath() );
+		} else {
+			this.cmd.add("mkdir");
+			this.cmd.add("-p");
+			this.cmd.add( targetObject.getAbsolutePath() );
+		}
 
 		// if not exists
 		if ( !targetObject.exists() ) {
 			// Ask
-			if (ifAskNeeded) {
-				if (ifAsk(targetObject, action)) {
+			if ( ifAskNeeded ) {
+				if ( ifAsk(targetObject, action) ) {
 					runtime = Runtime.getRuntime();
-					process = runtime.exec(this.cmd);
+					process = runtime.exec( this.cmd.toArray(new String[cmd.size()]) );
 				} else {
 					requestDenied(targetObject, targetType);
 				}
 			} else {
 				runtime = Runtime.getRuntime();
-				process = runtime.exec(this.cmd);
+				process = runtime.exec( this.cmd.toArray(new String[cmd.size()]) );
 			}
 		} else {
 			information(targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
 		}
+
 	}
 	public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
 
@@ -73,9 +80,11 @@ public class FileManager {
 				}
 			}
 		}
-		this.cmd[0] = "cp " + targetObject.getAbsoluteFile() + " " + destination.getAbsoluteFile();
+		this.cmd.add( "cp" );
+		this.cmd.add( targetObject.getAbsolutePath() );
+		this.cmd.add( destination.getAbsolutePath() );
 		runtime = Runtime.getRuntime();
-		process = runtime.exec(cmd);
+		process = runtime.exec( this.cmd.toArray(new String[0]) );
 
 	}
 	public void requestDenied(@NotNull File targetObject, String targetType) {
@@ -111,7 +120,7 @@ public class FileManager {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			errors("TodoList: " + targetFile.getAbsolutePath(),"\n\t" + e);
 		}
 		return isAnomalous;
 	}

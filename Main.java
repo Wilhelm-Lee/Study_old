@@ -1,5 +1,6 @@
 package com.michealwilliam;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -7,7 +8,7 @@ import java.io.IOException;
  */
 public class Main {
 
-	/*
+	/**
 		These are the classes/methods witch need
 		to create realizations (Non-static):
 			1. Functions.TodoList				[class]
@@ -24,7 +25,9 @@ public class Main {
 		Functions.TodoList todoList = new Functions.TodoList();
 		// Permanent code OVER
 
-		BasicOutput.information("Study", todoList.onCreate());
+//		BasicOutput.information("Study", todoList.onCreate());
+		FileManager fm = new FileManager();
+		fm.creating(new File("/home/william/t"), "File", false);
 
 	}
 }
