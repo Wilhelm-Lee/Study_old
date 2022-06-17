@@ -66,27 +66,27 @@ public class FileManager {
 		}
 
 	}
-	public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
-
-		String action = "Coping";
-
-		if( checkExistence(destination, "File") ) {
-			warnings(action, "Destined File is already existed, " + action + "will OVERWRITE it");
-			if( ifAskNeeded ) {
-				if( !ifAsk(destination, action) ) {
-					requestDenied(destination, destinationType);
-					information(action, "Canceled");
-					return;
-				}
-			}
-		}
-		this.cmd.add( "cp" );
-		this.cmd.add( targetObject.getAbsolutePath() );
-		this.cmd.add( destination.getAbsolutePath() );
-		runtime = Runtime.getRuntime();
-		process = runtime.exec( this.cmd.toArray(new String[0]) );
-
-	}
+//	public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
+//
+//		String action = "Coping";
+//
+//		if( checkExistence(destination, "File") ) {
+//			warnings(action, "Destined File is already existed, " + action + "will OVERWRITE it");
+//			if( ifAskNeeded ) {
+//				if( !ifAsk(destination, action) ) {
+//					requestDenied(destination, destinationType);
+//					information(action, "Canceled");
+//					return;
+//				}
+//			}
+//		}
+//		this.cmd.add( "cp" );
+//		this.cmd.add( targetObject.getAbsolutePath() );
+//		this.cmd.add( destination.getAbsolutePath() );
+//		runtime = Runtime.getRuntime();
+//		process = runtime.exec( this.cmd.toArray(new String[0]) );
+//
+//	}
 	public void requestDenied(@NotNull File targetObject, String targetType) {
 		warnings(targetType + " " + targetObject + " failed, caused & canceled by user");
 	}

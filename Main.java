@@ -18,15 +18,19 @@ public class Main {
 
 //		Functions functions = new Functions();
 //		Settings settings = new Settings();
-		BasicOutput bo = new BasicOutput();
+		FileManager fm = new FileManager();
 
 		// Permanent code
 		Functions.TodoList todoList = new Functions.TodoList();
-		// Permanent code OVER
+		boolean ifOkay = todoList.onCreate();
 
-//		BasicOutput.information("Study", todoList.onCreate());
-		FileManager fm = new FileManager();
-		todoList.onCreate();
+		if ( ifOkay ) {
+			BasicOutput.information(true);
+		}
+		else {
+			BasicOutput.errors(false);
+		}
+		// Permanent code OVER
 
 	}
 }

@@ -31,7 +31,7 @@ public class Functions {
 
 			// Use @isAnomalous to judge whether onCreate(File) is anomalous
 			if (fm.preparation(targetPath)) {
-				errors("Functions.TodoList.<boolean>onCreate()", "Unsolvable problem met (kernel code problem), program is exiting");
+				errors("Functions.TodoList. boolean onCreate()", "Unsolvable problem met (kernel code problem), program is exiting");
 				return fm.isAnomalous = true;
 			}
 
