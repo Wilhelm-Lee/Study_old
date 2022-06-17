@@ -1,6 +1,5 @@
 package com.michealwilliam;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -27,7 +26,7 @@ public class Main {
 
 //		BasicOutput.information("Study", todoList.onCreate());
 		FileManager fm = new FileManager();
-		fm.creating(new File("/home/william/t"), "File", false);
+		todoList.onCreate();
 
 	}
 }

@@ -5,7 +5,6 @@
 package com.michealwilliam;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.michealwilliam.BasicOutput.errors;
@@ -28,10 +27,10 @@ public class Functions {
 
 		public static final File targetFile = new File(targetPath, "/" + "TodoList.study");
 
-		public boolean onCreate() throws IOException {
+		public boolean onCreate() {
 
 			// Use @isAnomalous to judge whether onCreate(File) is anomalous
-			if (!fm.preparation(targetPath)) {
+			if (fm.preparation(targetPath)) {
 				errors("Functions.TodoList.<boolean>onCreate()", "Unsolvable problem met (kernel code problem), program is exiting");
 				return fm.isAnomalous = true;
 			}

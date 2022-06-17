@@ -121,6 +121,7 @@ public class FileManager {
 			}
 		} catch (Exception e) {
 			errors("TodoList: " + targetFile.getAbsolutePath(),"\n\t" + e);
+			return isAnomalous = true;
 		}
 		return isAnomalous;
 	}
