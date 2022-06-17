@@ -1,13 +1,32 @@
-package com.MichealWilliam;
+package com.michealwilliam;
 
-import java.io.*;
+import java.io.IOException;
 
+/**
+ * @author william
+ */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Functions functions = new Functions();
-        Functions.TodoList todoList = new Functions.TodoList();
+	/**
+		These are the classes/methods witch need
+		to create realizations (Non-static):
+			1. Functions.TodoList				[class]
+			2. BasicOutput.greetings(String)	[method]
+	 */
 
-        System.out.println(todoList.onCreate());
-    }
+	public static void main(String[] args) throws IOException {
+
+//		Functions functions = new Functions();
+//		Settings settings = new Settings();
+		BasicOutput bo = new BasicOutput();
+
+		// Permanent code
+		Functions.TodoList todoList = new Functions.TodoList();
+		// Permanent code OVER
+
+//		BasicOutput.information("Study", todoList.onCreate());
+		FileManager fm = new FileManager();
+		todoList.onCreate();
+
+	}
 }
