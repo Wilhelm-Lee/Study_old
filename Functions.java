@@ -37,5 +37,9 @@ public class Functions {
 
 			return !fm.isAnomalous;
 		}
+
+		public boolean TodoList() {
+			return onCreate();
+		}
 	}
 }

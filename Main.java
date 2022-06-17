@@ -22,12 +22,10 @@ public class Main {
 
 		// Permanent code
 		Functions.TodoList todoList = new Functions.TodoList();
-		boolean ifOkay = todoList.onCreate();
 
-		if ( ifOkay ) {
+		if ( todoList.TodoList() ) {
 			BasicOutput.information(true);
-		}
-		else {
+		} else {
 			BasicOutput.errors(false);
 		}
 		// Permanent code OVER
