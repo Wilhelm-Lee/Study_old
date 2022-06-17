@@ -10,7 +10,7 @@ import static com.michealwilliam.Settings.*;
  * @author william
  */
 
-public class BasicOutput implements Interactions {
+public class BasicOutput implements InteractionsOutput {
 	// implement: REALIZING <Interface>;
 
 	/***

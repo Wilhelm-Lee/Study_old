@@ -22,12 +22,6 @@ public class Main {
 
 		// Permanent code
 		Functions.TodoList todoList = new Functions.TodoList();
-
-		if ( todoList.TodoList() ) {
-			BasicOutput.information(true);
-		} else {
-			BasicOutput.errors(false);
-		}
 		// Permanent code OVER
 
 	}

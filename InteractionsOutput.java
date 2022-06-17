@@ -3,7 +3,7 @@ package com.michealwilliam;
 /**
  * @author william
  */
-public interface Interactions {
+public interface InteractionsOutput {
 	/**
 	 * @param content			-> IN SETTINGS
 	 */
