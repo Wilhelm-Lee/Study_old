@@ -1,4 +1,5 @@
-### Working on it!
-_Personal project_
+## Welcome!😊
+### Prograssing well!
+_A project I have been expecting for serveral years_
 
-_Making by my own_
+_Making by my own \\\^v\^\/_
