@@ -8,27 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.michealwilliam.BasicOutput.*;
+/**
+ * @author william
+ */
 
 public class FileManager {
 
-	/**
-	 * @author william
-	 * @param isAnomalous
-	 */
-
+	public static String userNameOfThisAccountInThisOS = "william";
+	public static final String HOME_PATH = "/home/" + userNameOfThisAccountInThisOS;
 	public Scanner scn = new Scanner(System.in);
-	public final File fileHomePath = new File("/home/william");
-	public List<String> cmd = new ArrayList<String>(0);
+	public List<String> cmd = new ArrayList<>(0);
 	public Runtime runtime;
 	public Process process;
-
-	//	Functions.TodoList todoList = new Functions.TodoList();
-	//	final ArrayList<Character> targetFileContent = new ArrayList<>(0);
 	public boolean isAnomalous = false;
 
 	public boolean ifAsk(@NotNull File targetObject, String action) {
-		request(targetObject.isFile()
+		BasicOutput.log(BasicOutput.REQUEST,
+				targetObject.isFile()
 				? "How would you like to " + action + " " + targetObject.getAbsoluteFile() + " ? y/n"
 				: "How would you like to " + action + " " + targetObject + " ? y/n");
 
@@ -37,6 +33,8 @@ public class FileManager {
 	public void creating(@NotNull File targetObject, @NotNull String targetType, boolean ifAskNeeded) throws IOException {
 
 		String action = "Creating";
+
+		this.cmd.clear();
 
 		if ( "File".equalsIgnoreCase(targetType) ) {
 			this.cmd.add("touch");
@@ -62,33 +60,12 @@ public class FileManager {
 				process = runtime.exec( this.cmd.toArray(new String[cmd.size()]) );
 			}
 		} else {
-			information(targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
+			BasicOutput.log(BasicOutput.INFO, targetType.toUpperCase() + targetObject.getAbsoluteFile() + " has already existed");
 		}
-
-	}
-	public void coping(@NotNull File targetObject, @NotNull File destination, @NotNull String destinationType, boolean ifAskNeeded) throws IOException {
-
-		String action = "Coping";
-
-		if( checkExistence(destination, "File") ) {
-			warnings(action, "Destined File is already existed, " + action + "will OVERWRITE it");
-			if( ifAskNeeded ) {
-				if( !ifAsk(destination, action) ) {
-					requestDenied(destination, destinationType);
-					information(action, "Canceled");
-					return;
-				}
-			}
-		}
-		this.cmd.add( "cp" );
-		this.cmd.add( targetObject.getAbsolutePath() );
-		this.cmd.add( destination.getAbsolutePath() );
-		runtime = Runtime.getRuntime();
-		process = runtime.exec( this.cmd.toArray(new String[0]) );
 
 	}
 	public void requestDenied(@NotNull File targetObject, String targetType) {
-		warnings(targetType + " " + targetObject + " failed, caused & canceled by user");
+		BasicOutput.log(BasicOutput.WARN, targetType + " " + targetObject + " failed, caused & canceled by user");
 	}
 	public boolean checkExistence(@NotNull File targetObject, @NotNull String targetType) {
 		return "File".equalsIgnoreCase(targetType)
@@ -97,30 +74,38 @@ public class FileManager {
 	}
 	public boolean preparation(File targetFile) {
 		try {
-			if (!checkExistence(Functions.TodoList.targetPath, "path")) {
+			if (!checkExistence(new File(targetFile.getParent()), "path")) {
 				isAnomalous = true;
-				warnings("TodoList", "Target path does not seem to be existed");
-				creating(Functions.targetPath, "path", false); // Static field of @Function, using direct access
+				BasicOutput.log(BasicOutput.WARN, "TodoList", "Target path does not seem to be existed");
+				creating(new File(targetFile.getParent()), "path", false);
 				// Retry
-				preparation(targetFile.getAbsoluteFile());
+				preparation(targetFile.getAbsoluteFile()); // Actually, it does not need to getAbsoluteFile(), just original targetFile
 			} else {
 				isAnomalous = false;
-				information("TodoList", "Target path " + Functions.TodoList.targetPath.getAbsoluteFile() + " exists");
+				BasicOutput.log(BasicOutput.INFO, "TodoList", "Target path " + new File(targetFile.getParent()).getAbsoluteFile() + " exists");
 				// Judge whether the targetFile exists or not
-				if (!checkExistence(Functions.TodoList.targetFile.getAbsoluteFile(), "File")) {
+				if (!checkExistence(targetFile.getAbsoluteFile(), "File")) {
 					isAnomalous = true;
-					warnings("TodoList", "Target file does not seem to be existed");
-					creating(Functions.TodoList.targetFile.getAbsoluteFile(), "File", false);
+					BasicOutput.log(BasicOutput.WARN, "TodoList", "Target file does not seem to be existed");
+					creating(targetFile.getAbsoluteFile(), "File", false);
 					// Retry
-					preparation(Functions.TodoList.targetPath);
+					preparation(targetFile.getAbsoluteFile());
 				} else {
 					// targetFile exists
 					isAnomalous = false;
-					information("TodoList", "Target file " + Functions.TodoList.targetFile.getAbsoluteFile() + " exists");
+					BasicOutput.log(BasicOutput.INFO, "TodoList", "Target file " + targetFile.getAbsoluteFile() + " exists");
 				}
 			}
 		} catch (Exception e) {
-			errors("TodoList: " + targetFile.getAbsolutePath(),"\n\t" + e);
+
+			/*
+			  This case should not happen, because once
+			  there were a File or Path does not exist,
+			  preparation() would solve it by trying
+			  recursively.
+		  	*/
+
+			BasicOutput.log(BasicOutput.ERROR, "TodoList: " + targetFile.getAbsolutePath(),"\n\t" + e);
 			return isAnomalous = true;
 		}
 		return isAnomalous;
