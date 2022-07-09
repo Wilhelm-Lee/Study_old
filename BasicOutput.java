@@ -1,39 +1,29 @@
-// TODO: Mark each color with their functions ( request( String) ect.)
 package com.michealwilliam;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import static com.michealwilliam.Settings.*;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author william
  */
 
-public class BasicOutput implements InteractionsOutput {
-	// implement: REALIZING <Interface>;
+public class BasicOutput {
 
-	/***
-	 * @param BLACK		-> IN SETTINGS
-	 * @param RED		-> IN SETTINGS
-	 * @param GREEN		-> IN SETTINGS
-	 * @param YELLOW	-> IN SETTINGS
-	 * @param BLUE		-> IN SETTINGS
-	 * @param MAGENTA	-> IN SETTINGS
-	 * @param CYAN		-> IN SETTINGS
-	 * @param WHITE		-> IN SETTINGS
-	 * @param RESET		-> IN SETTINGS
-	 */
+	// Everything here must be static!!!
 
-	// Colors:(Format ) _FRONT | BACK + COLOR_ <String-Content>
-	static final String TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT = "\033[";
-	static final String COLOR_FRONT = "3";
-	static final String COLOR_BACK = "4";
-	static final String TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT = "m";
-	static final String FRONT = "Front";
+	public static final String className = "BasicOutput";
 
-	public void greetings( String content ) {
-		if( content != null ) {
+	// Colors:(Format ) _FRONT|BACK + COLOR_ <String-Content>
+	private static @NotNull String initiatorModule( @Nullable String initiator ) {
+
+		return "( " + initiator + " )";
+	}
+
+	public static void greetings( String content ) {
+
+		if ( content != null ) {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern( content );
 		} else {
 			// @content is [EMPTY]
@@ -42,237 +32,204 @@ public class BasicOutput implements InteractionsOutput {
 		}
 		// Do printing
 
-		System.out.print( dyeing(FRONT, YELLOW) + content );
-	}
-	// String
-	public static void request( String content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( String content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( String content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( String content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, String content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, String content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, String content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, String content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// boolean
-	public static void request( boolean content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( boolean content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( boolean content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( boolean content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, boolean content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, boolean content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, boolean content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, boolean content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// char
-	public static void request( char content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( char content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( char content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( char content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, char content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, char content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, char content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, char content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// int
-	public static void request( int content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( int content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( int content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( int content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, int content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, int content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, int content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, int content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// long
-	public static void request( long content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( long content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( long content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( long content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, long content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, long content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, long content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, long content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// float
-	public static void request( float content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( float content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( float content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( float content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, float content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, float content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, float content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, float content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// double
-	public static void request( double content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( double content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( double content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( double content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, double content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, double content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, double content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, double content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
-	}
-	// char[]
-	public static void request( char[] content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + Arrays.toString(content));
-	}
-	public static void information( char[] content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + Arrays.toString(content) );
-	}
-	public static void warnings( char[] content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + Arrays.toString(content) );
-	}
-	public static void errors( char[] content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + Arrays.toString(content) );
-	}
-	public static void request( String initiator, char[] content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + Arrays.toString(content) );
-	}
-	public static void information( String initiator, char[] content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  Arrays.toString(content) );
-	}
-	public static void warnings( String initiator, char[] content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + Arrays.toString(content) );
-	}
-	public static void errors( String initiator, char[] content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + Arrays.toString(content) );
-	}
-	// object
-	public static void request( Object content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request: " + content );
-	}
-	public static void information( Object content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info: " + content );
-	}
-	public static void warnings( Object content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning: " + content );
-	}
-	public static void errors( Object content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error: " + content );
-	}
-	public static void request( String initiator, Object content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Request" + "(" + initiator + "): " + content );
-	}
-	public static void information( String initiator, Object content ) {
-		System.out.println( dyeing(FRONT, BLUE) + "Info" + "(" + initiator + "): " +  content );
-	}
-	public static void warnings( String initiator, Object content ) {
-		System.out.println( dyeing(FRONT, YELLOW) + "Warning" + "(" + initiator + "): " + content );
-	}
-	public static void errors( String initiator, Object content ) {
-		System.out.println( dyeing(FRONT, RED) + "Error" + "(" + initiator + "): " + content );
+		System.out.print( BasicOutput.dyeing(
+				true,
+				BasicVariables.TERMINAL_COLOR_YELLOW
+		) + content );
 	}
 
-	public static String dyeing( String frontOrBack, String color ) {
-		return FRONT.equalsIgnoreCase( frontOrBack.toUpperCase() )
-				? TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + COLOR_FRONT + color.toUpperCase() + TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT
-				: TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + COLOR_BACK + color.toUpperCase() + TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT;
+	public static @NotNull String dyeing(
+			boolean isFront,
+			char color
+	) {
+
+		return isFront
+				? BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_FRONT + color + BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT
+				: BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_BACK + color + BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT;
+	}
+
+	/**
+	 * @see #dyeing(boolean, char)
+	 * @see #log(String, char, String, String)
+	 * @see #log(boolean, String, String, String)
+	 * @see #log(String, char, String, String, String)
+	 * @deprecated This {@code log(boolean, @Notnull String, @Nullable String)}
+	 * is deprecated because mainly the console colorizing is not
+	 * mostly existed for {@code BACK}'s.
+	 * <p>
+	 * So far, the console interactions is still not that
+	 * detailed needed. It might fix up later on.
+	 */
+
+	@Deprecated(since = "20220623191341+0800")
+	public static void log(
+			boolean costumeIsFront,
+			@NotNull String typeOfLog,
+			@Nullable String content
+	) {
+
+		System.out.println( BasicOutput.dyeing(
+				costumeIsFront,
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
+						? BasicVariables.TERMINAL_COLOR_CYAN
+						: BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO.equalsIgnoreCase( typeOfLog )
+								? BasicVariables.TERMINAL_COLOR_BLUE
+								: BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN.equalsIgnoreCase( typeOfLog )
+										? BasicVariables.TERMINAL_COLOR_YELLOW
+										: BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR.equalsIgnoreCase( typeOfLog )
+												? BasicVariables.TERMINAL_COLOR_RED
+												: BasicVariables.TERMINAL_COLOR_RESET
+		) + typeOfLog + ": " + content );
+	}
+
+	/**
+	 * @see #dyeing(boolean, char)
+	 * @see #log(boolean, String, String)
+	 * @see #log(String, char, String, String)
+	 * @see #log(String, char, String, String, String)
+	 * @deprecated This {@code log(boolean, @Notnull String, @Nullable String)}
+	 * is deprecated because mainly the console colorizing is not
+	 * mostly existed for {@code BACK}.
+	 * <p>
+	 * So far, the console interactions is still not that
+	 * detailed needed. It might fix up later on.
+	 */
+
+	@Deprecated(since = "20220623191341+0800")
+	public static void log(
+			boolean costumeIsFront,
+			@NotNull String typeOfLog,
+			@NotNull String initiator,
+			@Nullable String content
+	) {
+
+		System.out.println( BasicOutput.dyeing(
+				costumeIsFront,
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
+						? BasicVariables.TERMINAL_COLOR_CYAN
+						: BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO.equalsIgnoreCase( typeOfLog )
+								? BasicVariables.TERMINAL_COLOR_BLUE
+								: BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN.equalsIgnoreCase( typeOfLog )
+										? BasicVariables.TERMINAL_COLOR_YELLOW
+										: BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR.equalsIgnoreCase( typeOfLog )
+												? BasicVariables.TERMINAL_COLOR_RED
+												: BasicVariables.TERMINAL_COLOR_RESET
+		) + typeOfLog + "(" + initiator + "): " + content );
+	}
+
+	public static void log(
+			@NotNull String typeOfLog,
+			@Nullable String content
+	) {
+
+		System.out.println( BasicOutput.dyeing(
+				true,
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
+						? BasicVariables.TERMINAL_COLOR_CYAN
+						: BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO.equalsIgnoreCase( typeOfLog )
+								? BasicVariables.TERMINAL_COLOR_BLUE
+								: BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN.equalsIgnoreCase( typeOfLog )
+										? BasicVariables.TERMINAL_COLOR_YELLOW
+										: BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR.equalsIgnoreCase( typeOfLog )
+												? BasicVariables.TERMINAL_COLOR_RED
+												: BasicVariables.TERMINAL_COLOR_RESET
+		) + typeOfLog + ": " + content );
+	}
+
+	public static void log(
+			@NotNull String typeOfLog,
+			@NotNull String initiator,
+			@Nullable String content
+	) {
+
+		System.out.print( BasicOutput.dyeing(
+				true,
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
+						? BasicVariables.TERMINAL_COLOR_CYAN
+						: BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO.equalsIgnoreCase( typeOfLog )
+								? BasicVariables.TERMINAL_COLOR_BLUE
+								: BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN.equalsIgnoreCase( typeOfLog )
+										? BasicVariables.TERMINAL_COLOR_YELLOW
+										: BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR.equalsIgnoreCase( typeOfLog )
+												? BasicVariables.TERMINAL_COLOR_RED
+												: BasicVariables.TERMINAL_COLOR_RESET
+		) + typeOfLog + "(" + initiator + "): " + content );
+	}
+
+	/**
+	 * @see #dyeing(boolean, char)
+	 * @see #log(boolean, String, String)
+	 * @see #log(boolean, String, String, String)
+	 * @see #log(String, char, String, String, String)
+	 * @deprecated This {@code log(boolean, @Notnull String, @Nullable String)}
+	 * is deprecated because mainly the console colorizing is not
+	 * mostly existed for {@code BACK}.
+	 * <p>
+	 * So far, the console interactions is still not that
+	 * detailed needed. It might fix up later on.
+	 */
+
+	@Deprecated(since = "20220623191341+0800")
+	public static void log(
+			@NotNull String frontOrBack,
+			char costumeColor,
+			@NotNull String typeOfLog,
+			@Nullable String content
+	) {
+
+		System.out.println( BasicOutput.dyeing(
+				frontOrBack.equalsIgnoreCase( BasicVariables.BASIC_OUTPUT_LOG_FORMAT_FRONT ),
+				costumeColor
+		) + typeOfLog + ": " + content );
+	}
+
+	/**
+	 * @see #dyeing(boolean, char)
+	 * @see #log(boolean, String, String)
+	 * @see #log(String, char, String, String)
+	 * @see #log(boolean, String, String, String)
+	 * @deprecated This {@code log(boolean, @Notnull String, @Nullable String)}
+	 * is deprecated because mainly the console colorizing is not
+	 * mostly existed for {@code BACK}.
+	 * <p>
+	 * So far, the console interactions is still not that
+	 * detailed needed. It might fix up later on.
+	 */
+
+	@Deprecated(since = "20220623191341+0800")
+	public static void log(
+			@NotNull String frontOrBack,
+			char costumeColor,
+			@NotNull String typeOfLog,
+			@NotNull String initiator,
+			@Nullable String content
+	) {
+
+		System.out.println( BasicOutput.dyeing(
+				frontOrBack.equalsIgnoreCase( BasicVariables.BASIC_OUTPUT_LOG_FORMAT_FRONT ),
+				costumeColor
+		) + typeOfLog + "(" + initiator + "): " + content );
+	}
+
+	/**
+	 * @see #log(String, String, String)
+	 * @Explaination The {@code content} exists
+	 * because {@code BasicOutput.log( String, String, String )}
+	 * need {@code cause} here to be transferred into {@code String}.
+	 * But then {@code content} would duplicate it. So, {@code content}
+	 * could be {@code @Nullable}
+	 */
+
+	public static void log(
+			@NotNull String typeOfLog,
+			Throwable initiator,
+			@Nullable String content
+	) {
+
+		BasicOutput.log(
+				typeOfLog,
+				initiator.getLocalizedMessage(),
+				content
+		);
 	}
 }

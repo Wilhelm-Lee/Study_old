@@ -38,7 +38,7 @@ The following behaviors are considered harassment and are unacceptable within ou
  * Personal insults, particularly those related to gender, sexual orientation, race, religion, or disability.
  * Inappropriate photography or recording.
  * Inappropriate physical contact. You should have someone's consent before touching them.
- * Unwelcome sexual attention. This includes, sexualized comments or jokes; inappropriate touching, groping, and unwelcomed sexual advances.
+ * Unwelcome sexual attention. This includes, sexual-turned-in comments or jokes; inappropriate touching, groping, and non-welcomed sexual advances.
  * Deliberate intimidation, stalking or following (online or in person).
  * Advocating for, or encouraging, any of the above behavior.
  * Sustained disruption of community events, including talks and presentations.
@@ -79,9 +79,9 @@ This code of conduct and its related procedures also applies to unacceptable beh
 
 Micheal William
 
-## 11. License and attribution
+## 11. Licence and attribution
 
-The Citizen Code of Conduct is distributed by [Stumptown Syndicate](http://stumptownsyndicate.org) under a [Creative Commons Attribution-ShareAlike license](http://creativecommons.org/licenses/by-sa/3.0/). 
+The Citizen Code of Conduct is distributed by [Stump-town Syndicate](http://stumptownsyndicate.org) under a [Creative Commons Attribution-ShareAlike license](http://creativecommons.org/licenses/by-sa/3.0/). 
 
 Portions of text derived from the [Django Code of Conduct](https://www.djangoproject.com/conduct/) and the [Geek Feminism Anti-Harassment Policy](http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy).
 
@@ -91,4 +91,4 @@ _Revision 2.2. Posted 4 February 2016._
 
 _Revision 2.1. Posted 23 June 2014._
 
-_Revision 2.0, adopted by the [Stumptown Syndicate](http://stumptownsyndicate.org) board on 10 January 2013. Posted 17 March 2013._
+_Revision 2.0, adopted by the [Stump-town Syndicate](http://stumptownsyndicate.org) board on 10 January 2013. Posted 17 March 2013._
