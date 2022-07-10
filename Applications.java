@@ -137,6 +137,7 @@ class Applications {
 			public static final String CLASS_NAME = "Item";
 			static Applications.TodoList.Item item = new Item();
 
+			AbstractTimeLine.TimeLine timeLine;
 			public int level;
 			public long id;
 			public String itemName;
@@ -147,41 +148,41 @@ class Applications {
 
 				return item.id;
 			}
-
 			public static String getItemName() {
 
 				return item.itemName;
 			}
-
 			public static void setItemName( String newName ) {
 
 				item.itemName = newName;
 			}
-
 			public static long getItemDateTimeStartInSeconds() {
 
 				return item.itemDateTimeStartInSeconds;
 			}
-
 			private static void setItemDateTimeStartInSeconds( int newStartInSecond ) {
 
 				item.itemDateTimeStartInSeconds = newStartInSecond;
 			}
-
 			public static long getItemDateTimeEndInSeconds() {
 
 				return item.itemDateTimeEndInSeconds;
 			}
-
 			private static void setItemDateTimeEndInSeconds( int newEndInSecond ) {
 
 				item.itemDateTimeEndInSeconds = newEndInSecond;
 			}
-
 			public static void setLevel( int newLevel ) {
 
 				item.level = newLevel;
 			}
+			public static void onCreate(
+					// Initialize
+
+			) {
+
+			}
+
 		}
 	}
 }

@@ -85,7 +85,7 @@ public class AbstractTimeLine {
 
 		LocalDateTime startTimeStamp, endTimeStamp;
 
-		public static AbstractTimeLine.TimeLine TimeLine(
+		public static AbstractTimeLine.TimeLine timeLine(
 				LocalDateTime startTimeStamp,
 				LocalDateTime endTimeStamp)
 		{
@@ -93,7 +93,8 @@ public class AbstractTimeLine {
 			Applications.TodoList.Item item = new Applications.TodoList.Item();
 
 			// TODO: Finish here please, William!
-			item.
+
+
 
 			return ;
 		}
