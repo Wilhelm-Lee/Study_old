@@ -4,15 +4,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Scanner;
 
+/** @author william */
+
 public class BasicInput {
 
-	public static final String className = "BasicInput";
+	public static final String CLASS_NAME = "BasicInput";
 
+	static BasicOutput basicOutput = new BasicOutput();
 	static Scanner basicScanner = new Scanner( System.in );
 
 	public static String recorder( @NotNull String typeOfInput ) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR.equalsIgnoreCase( typeOfInput )
 						? BasicVariables.TERMINAL_COLOR_WHITE
@@ -32,7 +35,7 @@ public class BasicInput {
 			@NotNull String initiator
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR.equalsIgnoreCase( typeOfInput )
 						? BasicVariables.TERMINAL_COLOR_WHITE

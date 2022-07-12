@@ -1,9 +1,13 @@
 package com.michealwilliam;
 
+/** @author william */
+
 public class IdNotMatchException
 		extends Exception {
 
 	public static final String CLASS_NAME = "IdNotMatchException";
+
+	static BasicOutput basicOutput = new BasicOutput();
 
 	static final long serialVersionUID = 1L;
 
@@ -27,7 +31,7 @@ public class IdNotMatchException
 	 */
 	public IdNotMatchException( String message ) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				IdNotMatchException.CLASS_NAME,
 				message
@@ -52,7 +56,7 @@ public class IdNotMatchException
 			String message,
 			Throwable cause
 	) {
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
 				message
@@ -75,7 +79,7 @@ public class IdNotMatchException
 	 */
 	public IdNotMatchException( Throwable cause ) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
 				null
@@ -103,7 +107,7 @@ public class IdNotMatchException
 			boolean writableStackTrace
 	) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
 				String.format("%b, %b", enableSuppression, writableStackTrace)

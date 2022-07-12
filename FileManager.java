@@ -16,6 +16,8 @@ public class FileManager {
 
 	public static final String CLASS_NAME = "FileManager";
 
+	static BasicOutput basicOutput = new BasicOutput();
+
 	Scanner scn = new Scanner( System.in );
 	List<String> cmd = new ArrayList<>( 0 );
 	Runtime runtime;
@@ -27,14 +29,23 @@ public class FileManager {
 			String action
 	) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST,
 				targetObject.isFile()
-						? BasicVariables.FileManager_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO + action + BasicVariables.SPACE + targetObject.getAbsoluteFile() + BasicVariables.FileManager_OUTPUT_TEXT_QUESTIONMARK_YN
-						: BasicVariables.FileManager_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO + action + BasicVariables.SPACE + targetObject.getAbsolutePath() + BasicVariables.FileManager_OUTPUT_TEXT_QUESTIONMARK_YN
+						? BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
+						  action +
+						  BasicVariables.SPACE +
+						  targetObject.getAbsoluteFile() +
+						  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
+						: BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
+						  action +
+						  BasicVariables.SPACE +
+						  targetObject.getAbsolutePath() +
+						  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
 		);
 
-		return BasicVariables.FileManager_OUTPUT_TEXT_Y.equalsIgnoreCase( scn.next() ) || BasicVariables.FileManager_OUTPUT_TEXT_YES.equalsIgnoreCase( scn.next() );
+		return BasicVariables.FILE_MANAGER_OUTPUT_TEXT_Y.equalsIgnoreCase( scn.next() ) ||
+			   BasicVariables.FILE_MANAGER_OUTPUT_TEXT_YES.equalsIgnoreCase( scn.next() );
 	}
 
 	public void creating(
@@ -47,7 +58,7 @@ public class FileManager {
 
 			this.cmd.clear();
 
-			if ( BasicVariables.FileManager_TARGET_TYPE_FILE.equalsIgnoreCase( targetType ) ) {
+			if ( BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE.equalsIgnoreCase( targetType ) ) {
 				this.cmd.add( BasicVariables.LINUX_COMMAND_TOUCH );
 				this.cmd.add( targetObject.getAbsolutePath() );
 			} else {
@@ -64,7 +75,7 @@ public class FileManager {
 				if ( ifAskNeeded ) {
 					if ( ifAsk(
 							targetObject,
-							BasicVariables.FileManager_ACTIONS_CREATING
+							BasicVariables.FILE_MANAGER_ACTIONS_CREATING
 					) ) {
 						runtime = Runtime.getRuntime();
 						process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
@@ -79,13 +90,15 @@ public class FileManager {
 					process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
 				}
 			} else {
-				BasicOutput.log(
+				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-						targetType.toUpperCase() + targetObject.getAbsoluteFile() + BasicVariables.FileManager_OUTPUT_TEXT_HAD_ALREADY_EXISTED
+						targetType.toUpperCase() +
+						targetObject.getAbsoluteFile() +
+						BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
 				);
 			}
 		} catch ( IOException ioe ) {
-			BasicOutput.log(
+			basicOutput.log(
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 					FileManager.CLASS_NAME,
 					ioe.getLocalizedMessage()
@@ -98,9 +111,12 @@ public class FileManager {
 			String targetType
 	) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
-				targetType + BasicVariables.SPACE + targetObject + BasicVariables.FileManager_OUTPUT_TEXT_FAILED_CAUSED_AND_CANCELED_BY_USER
+				targetType +
+				BasicVariables.SPACE +
+				targetObject +
+				BasicVariables.FILE_MANAGER_OUTPUT_TEXT_FAILED_CAUSED_AND_CANCELED_BY_USER
 		);
 	}
 
@@ -109,7 +125,7 @@ public class FileManager {
 			@NotNull String targetType
 	) {
 
-		return BasicVariables.FileManager_TARGET_TYPE_FILE.equalsIgnoreCase( targetType )
+		return BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE.equalsIgnoreCase( targetType )
 				? targetObject.getAbsoluteFile().exists()
 				: targetObject.exists();
 	}
@@ -119,18 +135,18 @@ public class FileManager {
 		try {
 			if ( !checkExistence(
 					new File( targetFile.getParent() ),
-					BasicVariables.FileManager_TARGET_TYPE_PATH
+					BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH
 			) ) {
 				isAnomalous = true;
 
-				BasicOutput.log(
+				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
-						BasicVariables.FileManager_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST
+						BasicVariables.FILE_MANAGER_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST
 				);
 
 				creating(
 						new File( targetFile.getParent() ),
-						BasicVariables.FileManager_TARGET_TYPE_PATH,
+						BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH,
 						false
 				);
 				// Retry
@@ -138,23 +154,26 @@ public class FileManager {
 				// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
 			} else {
 				isAnomalous = false;
-				BasicOutput.log(
+				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-						BasicVariables.TARGET + BasicVariables.FileManager_TARGET_TYPE_PATH + new File( targetFile.getParent() ).getAbsoluteFile() + BasicVariables.FileManager_OUTPUT_TEXT_HAD_ALREADY_EXISTED
+						BasicVariables.TARGET +
+						BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH +
+						new File( targetFile.getParent() ).getAbsoluteFile() +
+						BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
 				);
 				// Judge whether the targetFile exists or not
 				if ( !checkExistence(
 						targetFile.getAbsoluteFile(),
-						BasicVariables.FileManager_TARGET_TYPE_FILE
+						BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE
 				) ) {
 					isAnomalous = true;
-					BasicOutput.log(
+					basicOutput.log(
 							BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
-							BasicVariables.FileManager_OUTPUT_TEXT_TARGET_FILE_DOES_NOT_EXIST
+							BasicVariables.FILE_MANAGER_OUTPUT_TEXT_TARGET_FILE_DOES_NOT_EXIST
 					);
 					creating(
 							targetFile.getAbsoluteFile(),
-							BasicVariables.FileManager_TARGET_TYPE_FILE,
+							BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE,
 							false
 					);
 					// Retry
@@ -162,9 +181,12 @@ public class FileManager {
 				} else {
 					// targetFile exists
 					isAnomalous = false;
-					BasicOutput.log(
+					basicOutput.log(
 							BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-							BasicVariables.TARGET + BasicVariables.FileManager_TARGET_TYPE_FILE + targetFile.getAbsoluteFile() + BasicVariables.FileManager_OUTPUT_TEXT_HAD_ALREADY_EXISTED
+							BasicVariables.TARGET +
+							BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE +
+							targetFile.getAbsoluteFile() +
+							BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
 					);
 				}
 			}
@@ -178,7 +200,7 @@ public class FileManager {
 			  This is an exception-like reporting code
 		  	*/
 
-			BasicOutput.log(
+			basicOutput.log(
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 					FileManager.CLASS_NAME,
 					e.getLocalizedMessage()

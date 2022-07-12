@@ -13,15 +13,14 @@ public class BasicOutput {
 
 	// Everything here must be static!!!
 
-	public static final String className = "BasicOutput";
+	public static final String CLASS_NAME = "BasicOutput";
 
-	// Colors:(Format ) _FRONT|BACK + COLOR_ <String-Content>
-	private static @NotNull String initiatorModule( @Nullable String initiator ) {
+	static BasicOutput basicOutput = new BasicOutput();
 
-		return "( " + initiator + " )";
-	}
-
-	public static void greetings( String content ) {
+	/**
+	 * Colors:(Format ) _FRONT|BACK + COLOR_ <String-Content>
+	 */
+	public void greetings( @Nullable String content ) {
 
 		if ( content != null ) {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern( content );
@@ -32,20 +31,27 @@ public class BasicOutput {
 		}
 		// Do printing
 
-		System.out.print( BasicOutput.dyeing(
+		System.out.print( basicOutput.dyeing(
 				true,
 				BasicVariables.TERMINAL_COLOR_YELLOW
 		) + content );
+		basicOutput.log( BasicVariables. );
 	}
 
-	public static @NotNull String dyeing(
+	public @NotNull String dyeing(
 			boolean isFront,
 			char color
 	) {
 
 		return isFront
-				? BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_FRONT + color + BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT
-				: BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT + BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_BACK + color + BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT;
+				? BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT +
+				  BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_FRONT +
+				  color +
+				  BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT
+				: BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT +
+				  BasicVariables.BASIC_OUTPUT_LOG_FORMAT_COLOR_BACK +
+				  color +
+				  BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT;
 	}
 
 	/**
@@ -62,13 +68,13 @@ public class BasicOutput {
 	 */
 
 	@Deprecated(since = "20220623191341+0800")
-	public static void log(
+	public void	log(
 			boolean costumeIsFront,
-			@NotNull String typeOfLog,
+			@NotNull String	typeOfLog,
 			@Nullable String content
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				costumeIsFront,
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
 						? BasicVariables.TERMINAL_COLOR_CYAN
@@ -96,14 +102,14 @@ public class BasicOutput {
 	 */
 
 	@Deprecated(since = "20220623191341+0800")
-	public static void log(
+	public void log(
 			boolean costumeIsFront,
 			@NotNull String typeOfLog,
 			@NotNull String initiator,
 			@Nullable String content
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				costumeIsFront,
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
 						? BasicVariables.TERMINAL_COLOR_CYAN
@@ -117,12 +123,12 @@ public class BasicOutput {
 		) + typeOfLog + "(" + initiator + "): " + content );
 	}
 
-	public static void log(
+	public void log(
 			@NotNull String typeOfLog,
 			@Nullable String content
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
 						? BasicVariables.TERMINAL_COLOR_CYAN
@@ -136,13 +142,13 @@ public class BasicOutput {
 		) + typeOfLog + ": " + content );
 	}
 
-	public static void log(
+	public void log(
 			@NotNull String typeOfLog,
 			@NotNull String initiator,
 			@Nullable String content
 	) {
 
-		System.out.print( BasicOutput.dyeing(
+		System.out.print( basicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST.equalsIgnoreCase( typeOfLog )
 						? BasicVariables.TERMINAL_COLOR_CYAN
@@ -170,14 +176,14 @@ public class BasicOutput {
 	 */
 
 	@Deprecated(since = "20220623191341+0800")
-	public static void log(
+	public void log(
 			@NotNull String frontOrBack,
 			char costumeColor,
 			@NotNull String typeOfLog,
 			@Nullable String content
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				frontOrBack.equalsIgnoreCase( BasicVariables.BASIC_OUTPUT_LOG_FORMAT_FRONT ),
 				costumeColor
 		) + typeOfLog + ": " + content );
@@ -197,7 +203,7 @@ public class BasicOutput {
 	 */
 
 	@Deprecated(since = "20220623191341+0800")
-	public static void log(
+	public void log(
 			@NotNull String frontOrBack,
 			char costumeColor,
 			@NotNull String typeOfLog,
@@ -205,31 +211,43 @@ public class BasicOutput {
 			@Nullable String content
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.println( basicOutput.dyeing(
 				frontOrBack.equalsIgnoreCase( BasicVariables.BASIC_OUTPUT_LOG_FORMAT_FRONT ),
 				costumeColor
 		) + typeOfLog + "(" + initiator + "): " + content );
 	}
 
 	/**
-	 * @see #log(String, String, String)
-	 * @Explaination The {@code content} exists
-	 * because {@code BasicOutput.log( String, String, String )}
+	 * @Explaination The {@code @Nullable} exists
+	 * because {@code basicOutput.log(String, String, String)}
 	 * need {@code cause} here to be transferred into {@code String}.
-	 * But then {@code content} would duplicate it. So, {@code content}
-	 * could be {@code @Nullable}
+	 * But then {@code content} would duplicate it.
+	 * @see #log(String, String, String)
 	 */
 
-	public static void log(
+	public void log(
 			@NotNull String typeOfLog,
 			Throwable initiator,
 			@Nullable String content
 	) {
 
-		BasicOutput.log(
+		basicOutput.log(
 				typeOfLog,
 				initiator.getLocalizedMessage(),
 				content
 		);
 	}
+
+	public void log(
+			@NotNull String typeOfLog,
+			char costumeColor,
+			@Nullable String content
+	) {
+		System.out.println( basicOutput.dyeing(
+				true,
+				costumeColor
+			) + typeOfLog + ": " + content
+		);
+	}
+
 }

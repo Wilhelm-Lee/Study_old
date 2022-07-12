@@ -3,6 +3,9 @@ package com.michealwilliam;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author william
+ */
 public class Settings {
 
 	// NOTHING HERE COULD BE CONSTANT!!!

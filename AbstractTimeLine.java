@@ -3,31 +3,35 @@ package com.michealwilliam;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+/** @author william */
+
 public class AbstractTimeLine {
+
+	static AbstractTimeLine abstractTimeLine = new AbstractTimeLine();
+	static BasicOutput basicOutput = new BasicOutput();
 
 	public static final String CLASS_NAME = "AbstractTimeLine";
 
-	public static long startTimeStampInSeconds, endTimeStampInSeconds;
-	public static long length;
-	private static boolean isAnomalous = false;
+	protected long startTimeStampInSeconds, endTimeStampInSeconds;
+	protected long length;
 
-	public static boolean preparation(
+	public void preparation(
 			LocalDateTime startTimeStamp,
 			LocalDateTime endTimeStamp
 	) {
 
 		try {
-			length = BasicFunctions.durationOfLocalDateTimeToSecond(
+			abstractTimeLine.length = BasicFunctions.durationOfLocalDateTimeToSecond(
 					startTimeStamp,
 					endTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
-			startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+			abstractTimeLine.startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
 					BasicVariables.META_YEAR_LOCAL_DATE_TIME,
 					startTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
-			endTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+			abstractTimeLine.endTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
 					BasicVariables.META_YEAR_LOCAL_DATE_TIME,
 					endTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
@@ -35,50 +39,25 @@ public class AbstractTimeLine {
 
 		} catch ( Exception e ) {
 
-			/*
-				In case there were any sort of issue happened... (Triple periods for stronger-stronger pausing (Troll Face))
-				About LocalDateTime mostly.
-			 */
-
-			BasicOutput.log(
+			basicOutput.log(
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 					AbstractTimeLine.CLASS_NAME,
 					e.getLocalizedMessage()
 			);
-			return AbstractTimeLine.isAnomalous = true;
 		}
 
-		return AbstractTimeLine.isAnomalous = false;
 	}
 
-	public static boolean onCreate(
+	public static void onCreate(
 			LocalDateTime startTimeStamp,
 			LocalDateTime endTimeStamp
 	) {
 
-		if ( !preparation(
+		abstractTimeLine.preparation(
 				startTimeStamp,
 				endTimeStamp
-		) ) {
+		);
 
-			AbstractTimeLine.isAnomalous = true;
-
-			try {
-				throw new IllegalStateException();
-			} catch ( IllegalStateException iSE ) {
-				BasicOutput.log(
-						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-						AbstractTimeLine.CLASS_NAME,
-						iSE.getLocalizedMessage()
-				);
-			}
-
-		} else {
-
-			// TODO: Ready
-
-		}
-		return true;
 	}
 
 	public static class TimeLine {
@@ -101,3 +80,4 @@ public class AbstractTimeLine {
 
 	}
 }
+

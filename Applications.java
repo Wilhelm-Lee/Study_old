@@ -17,25 +17,28 @@ import java.time.ZoneOffset;
 
 class Applications {
 
+
 	public static final String CLASS_NAME = "Applications";
 
-	public static FileManager fm = new FileManager();
+	static BasicOutput basicOutput = new BasicOutput();
+	static FileManager fm = new FileManager();
 
 	protected static class TodoList
 			extends Applications {
 
+		static Applications.TodoList todoList = new TodoList();
+		
 		public static final String CLASS_NAME = "TodoList";
 
 		// Due to Settings.HOME_PATH is not a constant variable, cannot use final here
-		public static String TODOLIST_FILE = "/TodoList.study";
-		public static File TARGET_FILE = new File(
+		public String TODOLIST_FILE = "/TodoList.study";
+		public File TARGET_FILE = new File(
 				BasicVariables.studyPath,
 				TODOLIST_FILE
 		);
-		public static boolean isAnomalous = false; // Need to reverse value when using.
 
 		// S -?-> E
-		public static Applications.TodoList.@NotNull Item createScheduleS_E(
+		public Applications.TodoList.@NotNull Item createScheduleS_E(
 				String itemName,
 				LocalDateTime itemTimeStampLocalDateTimeStart,
 				LocalDateTime itemTimeStampLocalDateTimeEnd,
@@ -57,15 +60,15 @@ class Applications {
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
 			newItem.level = level;
-			//    /  |  E E E     A     Z Z Z   Y   Y
-			// (:P)==|  EEE      AAA      Z       Y
-			//    \  |  E E E   A   A   Z Z Z     Y
+			//    /  |_E_E_E_|___A___|_Z_Z_Z_|_Y___Y_|
+			// (:P)==|_EEE___|__AAA__|___Z___|___Y___|
+			//    \  |_E_E_E_|_A___A_|_Z_Z_Z_|___Y___|
 
 			return newItem;
 		}
 
 		// ? -D-> E
-		public static Applications.TodoList.Item createSchedule_DE(
+		public Applications.TodoList.Item createSchedule_DE(
 				String itemName,
 				LocalDateTime itemTimeStampLocalDateTimeDuration,
 				LocalDateTime itemTimeStampLocalDateTimeEnd,
@@ -92,7 +95,7 @@ class Applications {
 		}
 
 		// S -D-> ?
-		public static Item createScheduleSD_(
+		public Item createScheduleSD_(
 				String itemName,
 				LocalDateTime itemTimeStampLocalDateTimeStart,
 				LocalDateTime itemTimeStampLocalDateTimeDuration,
@@ -121,10 +124,10 @@ class Applications {
 		public void onCreate() {
 
 			// Use @isAnomalous to judge whether onCreate(File) is anomalous -> true: true
-			if ( fm.preparation( Applications.TodoList.TARGET_FILE ) ) {
+			if ( fm.preparation( todoList.TARGET_FILE ) ) {
 				// fm.preparation(File) returns isAnomalous as reverted value of TRUE/FALSE
 				// Where Exception happens
-				BasicOutput.log(
+				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 						Applications.CLASS_NAME,
 						new BasicIllegalStateException().getLocalizedMessage()
@@ -135,7 +138,7 @@ class Applications {
 		public static class Item {
 
 			public static final String CLASS_NAME = "Item";
-			static Applications.TodoList.Item item = new Item();
+			Applications.TodoList.Item item = new Item();
 
 			AbstractTimeLine.TimeLine timeLine;
 			public int level;
@@ -144,42 +147,44 @@ class Applications {
 			public long itemDateTimeStartInSeconds;
 			public long itemDateTimeEndInSeconds;
 
-			public static long getId() {
+			public long getId() {
 
 				return item.id;
 			}
-			public static String getItemName() {
+			public String getItemName() {
 
 				return item.itemName;
 			}
-			public static void setItemName( String newName ) {
+			public void setItemName( String newName ) {
 
 				item.itemName = newName;
 			}
-			public static long getItemDateTimeStartInSeconds() {
+			public long getItemDateTimeStartInSeconds() {
 
 				return item.itemDateTimeStartInSeconds;
 			}
-			private static void setItemDateTimeStartInSeconds( int newStartInSecond ) {
+			private void setItemDateTimeStartInSeconds( int newStartInSecond ) {
 
 				item.itemDateTimeStartInSeconds = newStartInSecond;
 			}
-			public static long getItemDateTimeEndInSeconds() {
+			public long getItemDateTimeEndInSeconds() {
 
 				return item.itemDateTimeEndInSeconds;
 			}
-			private static void setItemDateTimeEndInSeconds( int newEndInSecond ) {
+			private void setItemDateTimeEndInSeconds( int newEndInSecond ) {
 
 				item.itemDateTimeEndInSeconds = newEndInSecond;
 			}
-			public static void setLevel( int newLevel ) {
+			public void setLevel( int newLevel ) {
 
 				item.level = newLevel;
 			}
-			public static void onCreate(
-					// Initialize
+			public void onCreate(
 
 			) {
+				// Initialize variables
+
+
 
 			}
 
