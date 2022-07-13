@@ -7,14 +7,18 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-/** @author william */
+/**
+ * @author william
+ */
 
 public class BasicFunctions {
 
 	// All method should be written in form of Recursive-Call
 
 	/** PERMEATE CODE: */
-	/** Calculation */
+	/**
+	 * Calculation
+	 */
 	public static int getBitOn(
 			int number,
 			int index
@@ -78,7 +82,9 @@ public class BasicFunctions {
 		);
 	}
 
-	/** Date & Time */
+	/**
+	 * Date & Time
+	 */
 	public static boolean isLeapYear( long prolepticYear ) {
 		// Taken from IsoChronology.java
 		return ( ( prolepticYear & 3 ) == 0 ) && ( ( prolepticYear % 100 ) != 0 || ( prolepticYear % 400 ) == 0 );

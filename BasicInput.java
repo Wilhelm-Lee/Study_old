@@ -4,7 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Scanner;
 
-/** @author william */
+/**
+ * @author william
+ */
 
 public class BasicInput {
 

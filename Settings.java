@@ -1,5 +1,7 @@
 package com.michealwilliam;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,4 +18,7 @@ public class Settings {
 	public static String homePath = "/home/" + userNameOfThisAccountInThisOS;
 	LocalDateTime localDateTime = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM-dd-yy|HH:mm:ss" );
+	// A White Square Button (Down)
+	public static @NotNull String greetingsBeginSideSymbol = "\uD83D\uDD33";
+	public static @NotNull String greetingsEndSideSymbol = " > ";
 }

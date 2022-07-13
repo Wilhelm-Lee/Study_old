@@ -15,7 +15,7 @@ import java.time.ZoneOffset;
  * @version PROTOTYPE_0.6
  */
 
-class Applications {
+public class Applications {
 
 
 	public static final String CLASS_NAME = "Applications";
@@ -23,16 +23,14 @@ class Applications {
 	static BasicOutput basicOutput = new BasicOutput();
 	static FileManager fm = new FileManager();
 
-	protected static class TodoList
+	public static class TodoList
 			extends Applications {
 
-		static Applications.TodoList todoList = new TodoList();
-		
 		public static final String CLASS_NAME = "TodoList";
-
-		// Due to Settings.HOME_PATH is not a constant variable, cannot use final here
+		static Applications.TodoList todoList = new TodoList();
+		/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
 		public String TODOLIST_FILE = "/TodoList.study";
-		public File TARGET_FILE = new File(
+		public final File TARGET_FILE = new File(
 				BasicVariables.studyPath,
 				TODOLIST_FILE
 		);
@@ -60,9 +58,10 @@ class Applications {
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
 			newItem.level = level;
-			//    /  |_E_E_E_|___A___|_Z_Z_Z_|_Y___Y_|
-			// (:P)==|_EEE___|__AAA__|___Z___|___Y___|
-			//    \  |_E_E_E_|_A___A_|_Z_Z_Z_|___Y___|
+			//     /  =(o|_E_E_E_|___A___|_Z_Z_Z_|_Y___Y_|
+			// (:P)[x] {]|_EEE___|__AAA__|___Z___|___Y___|
+			//     \  =(o|_E_E_E_|_A___A_|_Z_Z_Z_|___Y___|
+			//        "
 
 			return newItem;
 		}
@@ -105,8 +104,10 @@ class Applications {
 			Item newItem = new Item();
 			LocalDateTime tmpLDTEnd = LocalDateTime.of(
 					itemTimeStampLocalDateTimeStart.getYear() + itemTimeStampLocalDateTimeDuration.getYear(),
-					itemTimeStampLocalDateTimeStart.getMonthValue() + itemTimeStampLocalDateTimeDuration.getMonthValue(),
-					itemTimeStampLocalDateTimeStart.getDayOfMonth() + itemTimeStampLocalDateTimeDuration.getDayOfMonth(),
+					itemTimeStampLocalDateTimeStart.getMonthValue() +
+					itemTimeStampLocalDateTimeDuration.getMonthValue(),
+					itemTimeStampLocalDateTimeStart.getDayOfMonth() +
+					itemTimeStampLocalDateTimeDuration.getDayOfMonth(),
 					itemTimeStampLocalDateTimeStart.getHour() + itemTimeStampLocalDateTimeDuration.getHour(),
 					itemTimeStampLocalDateTimeStart.getMinute() + itemTimeStampLocalDateTimeDuration.getMinute(),
 					itemTimeStampLocalDateTimeStart.getSecond() + itemTimeStampLocalDateTimeDuration.getSecond(),
@@ -138,52 +139,58 @@ class Applications {
 		public static class Item {
 
 			public static final String CLASS_NAME = "Item";
-			Applications.TodoList.Item item = new Item();
-
-			AbstractTimeLine.TimeLine timeLine;
 			public int level;
 			public long id;
 			public String itemName;
 			public long itemDateTimeStartInSeconds;
 			public long itemDateTimeEndInSeconds;
+			Applications.TodoList.Item item = new Item();
+			TimeLine timeLine;
 
 			public long getId() {
 
 				return item.id;
 			}
+
 			public String getItemName() {
 
 				return item.itemName;
 			}
+
 			public void setItemName( String newName ) {
 
 				item.itemName = newName;
 			}
+
 			public long getItemDateTimeStartInSeconds() {
 
 				return item.itemDateTimeStartInSeconds;
 			}
+
 			private void setItemDateTimeStartInSeconds( int newStartInSecond ) {
 
 				item.itemDateTimeStartInSeconds = newStartInSecond;
 			}
+
 			public long getItemDateTimeEndInSeconds() {
 
 				return item.itemDateTimeEndInSeconds;
 			}
+
 			private void setItemDateTimeEndInSeconds( int newEndInSecond ) {
 
 				item.itemDateTimeEndInSeconds = newEndInSecond;
 			}
+
 			public void setLevel( int newLevel ) {
 
 				item.level = newLevel;
 			}
+
 			public void onCreate(
 
 			) {
 				// Initialize variables
-
 
 
 			}
