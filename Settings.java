@@ -1,4 +1,4 @@
-package com.michealwilliam;
+package com.study;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -14,11 +14,9 @@ public class Settings {
 
 	// These are default settings (of course, other wise!?)
 
-	public static String userNameOfThisAccountInThisOS = "william";
-	public static String homePath = "/home/" + userNameOfThisAccountInThisOS;
 	LocalDateTime localDateTime = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM-dd-yy|HH:mm:ss" );
-	// A White Square Button (Down)
+	/** {@code greetingsBeginSideSymbol} is a White Square Button */
 	public static @NotNull String greetingsBeginSideSymbol = "\uD83D\uDD33";
-	public static @NotNull String greetingsEndSideSymbol = " > ";
+	public static @NotNull String greetingsEndSideSymbol = " >> ";
 }

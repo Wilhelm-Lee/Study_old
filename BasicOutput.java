@@ -1,4 +1,4 @@
-package com.michealwilliam;
+package com.study;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +21,7 @@ public class BasicOutput {
 	public void greetings() {
 
 		@NotNull String content = Settings.greetingsBeginSideSymbol
-								  + Settings.userNameOfThisAccountInThisOS
+								  + BasicVariables.USER_NAME
 								  + new Settings().localDateTime.format( new Settings().formatter )
 								  + Settings.greetingsEndSideSymbol;
 
@@ -86,6 +86,28 @@ public class BasicOutput {
 												? BasicVariables.TERMINAL_COLOR_RED
 												: BasicVariables.TERMINAL_COLOR_RESET
 		) + typeOfLog + "(" + initiator + "): " + content );
+	}
+
+	/**
+	 * @see #log(String, String, String)
+	 * @Explaination The {@code content} exists
+	 * because {@code BasicOutput.log( String, String, String )}
+	 * need {@code cause} here to be transferred into {@code String}.
+	 * But then {@code content} would duplicate it. So, {@code content}
+	 * could be {@code @Nullable}
+	 */
+
+	public void log(
+			@NotNull String typeOfLog,
+			Throwable initiator,
+			@Nullable String content
+	) {
+
+		basicOutput.log(
+				typeOfLog,
+				initiator.getLocalizedMessage(),
+				content
+		);
 	}
 
 	public void log(

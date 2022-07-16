@@ -2,7 +2,7 @@
  * When ask for targetFile, please remember to use @targetFile.getAbsoluteFile() as the default combination for file accessing.
  * Suggest avoiding using targetType with isFile() instead.
  */
-package com.michealwilliam;
+package com.study;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +21,7 @@ public class Applications {
 	public static final String CLASS_NAME = "Applications";
 
 	static BasicOutput basicOutput = new BasicOutput();
-	static FileManager fm = new FileManager();
+	static FileManager.FileCreator fm = new FileManager.FileCreator();
 
 	public static class TodoList
 			extends Applications {
@@ -31,7 +31,7 @@ public class Applications {
 		/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
 		public String TODOLIST_FILE = "/TodoList.study";
 		public final File TARGET_FILE = new File(
-				BasicVariables.studyPath,
+				BasicVariables.STUDY_PATH_STRING,
 				TODOLIST_FILE
 		);
 
@@ -124,9 +124,8 @@ public class Applications {
 
 		public void onCreate() {
 
-			// Use @isAnomalous to judge whether onCreate(File) is anomalous -> true: true
-			if ( fm.preparation( todoList.TARGET_FILE ) ) {
-				// fm.preparation(File) returns isAnomalous as reverted value of TRUE/FALSE
+			// Use @isAnomalous to judge whether onCreate(File) is anomalous -> true: false
+			if ( !fm.onCreate( todoList.TARGET_FILE ) ) {
 				// Where Exception happens
 				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
@@ -191,7 +190,7 @@ public class Applications {
 
 			) {
 				// Initialize variables
-
+				// TODO: 16/07/2022 Hi, William. Come and fix this! 😀
 
 			}
 

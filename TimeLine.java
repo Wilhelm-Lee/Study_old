@@ -1,4 +1,4 @@
-package com.michealwilliam;
+package com.study;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -14,15 +14,14 @@ public class TimeLine {
 
 	protected long startTimeStampInSeconds, endTimeStampInSeconds;
 	protected long length;
-
-	static FileManager fm = new FileManager();
-	/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
-	private final String TIMELINE_FILE = BasicVariables.SLASH + BasicVariables.timeLineIdLoadUp + TimeLine.CLASS_NAME;
-	private File TARGET_FILE = new File(
-			BasicVariables.studyPath,
-			TIMELINE_FILE
+	public String fileNameBase;
+	private final String FILE_NAME_EXTENSION = BasicVariables.DOT + TimeLine.CLASS_NAME;
+	private final File TARGET_FILE = new File(
+			BasicVariables.STUDY_PATH_STRING,
+			String.valueOf( BasicVariables.timeLineIdLoadUp )
 	);
 
+	static FileManager.FileCreator fc = new FileManager.FileCreator();
 	static BasicOutput basicOutput = new BasicOutput();
 	static TimeLine timeLine = new TimeLine();
 
@@ -48,6 +47,15 @@ public class TimeLine {
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
 
+			// Create new file(s) for newTimeLine & Output procession result (Success or not)
+			if ( fc.onCreate( timeLine.TARGET_FILE ) ) {
+				basicOutput.log(
+						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
+						FileManager.FileCreator.CLASS_NAME,
+						BasicVariables.FILE_MANAGER_FILE_CREATING_SUCCESS
+				);
+			}
+
 		} catch ( Exception e ) {
 
 			basicOutput.log(
@@ -58,7 +66,6 @@ public class TimeLine {
 		}
 
 	}
-
 
 	public static TimeLine onCreate(
 			LocalDateTime startTimeStamp,
@@ -75,7 +82,17 @@ public class TimeLine {
 
 		// Everything's fine, let's go!
 
+		timeLine.fileNameBase = String.valueOf( BasicVariables.timeLineIdLoadUp );
 
+		newTimeLine.length = length;
+		newTimeLine.startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+				BasicVariables.META_YEAR_LOCAL_DATE_TIME,
+				startTimeStamp
+		);
+		newTimeLine.endTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+				BasicVariables.META_YEAR_LOCAL_DATE_TIME,
+				endTimeStamp
+		);
 
 		return newTimeLine;
 	}

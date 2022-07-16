@@ -1,4 +1,4 @@
-package com.michealwilliam;
+package com.study;
 
 import org.jetbrains.annotations.NotNull;
 

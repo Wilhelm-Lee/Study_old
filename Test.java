@@ -1,4 +1,4 @@
-package com.michealwilliam;
+package com.study;
 
 /**
  * @author william
