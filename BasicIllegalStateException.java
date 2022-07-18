@@ -1,6 +1,8 @@
 package com.study;
 
-/** @author william */
+/**
+ * @author william
+ */
 
 public class BasicIllegalStateException
 		extends Throwable {

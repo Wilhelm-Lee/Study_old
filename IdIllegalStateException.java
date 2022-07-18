@@ -1,8 +1,11 @@
 package com.study;
 
-/** @author william */
+/**
+ * @author william
+ */
 
-public class IdIllegalStateException extends Exception{
+public class IdIllegalStateException
+		extends Exception {
 
 	static final long serialVersionUID = 1L;
 
@@ -12,6 +15,7 @@ public class IdIllegalStateException extends Exception{
 	 * call to {@link #initCause}.
 	 */
 	public IdIllegalStateException() {
+
 		super();
 	}
 
@@ -20,11 +24,12 @@ public class IdIllegalStateException extends Exception{
 	 * cause is not initialized, and may subsequently be initialized by
 	 * a call to {@link #initCause}.
 	 *
-	 * @param   message   the detail message. The detail message is saved for
-	 *          later retrieval by the {@link #getMessage()} method.
+	 * @param message the detail message. The detail message is saved for
+	 *                later retrieval by the {@link #getMessage()} method.
 	 */
-	public IdIllegalStateException(String message) {
-		super(message);
+	public IdIllegalStateException( String message ) {
+
+		super( message );
 	}
 
 	/**
@@ -33,16 +38,23 @@ public class IdIllegalStateException extends Exception{
 	 * {@code cause} is <i>not</i> automatically incorporated in
 	 * this exception's detail message.
 	 *
-	 * @param  message the detail message (which is saved for later retrieval
-	 *         by the {@link #getMessage()} method).
-	 * @param  cause the cause (which is saved for later retrieval by the
-	 *         {@link #getCause()} method).  (A {@code null} value is
-	 *         permitted, and indicates that the cause is nonexistent or
-	 *         unknown.)
-	 * @since  1.4
+	 * @param message the detail message (which is saved for later retrieval
+	 *                by the {@link #getMessage()} method).
+	 * @param cause   the cause (which is saved for later retrieval by the
+	 *                {@link #getCause()} method).  (A {@code null} value is
+	 *                permitted, and indicates that the cause is nonexistent or
+	 *                unknown.)
+	 * @since 1.4
 	 */
-	public IdIllegalStateException(String message, Throwable cause) {
-		super(message, cause);
+	public IdIllegalStateException(
+			String message,
+			Throwable cause
+	) {
+
+		super(
+				message,
+				cause
+		);
 	}
 
 	/**
@@ -53,14 +65,15 @@ public class IdIllegalStateException extends Exception{
 	 * wrappers for other throwable_s (for example, {@link
 	 * java.security.PrivilegedActionException}).
 	 *
-	 * @param  cause the cause (which is saved for later retrieval by the
-	 *         {@link #getCause()} method).  (A {@code null} value is
-	 *         permitted, and indicates that the cause is nonexistent or
-	 *         unknown.)
-	 * @since  1.4
+	 * @param cause the cause (which is saved for later retrieval by the
+	 *              {@link #getCause()} method).  (A {@code null} value is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
+	 * @since 1.4
 	 */
-	public IdIllegalStateException(Throwable cause) {
-		super(cause);
+	public IdIllegalStateException( Throwable cause ) {
+
+		super( cause );
 	}
 
 	/**
@@ -68,18 +81,27 @@ public class IdIllegalStateException extends Exception{
 	 * cause, suppression enabled or disabled, and writable stack
 	 * trace enabled or disabled.
 	 *
-	 * @param  message the detail message.
-	 * @param cause the cause.  (A {@code null} value is permitted,
-	 * and indicates that the cause is nonexistent or unknown.)
-	 * @param enableSuppression whether suppression is enabled
-	 *                          or disabled
+	 * @param message            the detail message.
+	 * @param cause              the cause.  (A {@code null} value is permitted,
+	 *                           and indicates that the cause is nonexistent or unknown.)
+	 * @param enableSuppression  whether suppression is enabled
+	 *                           or disabled
 	 * @param writableStackTrace whether the stack trace should
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdIllegalStateException(String message, Throwable cause,
-									  boolean enableSuppression,
-									  boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
+	protected IdIllegalStateException(
+			String message,
+			Throwable cause,
+			boolean enableSuppression,
+			boolean writableStackTrace
+	) {
+
+		super(
+				message,
+				cause,
+				enableSuppression,
+				writableStackTrace
+		);
 	}
 }

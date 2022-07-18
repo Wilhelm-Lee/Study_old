@@ -11,19 +11,17 @@ import java.time.ZoneOffset;
 public class TimeLine {
 
 	public static final String CLASS_NAME = "TimeLine";
-
-	protected long startTimeStampInSeconds, endTimeStampInSeconds;
-	protected long length;
-	public String fileNameBase;
+	static FileManager.FileCreator fc = new FileManager.FileCreator();
+	static BasicOutput basicOutput = new BasicOutput();
+	static TimeLine timeLine = new TimeLine();
 	private final String FILE_NAME_EXTENSION = BasicVariables.DOT + TimeLine.CLASS_NAME;
 	private final File TARGET_FILE = new File(
 			BasicVariables.STUDY_PATH_STRING,
 			String.valueOf( BasicVariables.timeLineIdLoadUp )
 	);
-
-	static FileManager.FileCreator fc = new FileManager.FileCreator();
-	static BasicOutput basicOutput = new BasicOutput();
-	static TimeLine timeLine = new TimeLine();
+	public String fileNameBase;
+	protected long startTimeStampInSeconds, endTimeStampInSeconds;
+	protected long length;
 
 	protected static void preparation(
 			LocalDateTime startTimeStamp,
@@ -48,7 +46,10 @@ public class TimeLine {
 			);
 
 			// Create new file(s) for newTimeLine & Output procession result (Success or not)
-			if ( fc.onCreate( timeLine.TARGET_FILE, false ) ) {
+			if ( fc.onCreate(
+					timeLine.TARGET_FILE,
+					false
+			) ) {
 				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
 						FileManager.FileCreator.CLASS_NAME,

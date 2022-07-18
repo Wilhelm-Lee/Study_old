@@ -34,7 +34,7 @@ public class FileManager {
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_REQUEST,
 					targetObject.isFile()
 							? BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
-							  /* Specific Action by @CLASS_NAME (down) */
+							/* Specific Action by @CLASS_NAME (down) */
 							  BasicVariables.FILE_MANAGER_ACTIONS_CREATING +
 							  BasicVariables.SPACE +
 							  targetObject.getAbsoluteFile() +
@@ -75,7 +75,7 @@ public class FileManager {
 					// Then create it
 					// Ask
 					if ( ifAskNeeded ) {
-						if ( ifAsk(	targetObject ) ) {
+						if ( ifAsk( targetObject ) ) {
 							runtime = Runtime.getRuntime();
 							process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
 						} else {
@@ -129,7 +129,10 @@ public class FileManager {
 					: targetObject.exists();
 		}
 
-		public boolean onCreate( File targetFile, boolean ifAskNeeded ) {
+		public boolean onCreate(
+				File targetFile,
+				boolean ifAskNeeded
+		) {
 
 			try {
 				if ( !checkExistence(
@@ -149,7 +152,10 @@ public class FileManager {
 							ifAskNeeded
 					);
 					// Retry
-					onCreate( targetFile.getAbsoluteFile(), false );
+					onCreate(
+							targetFile.getAbsoluteFile(),
+							false
+					);
 					// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
 				} else {
 					isAllRight = true;
@@ -176,7 +182,10 @@ public class FileManager {
 								ifAskNeeded
 						);
 						// Retry
-						onCreate( targetFile.getAbsoluteFile(), false );
+						onCreate(
+								targetFile.getAbsoluteFile(),
+								false
+						);
 					} else {
 						// targetFile exists
 						isAllRight = true;
