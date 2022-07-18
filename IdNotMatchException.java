@@ -1,15 +1,15 @@
 package com.study;
 
-/**
- * @author william
- */
+/** @author william */
 
 public class IdNotMatchException
 		extends Exception {
 
 	public static final String CLASS_NAME = "IdNotMatchException";
-	static final long serialVersionUID = 1L;
+
 	static BasicOutput basicOutput = new BasicOutput();
+
+	static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructs a new exception with {@code null} as its detail message.
@@ -56,7 +56,6 @@ public class IdNotMatchException
 			String message,
 			Throwable cause
 	) {
-
 		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
@@ -111,11 +110,7 @@ public class IdNotMatchException
 		basicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
-				String.format(
-						"%b, %b",
-						enableSuppression,
-						writableStackTrace
-				)
+				String.format("%b, %b", enableSuppression, writableStackTrace)
 		);
 	}
 }

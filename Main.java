@@ -16,8 +16,6 @@ package com.study;
  * @author william
  */
 public class Main {
-
 	public static void main( String[] args ) {
-
 	}
 }

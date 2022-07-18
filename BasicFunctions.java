@@ -16,7 +16,6 @@ public class BasicFunctions {
 	// All method should be written in form of Recursive-Call
 
 	/* PERMEATE CODE: */
-
 	/**
 	 * Calculation
 	 */

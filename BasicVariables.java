@@ -72,9 +72,7 @@ public class BasicVariables {
 	 * *---------------------------------------------------------------------------------*
 	 * ...............................................................July 15th, 2022.....
 	 */
-	/**
-	 * Are you happy people?	-- Droopy Dog (1943 - 1958)
-	 */
+	/** Are you happy people?	-- Droopy Dog (1943 - 1958) */
 	public static final String BASIC_OUTPUT_LOG_TYPE_REQUEST = "Request",
 			BASIC_OUTPUT_LOG_TYPE_INFO = "Info",
 			BASIC_OUTPUT_LOG_TYPE_WARN = "Warning",
@@ -85,10 +83,8 @@ public class BasicVariables {
 			BASIC_INPUT_RECORDER_TYPE_REPLY_REMOTE = "Reply_Remote";
 	public static final String BASIC_OUTPUT_LOG_FORMAT_COLOR_FRONT = "3",
 			BASIC_OUTPUT_LOG_FORMAT_COLOR_BACK = "4";
-	/**
-	 * {@code TERMINAL_COLOR_RESET}: As what previous one was,
-	 * for the sections of which the both which are {@code Front}|{@code Back} and {@code color}
-	 */
+	/** {@code TERMINAL_COLOR_RESET}: As what previous one was,
+	 *  for the sections of which the both which are {@code Front}|{@code Back} and {@code color} */
 	public static final char TERMINAL_COLOR_BLACK = '0',
 			TERMINAL_COLOR_RED = '1',
 			TERMINAL_COLOR_GREEN = '2',
@@ -106,10 +102,9 @@ public class BasicVariables {
 			APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_IMMEDIATE = 5;
 	public static final String USER_NAME = System.getProperty( "user.name" );
 	public static final String HOME_PATH_STRING = "/home" + BasicVariables.SLASH + USER_NAME;
-	public static final String STUDY_PATH_STRING = HOME_PATH_STRING +
-												   BasicVariables.DOCUMENTS_PATH_STRING +
-												   "/StudyFiles";
 	public static final String DOCUMENTS_PATH_STRING = "/Documents";
+	public static final String STUDY_PATH_STRING = HOME_PATH_STRING + BasicVariables.DOCUMENTS_PATH_STRING + "/StudyFiles";
+
 	/**
 	 * Starts from 1
 	 */

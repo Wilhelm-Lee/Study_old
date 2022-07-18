@@ -14,11 +14,9 @@ public class Settings {
 
 	// These are default settings (of course, other wise!?)
 
-	/**
-	 * {@code greetingsBeginSideSymbol} is a White Square Button
-	 */
-	public static @NotNull String greetingsBeginSideSymbol = "\uD83D\uDD33";
-	public static @NotNull String greetingsEndSideSymbol = " >> ";
 	LocalDateTime localDateTime = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM-dd-yy|HH:mm:ss" );
+	/** {@code greetingsBeginSideSymbol} is a White Square Button */
+	public static @NotNull String greetingsBeginSideSymbol = "\uD83D\uDD33";
+	public static @NotNull String greetingsEndSideSymbol = " >> ";
 }

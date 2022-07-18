@@ -28,9 +28,7 @@ public class Applications {
 
 		public static final String CLASS_NAME = "TodoList";
 		static Applications.TodoList todoList = new TodoList();
-		/**
-		 * Due to Settings.HOME_PATH is not a constant variable, cannot use final here
-		 */
+		/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
 		public String TODOLIST_FILE = "/TodoList.study";
 		public final File TARGET_FILE = new File(
 				BasicVariables.STUDY_PATH_STRING,
@@ -127,10 +125,7 @@ public class Applications {
 		public void onCreate() {
 
 			// Use @isAnomalous to judge whether onCreate(File, boolean) is anomalous -> true: false
-			if ( !fm.onCreate(
-					todoList.TARGET_FILE,
-					false
-			) ) {
+			if ( !fm.onCreate( todoList.TARGET_FILE, false ) ) {
 				// Where Exception happens
 				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,

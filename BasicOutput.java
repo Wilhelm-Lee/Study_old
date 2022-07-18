@@ -89,12 +89,12 @@ public class BasicOutput {
 	}
 
 	/**
+	 * @see #log(String, String, String)
 	 * @Explaination The {@code content} exists
 	 * because {@code BasicOutput.log( String, String, String )}
 	 * need {@code cause} here to be transferred into {@code String}.
 	 * But then {@code content} would duplicate it. So, {@code content}
 	 * could be {@code @Nullable}
-	 * @see #log(String, String, String)
 	 */
 
 	public void log(
