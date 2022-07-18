@@ -48,7 +48,7 @@ public class TimeLine {
 			);
 
 			// Create new file(s) for newTimeLine & Output procession result (Success or not)
-			if ( fc.onCreate( timeLine.TARGET_FILE ) ) {
+			if ( fc.onCreate( timeLine.TARGET_FILE, false ) ) {
 				basicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
 						FileManager.FileCreator.CLASS_NAME,

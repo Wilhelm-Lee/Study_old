@@ -129,86 +129,6 @@ public class FileManager {
 					: targetObject.exists();
 		}
 
-		public boolean onCreate( File targetFile ) {
-
-			try {
-				if ( !checkExistence(
-						new File( targetFile.getParent() ),
-						BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING
-				) ) {
-					isAllRight = false;
-
-					FileManager.basicOutput.log(
-							BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
-							BasicVariables.FILE_MANAGER_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST
-					);
-
-					creating(
-							new File( targetFile.getParent() ),
-							BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING,
-							false
-					);
-					// Retry
-					onCreate( targetFile.getAbsoluteFile() );
-					// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
-				} else {
-					isAllRight = true;
-					FileManager.basicOutput.log(
-							BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-							BasicVariables.TARGET +
-							BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING +
-							new File( targetFile.getParent() ).getAbsoluteFile() +
-							BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
-					);
-					// Judge whether the targetFile exists or not
-					if ( !checkExistence(
-							targetFile.getAbsoluteFile(),
-							BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING
-					) ) {
-						isAllRight = false;
-						FileManager.basicOutput.log(
-								BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
-								BasicVariables.FILE_MANAGER_OUTPUT_TEXT_TARGET_FILE_DOES_NOT_EXIST
-						);
-						creating(
-								targetFile.getAbsoluteFile(),
-								BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING,
-								false
-						);
-						// Retry
-						onCreate( targetFile.getAbsoluteFile() );
-					} else {
-						// targetFile exists
-						isAllRight = true;
-						FileManager.basicOutput.log(
-								BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-								BasicVariables.TARGET +
-								BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING +
-								targetFile.getAbsoluteFile() +
-								BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
-						);
-					}
-				}
-			} catch ( Exception e ) {
-
-				/*
-				  This case should not happen, because once
-				  there were a File or Path does not exist,
-				  preparation() would solve it by trying
-				  recursively.
-				  This is an exception-like reporting code
-				  */
-
-				FileManager.basicOutput.log(
-						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-						FileCreator.CLASS_NAME,
-						e.getLocalizedMessage()
-				);
-				return isAllRight = false;
-			}
-			return isAllRight = true;
-		}
-
 		public boolean onCreate( File targetFile, boolean ifAskNeeded ) {
 
 			try {
@@ -229,7 +149,7 @@ public class FileManager {
 							ifAskNeeded
 					);
 					// Retry
-					onCreate( targetFile.getAbsoluteFile() );
+					onCreate( targetFile.getAbsoluteFile(), false );
 					// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
 				} else {
 					isAllRight = true;
@@ -256,7 +176,7 @@ public class FileManager {
 								ifAskNeeded
 						);
 						// Retry
-						onCreate( targetFile.getAbsoluteFile() );
+						onCreate( targetFile.getAbsoluteFile(), false );
 					} else {
 						// targetFile exists
 						isAllRight = true;
