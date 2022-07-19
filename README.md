@@ -51,9 +51,9 @@ Features including:
 
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
-1. 🧮 Regular calculator
-2. ⅀ Secientific calculator
-3. ¬∧ Logical calculator
+1. Regular calculator 🧮
+2. Secientific calculator ⅀
+3. Logical calculator ¬∧
 
 ## 🧐<font color=#DF3439>To Be Continued</font>
 
