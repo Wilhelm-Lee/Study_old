@@ -38,7 +38,7 @@ You can freely costumize schedules just for your own!
 
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
-Play your favorite pieces of song in terminal!  
+Play your favorite song in terminal!  
 Features including:  
 
 1. Customizable UI layout 🆊
