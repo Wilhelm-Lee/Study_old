@@ -1,4 +1,4 @@
-### <center><font color=#AF0000>! THIS CONTENT IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font></center>
+### <center><font color=#AF0000>! THIS README IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font></center>
 
 # <center><font color=#0099FF>🗨️Study</font></center>
 
