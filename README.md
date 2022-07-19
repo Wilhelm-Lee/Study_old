@@ -54,6 +54,7 @@ Features including:
 1. Regular calculator 🧮
 2. Secientific calculator ⅀
 3. Logical calculator ¬∧
+4. Bases calculator 🐙
 
 ## 🧐<font color=#DF3439>To Be Continued</font>
 
