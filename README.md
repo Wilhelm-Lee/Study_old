@@ -47,7 +47,7 @@ Features including:
 4. Changing playback speed ⏩
 5. Customizable hotkeys #️⃣
 
-## <font color=#88A0AA>%🖩</font><font color=#DF3439>Calculator</font>
+## <font color=#88A0AA>🖩</font><font color=#DF3439>Calculator</font>
 
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
