@@ -16,7 +16,7 @@ public class BasicInput {
 
 	protected static String recorder( @NotNull String typeOfInput ) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.print( BasicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR.equalsIgnoreCase( typeOfInput )
 						? BasicVariables.TERMINAL_COLOR_WHITE
@@ -28,7 +28,7 @@ public class BasicInput {
 												? BasicVariables.TERMINAL_COLOR_CYAN
 												: BasicVariables.TERMINAL_COLOR_RESET
 		) );
-		return BasicInput.BASIC_SCANNER.next();
+		return BasicInput.BASIC_SCANNER.nextLine();
 	}
 
 	protected static String recorder(
@@ -36,7 +36,7 @@ public class BasicInput {
 			@NotNull String initiator
 	) {
 
-		System.out.println( BasicOutput.dyeing(
+		System.out.print( BasicOutput.dyeing(
 				true,
 				BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR.equalsIgnoreCase( typeOfInput )
 						? BasicVariables.TERMINAL_COLOR_WHITE
@@ -48,6 +48,6 @@ public class BasicInput {
 												? BasicVariables.TERMINAL_COLOR_CYAN
 												: BasicVariables.TERMINAL_COLOR_RESET
 		) + typeOfInput + "(" + initiator + "): " );
-		return BasicInput.BASIC_SCANNER.next();
+		return BasicInput.BASIC_SCANNER.nextLine();
 	}
 }

@@ -119,7 +119,7 @@ public class Applications {
 		public void onCreate() {
 
 			// Use @isAnomalous to judge whether onCreate(File, boolean) is anomalous -> true: false
-			if ( !fc.onCreate( todoList.TARGET_FILE, false ) ) {
+			if ( !fc.onCreate( todoList.TARGET_FILE, true ) ) {
 				// Where Exception happens
 				BasicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,

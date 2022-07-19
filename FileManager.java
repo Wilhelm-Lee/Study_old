@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author william
@@ -19,7 +18,6 @@ public class FileManager {
 
 		protected static final String CLASS_NAME = "FileCreator";
 
-		Scanner scn = new Scanner( System.in );
 		List<String> cmd = new ArrayList<>( 0 );
 		Runtime runtime;
 		Process process;
@@ -36,17 +34,20 @@ public class FileManager {
 							/* Specific Action by @CLASS_NAME (down) */
 							  BasicVariables.FILE_MANAGER_ACTIONS_CREATING +
 							  BasicVariables.SPACE +
-							  targetObject.getAbsoluteFile() +
-							  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
+							  BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING +
+							  targetObject.getAbsoluteFile()
 							: BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
 							  BasicVariables.FILE_MANAGER_ACTIONS_CREATING +
 							  BasicVariables.SPACE +
-							  targetObject.getAbsolutePath() +
-							  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
+							  BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING +
+							  targetObject.getAbsolutePath()
 			);
 
-			return BasicVariables.FILE_MANAGER_OUTPUT_TEXT_Y.equalsIgnoreCase( scn.next() ) ||
-				   BasicVariables.FILE_MANAGER_OUTPUT_TEXT_YES.equalsIgnoreCase( scn.next() );
+			final String ans = BasicInput.recorder( BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN );
+
+			return BasicVariables.FILE_MANAGER_OUTPUT_TEXT_YES.equalsIgnoreCase(
+					ans
+			) || BasicVariables.FILE_MANAGER_OUTPUT_TEXT_Y.equalsIgnoreCase( ans );
 		}
 
 		private void creating(
@@ -148,7 +149,7 @@ public class FileManager {
 							ifAskNeeded
 					);
 					// Retry
-					onCreate( targetFile.getAbsoluteFile(), false );
+					onCreate( targetFile.getAbsoluteFile(), true );
 					// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
 				} else {
 					isAllRight = true;
@@ -175,7 +176,7 @@ public class FileManager {
 								ifAskNeeded
 						);
 						// Retry
-						onCreate( targetFile.getAbsoluteFile(), false );
+						onCreate( targetFile.getAbsoluteFile(), true );
 					} else {
 						// targetFile exists
 						isAllRight = true;
