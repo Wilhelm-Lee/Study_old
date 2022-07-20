@@ -42,7 +42,7 @@ Play your favorite song in terminal!
 Features including:  
 
 1. Customizable UI layout 🆊
-2. Customizable versualizations 🎴
+2. Customizable visualizations 🎴
 3. Star your songs ⭐
 4. Changing playback speed ⏩
 5. Customizable hotkeys #️⃣
