@@ -33,21 +33,20 @@ public class FileManager {
 							? BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
 							/* Specific Action by @CLASS_NAME (down) */
 							  BasicVariables.FILE_MANAGER_ACTIONS_CREATING +
-							  BasicVariables.SPACE +
 							  BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING +
-							  targetObject.getAbsoluteFile()
+							  targetObject.getAbsoluteFile() +
+							  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
 							: BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO +
 							  BasicVariables.FILE_MANAGER_ACTIONS_CREATING +
-							  BasicVariables.SPACE +
 							  BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING +
-							  targetObject.getAbsolutePath()
+							  targetObject.getAbsolutePath() +
+							  BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN
 			);
 
 			final String ans = BasicInput.recorder( BasicVariables.FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN );
 
-			return BasicVariables.FILE_MANAGER_OUTPUT_TEXT_YES.equalsIgnoreCase(
-					ans
-			) || BasicVariables.FILE_MANAGER_OUTPUT_TEXT_Y.equalsIgnoreCase( ans );
+			return BasicVariables.FILE_MANAGER_OUTPUT_TEXT_YES.equalsIgnoreCase( ans )
+				   || BasicVariables.FILE_MANAGER_OUTPUT_TEXT_Y.equalsIgnoreCase( ans );
 		}
 
 		private void creating(
@@ -80,6 +79,7 @@ public class FileManager {
 							process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
 						} else {
 							requestDenied(
+									BasicVariables.FILE_MANAGER_ACTIONS_CREATING,
 									targetObject,
 									targetType
 							);
@@ -106,14 +106,15 @@ public class FileManager {
 		}
 
 		private void requestDenied(
+				@NotNull String action,
 				@NotNull File targetObject,
 				String targetType
 		) {
 
 			BasicOutput.log(
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_WARN,
+					action +
 					targetType +
-					BasicVariables.SPACE +
 					targetObject +
 					BasicVariables.FILE_MANAGER_OUTPUT_TEXT_FAILED_CAUSED_AND_CANCELED_BY_USER
 			);
@@ -149,8 +150,8 @@ public class FileManager {
 							ifAskNeeded
 					);
 					// Retry
-					onCreate( targetFile.getAbsoluteFile(), true );
-					// Actually, it does not need to getAbsoluteFile(), just original targetFile would also be fine
+					onCreate( targetFile.getAbsoluteFile(), ifAskNeeded );
+					// Actually, it does not need to be getAbsoluteFile(), just original targetFile would also be fine
 				} else {
 					isAllRight = true;
 					BasicOutput.log(
@@ -176,7 +177,7 @@ public class FileManager {
 								ifAskNeeded
 						);
 						// Retry
-						onCreate( targetFile.getAbsoluteFile(), true );
+						onCreate( targetFile.getAbsoluteFile(), ifAskNeeded );
 					} else {
 						// targetFile exists
 						isAllRight = true;

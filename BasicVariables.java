@@ -38,7 +38,7 @@ public class BasicVariables {
 			FILE_MANAGER_OUTPUT_TEXT_YES = "YES",
 			FILE_MANAGER_OUTPUT_TEXT_N = "N",
 			FILE_MANAGER_OUTPUT_TEXT_NO = "NO";
-	protected static final String FILE_MANAGER_ACTIONS_CREATING = "CREATING";
+	protected static final String FILE_MANAGER_ACTIONS_CREATING = "CREATING" + BasicVariables.SPACE;
 	protected static final String FILE_MANAGER_FILE_CREATING_SUCCESS = "File Creating Succeed" + BasicVariables.SPACE;
 	protected static final String FILE_MANAGER_FILE_CREATING_FAILED = "File Creating Failed" + BasicVariables.SPACE;
 	protected static final String LINUX_COMMAND_TOUCH = "touch", LINUX_COMMAND_MKDIR = "mkdir";

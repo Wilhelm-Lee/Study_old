@@ -13,12 +13,12 @@ public class Applications {
 
 	protected static final String CLASS_NAME = "Applications";
 
-	private static FileManager.FileCreator fc = new FileManager.FileCreator();
+	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
 
-	public static class TodoList
-			extends com.study.Applications {
+	public static class TodoList {
 
 		public static final String CLASS_NAME = "TodoList";
+
 		private static final TodoList todoList = new TodoList();
 		/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
 		public String TODOLIST_FILE = "/TodoList.study";
@@ -139,46 +139,6 @@ public class Applications {
 			protected long itemDateTimeEndInSeconds;
 			private final TodoList.Item item = new TodoList.Item();
 			private TimeLine timeLine;
-
-			public long getId() {
-
-				return item.id;
-			}
-
-			public String getItemName() {
-
-				return item.itemName;
-			}
-
-			public void setItemName( String newName ) {
-
-				item.itemName = newName;
-			}
-
-			public long getItemDateTimeStartInSeconds() {
-
-				return item.itemDateTimeStartInSeconds;
-			}
-
-			private void setItemDateTimeStartInSeconds( int newStartInSecond ) {
-
-				item.itemDateTimeStartInSeconds = newStartInSecond;
-			}
-
-			public long getItemDateTimeEndInSeconds() {
-
-				return item.itemDateTimeEndInSeconds;
-			}
-
-			private void setItemDateTimeEndInSeconds( int newEndInSecond ) {
-
-				item.itemDateTimeEndInSeconds = newEndInSecond;
-			}
-
-			public void setLevel( int newLevel ) {
-
-				item.level = newLevel;
-			}
 
 			public void onCreate(
 
