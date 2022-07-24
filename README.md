@@ -1,10 +1,10 @@
-### <center><font color=#AF0000>! THIS README IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font></center>
+### <center><font color=#AF0000>! THIS CONTENT IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font></center>
 
-# <center><font color=#0099FF>🗨️Study</font></center>
+# <h1 align="center"><font color=#0099FF>🗨️Study</font>
 
-## <center> =  📚 + 🛠️ + 🖥️ + 😸 </center>
+## <h1 align="center"> =  📚 + 🛠️ + 🖥️ + 😸
 
-<center>
+<h4 align="center">
 	<font color=#FF9900>
 		Lovely Hint: This is so far built for
 			<strong>
@@ -15,11 +15,10 @@
 			<br \>
 		( Windows path support is not scheduled yet )
 	</font>
-        <br \>
-</center>
+    <br \>
 <br \>
-This is a practical tool for everyone to use!<br \>
-Also, developing such (Mightily) useful tools is really kind of enjoyment for me. 😄
+<h4> <i>This is a practical tool for everyone to use!<br \>
+Also, developing such (Mightily) useful tools is really kind of enjoyment for me.</i> 😄
 
 ## <font color=#DF3439>⌛Time Scheduler</font>
 
@@ -42,7 +41,7 @@ Play your favorite song in terminal!
 Features including:  
 
 1. Customizable UI layout 🆊
-2. Customizable visualizations 🎴
+2. Customizable versualizations 🎴
 3. Star your songs ⭐
 4. Changing playback speed ⏩
 5. Customizable hotkeys #️⃣
