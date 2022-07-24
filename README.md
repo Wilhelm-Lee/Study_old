@@ -1,8 +1,8 @@
-### <center><font color=#AF0000>! THIS CONTENT IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font></center>
+###### <font color=#AF0000>! THIS README IS STILL IN DEVELOPMENT !<br>! NOT FOR FINAL REPRESENTATION !</font>
 
-# <h1 align="center"><font color=#0099FF>🗨️Study</font>
+<h1 align="center"><font color=#0099FF>🗨️Study</font></h1>
 
-## <h1 align="center"> =  📚 + 🛠️ + 🖥️ + 😸
+<h3 align="center"> =  📚 + 🛠️ + 🖥️ + 😸
 
 <h4 align="center">
 	<font color=#FF9900>
@@ -15,7 +15,7 @@
 			<br \>
 		( Windows path support is not scheduled yet )
 	</font>
-    <br \>
+	<br \>
 <br \>
 <h4> <i>This is a practical tool for everyone to use!<br \>
 Also, developing such (Mightily) useful tools is really kind of enjoyment for me.</i> 😄
