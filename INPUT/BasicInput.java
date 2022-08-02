@@ -1,5 +1,7 @@
-package com.study;
+package com.study.INPUT;
 
+import com.study.OUTPUT.BasicOutput;
+import com.study.STORAGE.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Scanner;
@@ -10,11 +12,11 @@ import java.util.Scanner;
 
 public class BasicInput {
 
-	protected static final String CLASS_NAME = "BasicInput";
+	public static final String CLASS_NAME = "BasicInput";
 
 	private static final Scanner BASIC_SCANNER = new Scanner( System.in );
 
-	protected static String recorder( @NotNull String typeOfInput ) {
+	public static String recorder( @NotNull String typeOfInput ) {
 
 		System.out.print( BasicOutput.dyeing(
 				true,
@@ -31,7 +33,7 @@ public class BasicInput {
 		return BasicInput.BASIC_SCANNER.nextLine();
 	}
 
-	protected static String recorder(
+	public static String recorder(
 			@NotNull String typeOfInput,
 			@NotNull String initiator
 	) {

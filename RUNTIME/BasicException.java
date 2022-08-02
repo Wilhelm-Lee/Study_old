@@ -1,11 +1,17 @@
-package com.study;
+package com.study.RUNTIME;
 
-/** @author william */
+import com.study.OUTPUT.BasicOutput;
+import com.study.STORAGE.BasicVariables;
+import org.jetbrains.annotations.NotNull;
 
-public class IdNotMatchException
-		extends Exception {
+/**
+ * @author william
+ */
 
-	public static final String CLASS_NAME = "IdNotMatchException";
+public class BasicException
+		extends Throwable {
+
+	protected static final @NotNull String CLASS_NAME = "BasicException";
 
 	static final long serialVersionUID = 1L;
 
@@ -14,7 +20,7 @@ public class IdNotMatchException
 	 * The cause is not initialized, and may subsequently be initialized by a
 	 * call to {@link #initCause}.
 	 */
-	public IdNotMatchException() {
+	public BasicException() {
 
 		super();
 	}
@@ -27,11 +33,11 @@ public class IdNotMatchException
 	 * @param message the detail message. The detail message is saved for
 	 *                later retrieval by the {@link #getMessage()} method.
 	 */
-	public IdNotMatchException( String message ) {
+	public BasicException( String message ) {
 
 		BasicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-				com.study.IdNotMatchException.CLASS_NAME,
+				BasicException.CLASS_NAME,
 				message
 		);
 	}
@@ -50,14 +56,14 @@ public class IdNotMatchException
 	 *                unknown.)
 	 * @since 1.4
 	 */
-	public IdNotMatchException(
+	public BasicException(
 			String message,
 			Throwable cause
 	) {
-		BasicOutput.log(
-				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-				cause,
-				message
+
+		super(
+				message,
+				cause
 		);
 	}
 
@@ -75,7 +81,7 @@ public class IdNotMatchException
 	 *              unknown.)
 	 * @since 1.4
 	 */
-	public IdNotMatchException( Throwable cause ) {
+	public BasicException( Throwable cause ) {
 
 		BasicOutput.log(
 				cause,
@@ -97,17 +103,19 @@ public class IdNotMatchException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdNotMatchException(
+	protected BasicException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,
 			boolean writableStackTrace
 	) {
 
-		BasicOutput.log(
-				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
+		super(
+				message,
 				cause,
-				String.format("%b, %b", enableSuppression, writableStackTrace)
+				enableSuppression,
+				writableStackTrace
 		);
 	}
+
 }

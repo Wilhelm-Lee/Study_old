@@ -1,5 +1,8 @@
-package com.study;
+package com.study.PROCESSORS;
 
+import com.study.INPUT.BasicInput;
+import com.study.OUTPUT.BasicOutput;
+import com.study.STORAGE.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -12,11 +15,11 @@ import java.util.List;
  */
 public class FileManager {
 
-	protected static final String CLASS_NAME = "FileManager";
+	public static final String CLASS_NAME = "FileManager";
 
 	public static class FileCreator {
 
-		protected static final String CLASS_NAME = "FileCreator";
+		public static final String CLASS_NAME = "FileCreator";
 
 		List<String> cmd = new ArrayList<>( 0 );
 		Runtime runtime;
@@ -70,11 +73,11 @@ public class FileManager {
 				}
 
 				// if not exists
-				if ( !targetObject.exists() ) {
+				if ( ! targetObject.exists() ) {
 					// Then create it
 					// Ask
 					if ( ifAskNeeded ) {
-						if ( ifAsk(	targetObject ) ) {
+						if ( ifAsk( targetObject ) ) {
 							runtime = Runtime.getRuntime();
 							process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
 						} else {
@@ -130,10 +133,13 @@ public class FileManager {
 					: targetObject.exists();
 		}
 
-		protected boolean onCreate( File targetFile, boolean ifAskNeeded ) {
+		public boolean onCreate(
+				File targetFile,
+				boolean ifAskNeeded
+		) {
 
 			try {
-				if ( !checkExistence(
+				if ( ! checkExistence(
 						new File( targetFile.getParent() ),
 						BasicVariables.FILE_MANAGER_TARGET_TYPE_PATH_STRING
 				) ) {
@@ -150,7 +156,10 @@ public class FileManager {
 							ifAskNeeded
 					);
 					// Retry
-					onCreate( targetFile.getAbsoluteFile(), ifAskNeeded );
+					onCreate(
+							targetFile.getAbsoluteFile(),
+							ifAskNeeded
+					);
 					// Actually, it does not need to be getAbsoluteFile(), just original targetFile would also be fine
 				} else {
 					isAllRight = true;
@@ -162,7 +171,7 @@ public class FileManager {
 							BasicVariables.FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED
 					);
 					// Judge whether the targetFile exists or not
-					if ( !checkExistence(
+					if ( ! checkExistence(
 							targetFile.getAbsoluteFile(),
 							BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING
 					) ) {
@@ -177,7 +186,10 @@ public class FileManager {
 								ifAskNeeded
 						);
 						// Retry
-						onCreate( targetFile.getAbsoluteFile(), ifAskNeeded );
+						onCreate(
+								targetFile.getAbsoluteFile(),
+								ifAskNeeded
+						);
 					} else {
 						// targetFile exists
 						isAllRight = true;

@@ -1,5 +1,6 @@
-package com.study;
+package com.study.PROCESSORS;
 
+import com.study.STORAGE.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
@@ -16,12 +17,12 @@ public class BasicFunctions {
 	// All method should be written in form of Recursive-Call
 
 	/* PERMEATE CODE: */
-	protected static final @NotNull String CLASS_NAME = "BasicFunctions";
+	public static final @NotNull String CLASS_NAME = "BasicFunctions";
 
 	/**
 	 * Calculation
 	 */
-	protected static int getBitOn(
+	public static int getBitOn(
 			int number,
 			int index
 	) {
@@ -36,7 +37,7 @@ public class BasicFunctions {
 		}
 	}
 
-	protected static int delta(
+	public static int delta(
 			int valueA,
 			int valueB
 	) {
@@ -51,7 +52,7 @@ public class BasicFunctions {
 	 * the LeastCommonMultiple of {@code valueA} and {@code valueB}.
 	 * @see #leastCommonMultiple(int, int)
 	 **/
-	protected static int greatestCommonDivisor(
+	public static int greatestCommonDivisor(
 			int valueA,
 			int valueB
 	) {
@@ -73,7 +74,7 @@ public class BasicFunctions {
 	 * the LeastCommonMultiple of {@code valueA} and {@code valueB}.
 	 * @see #greatestCommonDivisor(int, int)
 	 **/
-	protected static int leastCommonMultiple(
+	public static int leastCommonMultiple(
 			int valueA,
 			int valueB
 	) {
@@ -87,12 +88,12 @@ public class BasicFunctions {
 	/**
 	 * Date & Time
 	 */
-	protected static boolean isLeapYear( long prolepticYear ) {
+	public static boolean isLeapYear( long prolepticYear ) {
 		// Taken from IsoChronology.java
 		return ( ( prolepticYear & 3 ) == 0 ) && ( ( prolepticYear % 100 ) != 0 || ( prolepticYear % 400 ) == 0 );
 	}
 
-	protected static long durationOfLocalDateTimeToSecond(
+	public static long durationOfLocalDateTimeToSecond(
 			@NotNull LocalDateTime itemLocalDateTimeStart,
 			@NotNull LocalDateTime itemLocalDateTimeEnd,
 			@NotNull ZoneOffset zoneOffset
@@ -129,7 +130,7 @@ public class BasicFunctions {
 		).toEpochSecond();
 	}
 
-	protected static long durationOfLocalDateTimeToSecond(
+	public static long durationOfLocalDateTimeToSecond(
 			@NotNull LocalDateTime itemLocalDateTimeStart,
 			@NotNull LocalDateTime itemLocalDateTimeEnd
 	) {
@@ -168,4 +169,5 @@ public class BasicFunctions {
 	}
 
 	// NEW ADD-IN CODE:
+
 }

@@ -1,5 +1,9 @@
-package com.study;
+package com.study.STORAGE;
 
+import com.study.OUTPUT.BasicOutput;
+import com.study.PROCESSORS.BasicFunctions;
+import com.study.PROCESSORS.FileManager;
+import com.study.RUNTIME.BasicException;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -20,7 +24,9 @@ public class Applications {
 		public static final String CLASS_NAME = "TodoList";
 
 		private static final TodoList todoList = new TodoList();
-		/** Due to Settings.HOME_PATH is not a constant variable, cannot use final here */
+		/**
+		 * Due to Settings.HOME_PATH is not a constant variable, cannot use final here
+		 */
 		public String TODOLIST_FILE = "/TodoList.study";
 		public final File TARGET_FILE = new File(
 				BasicVariables.STUDY_PATH_STRING,
@@ -119,11 +125,14 @@ public class Applications {
 		public void onCreate() {
 
 			// Use @isAnomalous to judge whether onCreate(File, boolean) is anomalous -> true: false
-			if ( !fc.onCreate( todoList.TARGET_FILE, true ) ) {
+			if ( ! fc.onCreate(
+					todoList.TARGET_FILE,
+					false
+			) ) {
 				// Where Exception happens
 				BasicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-						com.study.Applications.CLASS_NAME,
+						Applications.CLASS_NAME,
 						new BasicException().getLocalizedMessage()
 				);
 			}
@@ -132,12 +141,12 @@ public class Applications {
 		public static class Item {
 
 			public static final String CLASS_NAME = "Item";
+			private final TodoList.Item item = new TodoList.Item();
 			protected int level;
 			protected long id;
 			protected String itemName;
 			protected long itemDateTimeStartInSeconds;
 			protected long itemDateTimeEndInSeconds;
-			private final TodoList.Item item = new TodoList.Item();
 			private TimeLine timeLine;
 
 			public void onCreate(

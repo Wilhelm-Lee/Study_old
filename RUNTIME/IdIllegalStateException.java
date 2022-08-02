@@ -1,15 +1,17 @@
-package com.study;
+package com.study.RUNTIME;
 
+import com.study.OUTPUT.BasicOutput;
+import com.study.STORAGE.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author william
  */
 
-public class BasicException
-		extends Throwable {
+public class IdIllegalStateException
+		extends Exception {
 
-	protected static final @NotNull String CLASS_NAME = "BasicException";
+	protected static final @NotNull String CLASS_NAME = "IdIllegalStateException";
 
 	static final long serialVersionUID = 1L;
 
@@ -18,7 +20,7 @@ public class BasicException
 	 * The cause is not initialized, and may subsequently be initialized by a
 	 * call to {@link #initCause}.
 	 */
-	public BasicException() {
+	public IdIllegalStateException() {
 
 		super();
 	}
@@ -31,11 +33,11 @@ public class BasicException
 	 * @param message the detail message. The detail message is saved for
 	 *                later retrieval by the {@link #getMessage()} method.
 	 */
-	public BasicException( String message ) {
+	public IdIllegalStateException( String message ) {
 
 		BasicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-				BasicException.CLASS_NAME,
+				IdIllegalStateException.CLASS_NAME,
 				message
 		);
 	}
@@ -54,7 +56,7 @@ public class BasicException
 	 *                unknown.)
 	 * @since 1.4
 	 */
-	public BasicException(
+	public IdIllegalStateException(
 			String message,
 			Throwable cause
 	) {
@@ -79,7 +81,7 @@ public class BasicException
 	 *              unknown.)
 	 * @since 1.4
 	 */
-	public BasicException( Throwable cause ) {
+	public IdIllegalStateException( Throwable cause ) {
 
 		BasicOutput.log(
 				cause,
@@ -101,7 +103,7 @@ public class BasicException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected BasicException(
+	protected IdIllegalStateException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,
@@ -115,5 +117,4 @@ public class BasicException
 				writableStackTrace
 		);
 	}
-
 }

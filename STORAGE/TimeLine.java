@@ -1,4 +1,8 @@
-package com.study;
+package com.study.STORAGE;
+
+import com.study.OUTPUT.BasicOutput;
+import com.study.PROCESSORS.BasicFunctions;
+import com.study.PROCESSORS.FileManager;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -10,18 +14,16 @@ import java.time.ZoneOffset;
 public class TimeLine {
 
 	public static final String CLASS_NAME = "TimeLine";
-
-	protected long startTimeStampInSeconds, endTimeStampInSeconds;
-	protected long length;
-	protected String fileNameBase;
-	private final String FILE_NAME_EXTENSION = BasicVariables.DOT + com.study.TimeLine.CLASS_NAME;
+	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
+	private static final TimeLine timeLine = new TimeLine();
+	private final String FILE_NAME_EXTENSION = BasicVariables.DOT + TimeLine.CLASS_NAME;
 	private final File TARGET_FILE = new File(
 			BasicVariables.STUDY_PATH_STRING,
 			String.valueOf( BasicVariables.timeLineIdLoadUp )
 	);
-
-	private static FileManager.FileCreator fc = new FileManager.FileCreator();
-	private static com.study.TimeLine timeLine = new com.study.TimeLine();
+	protected long startTimeStampInSeconds, endTimeStampInSeconds;
+	protected long length;
+	protected String fileNameBase;
 
 	private static void preparation(
 			LocalDateTime startTimeStamp,
@@ -46,7 +48,10 @@ public class TimeLine {
 			);
 
 			// Create new file(s) for newTimeLine & Output procession result (Success or not)
-			if ( fc.onCreate( timeLine.TARGET_FILE, false ) ) {
+			if ( fc.onCreate(
+					timeLine.TARGET_FILE,
+					false
+			) ) {
 				BasicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
 						FileManager.FileCreator.CLASS_NAME,
@@ -58,22 +63,22 @@ public class TimeLine {
 
 			BasicOutput.log(
 					BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-					com.study.TimeLine.CLASS_NAME,
+					TimeLine.CLASS_NAME,
 					e.getLocalizedMessage()
 			);
 		}
 
 	}
 
-	protected static com.study.TimeLine onCreate(
+	protected static TimeLine onCreate(
 			LocalDateTime startTimeStamp,
 			LocalDateTime endTimeStamp,
 			long length
 	) {
 
-		com.study.TimeLine newTimeLine = new com.study.TimeLine();
+		TimeLine newTimeLine = new TimeLine();
 
-		com.study.TimeLine.preparation(
+		TimeLine.preparation(
 				startTimeStamp,
 				endTimeStamp
 		);

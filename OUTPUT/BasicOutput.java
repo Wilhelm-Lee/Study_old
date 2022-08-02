@@ -1,5 +1,7 @@
-package com.study;
+package com.study.OUTPUT;
 
+import com.study.STORAGE.BasicVariables;
+import com.study.STORAGE.Settings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,27 +13,9 @@ public class BasicOutput {
 
 	// Everything here must be static!!!
 
-	protected static final String CLASS_NAME = "BasicOutput";
+	public static final String CLASS_NAME = "BasicOutput";
 
-	/**
-	 * Colors:(Format ) _FRONT|BACK + COLOR_ <String-Content>
-	 */
-	protected static void greetings() {
-
-		@NotNull String content = Settings.greetingsBeginSideSymbol
-								  + BasicVariables.USER_NAME
-								  + new Settings().localDateTime.format( new Settings().formatter )
-								  + Settings.greetingsEndSideSymbol;
-
-		// Do printing
-
-		System.out.print( BasicOutput.dyeing(
-				true,
-				BasicVariables.TERMINAL_COLOR_YELLOW
-		) + content );
-	}
-
-	protected static @NotNull String dyeing(
+	public static @NotNull String dyeing(
 			boolean isFront,
 			char color
 	) {
@@ -47,7 +31,7 @@ public class BasicOutput {
 				  BasicVariables.TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT;
 	}
 
-	protected static void log(
+	public static void log(
 			@NotNull String typeOfLog,
 			@Nullable String content
 	) {
@@ -66,7 +50,7 @@ public class BasicOutput {
 		) + typeOfLog + ": " + content );
 	}
 
-	protected static void log(
+	public static void log(
 			@NotNull String typeOfLog,
 			@NotNull String initiator,
 			@Nullable String content
@@ -95,7 +79,7 @@ public class BasicOutput {
 	 * @see #log(String, String, String)
 	 */
 
-	protected static void log(
+	public static void log(
 			@NotNull String typeOfLog,
 			Throwable initiator,
 			@Nullable String content
@@ -117,7 +101,7 @@ public class BasicOutput {
 	 * @see #log(String, String, String)
 	 * @see #log(String, Throwable, String)
 	 */
-	protected static void log(
+	public static void log(
 			Throwable initiator,
 			@Nullable String content
 	) {
@@ -130,7 +114,7 @@ public class BasicOutput {
 		);
 	}
 
-	protected static void log(
+	public static void log(
 			@NotNull String typeOfLog,
 			char costumeColor,
 			@NotNull String content
@@ -142,7 +126,7 @@ public class BasicOutput {
 		) + typeOfLog + ": " + content );
 	}
 
-	protected static void log(
+	public static void log(
 			@NotNull String typeOfLog,
 			char costumeColor,
 			@NotNull String initiator,
@@ -152,7 +136,26 @@ public class BasicOutput {
 		System.out.println( BasicOutput.dyeing(
 				true,
 				costumeColor
-		) + typeOfLog + ": " + content );
+		) + typeOfLog + "(" + initiator + "): " + content );
+	}
+
+	/**
+	 * Colors:(Format ) _FRONT|BACK + COLOR_ <String-Content>
+	 */
+	public void greetings() {
+
+		@NotNull String content = Settings.greetingsBeginSideSymbol
+								  + BasicVariables.USER_NAME
+								  + BasicVariables.SPACE
+								  + new Settings().localDateTime.format( new Settings().formatter )
+								  + Settings.greetingsEndSideSymbol;
+
+		// Do printing
+
+		System.out.print( BasicOutput.dyeing(
+				true,
+				BasicVariables.TERMINAL_COLOR_YELLOW
+		) + content );
 	}
 
 }
