@@ -27,12 +27,15 @@ public class BasicVariables {
 	public static final String FILE_MANAGER_TARGET_TYPE_FILE_STRING = "File" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_PATH_STRING = "Path" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_OUTPUT_TEXT_TARGET_FILE_DOES_NOT_EXIST = "Target file does not exist" +
-																						BasicVariables.SPACE;
-	public static final String FILE_MANAGER_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST = "Target path does not exist" + BasicVariables.SPACE;
-	public static final String FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED = BasicVariables.SPACE + "had already existed";
+																					 BasicVariables.SPACE;
+	public static final String FILE_MANAGER_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST = "Target path does not exist" +
+																					 BasicVariables.SPACE;
+	public static final String FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED = BasicVariables.SPACE +
+																			  "had already existed";
 	public static final String FILE_MANAGER_OUTPUT_TEXT_FAILED_CAUSED_AND_CANCELED_BY_USER = BasicVariables.SPACE +
-																								"failed, caused & canceled by user";
-	public static final String FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO = "How would you like to" + BasicVariables.SPACE;
+																							 "failed, caused & canceled by user";
+	public static final String FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO = "How would you like to" +
+																				BasicVariables.SPACE;
 	public static final String FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN = BasicVariables.SPACE + "? y/n";
 	public static final String FILE_MANAGER_OUTPUT_TEXT_Y = "Y";
 	public static final String FILE_MANAGER_OUTPUT_TEXT_YES = "YES";
@@ -113,13 +116,14 @@ public class BasicVariables {
 
 	public static final String USER_NAME = System.getProperty( "user.name" );
 	public static final String HOME_PATH_STRING = "/home" + BasicVariables.SLASH + USER_NAME;
-	public static final String STUDY_PATH_STRING = HOME_PATH_STRING +
-													  BasicVariables.DOCUMENTS_PATH_STRING +
-													  "/StudyFiles";
 	public static final String DOCUMENTS_PATH_STRING = "/Documents";
+	public static final String STUDY_PATH_STRING = HOME_PATH_STRING +
+												   BasicVariables.DOCUMENTS_PATH_STRING +
+												   "/StudyFiles";
 	/**
 	 * Starts from 1
 	 */
 	public static long applicationsTodoListItemIdLoadUp = 1;
 	public static long timeLineIdLoadUp = 1;
+
 }

@@ -21,9 +21,9 @@ public class TimeLine {
 			BasicVariables.STUDY_PATH_STRING,
 			String.valueOf( BasicVariables.timeLineIdLoadUp )
 	);
-	protected long startTimeStampInSeconds, endTimeStampInSeconds;
-	protected long length;
-	protected String fileNameBase;
+	protected long startTimeStampInSeconds = 0L, endTimeStampInSeconds = 0L;
+	protected long length = 0L;
+	protected String fileNameBase = null;
 
 	private static void preparation(
 			LocalDateTime startTimeStamp,
@@ -83,7 +83,9 @@ public class TimeLine {
 				endTimeStamp
 		);
 
-		// Everything's fine, let's go!
+		/* Everything's fine, let's go!
+		 *  Initialize @newTimeLine
+		 */
 
 		timeLine.fileNameBase = String.valueOf( BasicVariables.timeLineIdLoadUp );
 

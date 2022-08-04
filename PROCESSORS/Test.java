@@ -15,11 +15,15 @@ public class Test {
 
 		Scanner scn = new Scanner( System.in );
 
-		String[] input = new String[10];
+		String[] input = new String[ 10 ];
 
-		for ( int i = 0; i < 10; i ++ ) {
+		for (
+				int i = 0;
+				i < 10;
+				i++
+		) {
 
-			input[i] = scn.next();
+			input[ i ] = scn.next();
 
 		}
 

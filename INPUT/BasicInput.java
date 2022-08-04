@@ -4,6 +4,7 @@ import com.study.OUTPUT.BasicOutput;
 import com.study.STORAGE.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,10 @@ public class BasicInput {
 
 	public static final String CLASS_NAME = "BasicInput";
 
-	private static final Scanner BASIC_SCANNER = new Scanner( System.in );
+	private static final Scanner BASIC_SCANNER = new Scanner(
+			System.in,
+			StandardCharsets.UTF_8
+	);
 
 	public static String recorder( @NotNull String typeOfInput ) {
 

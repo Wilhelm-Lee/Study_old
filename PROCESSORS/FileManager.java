@@ -22,8 +22,8 @@ public class FileManager {
 		public static final String CLASS_NAME = "FileCreator";
 
 		List<String> cmd = new ArrayList<>( 0 );
-		Runtime runtime;
-		Process process;
+		Runtime runtime = null;
+		Process process = null;
 		boolean isAllRight = true;
 
 		private boolean ifAsk(

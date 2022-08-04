@@ -147,13 +147,13 @@ public class Applications {
 			protected String itemName;
 			protected long itemDateTimeStartInSeconds;
 			protected long itemDateTimeEndInSeconds;
-			private TimeLine timeLine;
+			private final TimeLine timeLine = null;
 
 			public void onCreate(
 
 			) {
 				// Initialize variables
-				// TODO: 16/07/2022 Hi, William. Come and fix this! 😀
+				// TODO: 16/07/2022 Hi, William. Come and fix this! &#xD83D;&#xDE00;
 
 			}
 

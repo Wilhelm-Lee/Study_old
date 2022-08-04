@@ -2,7 +2,7 @@
 
 # <center><font color=#0099FF>🗨️Study</font></center>
 
-## <center> =  📚 + 🛠️ + 🖥️ + 😸 </center>
+## <center> = 📚 + 🛠️ + 🖥️ + 😸 </center>
 
 <center>
 	<font color=#FF9900>
@@ -28,8 +28,6 @@ Also, developing such (Mightily) useful tools is really kind of enjoyment for me
 By using self-defining class: <b><font color=#00CC00>TimeLine</font></b><br>
 You can freely costumize schedules just for your own!
 
-
-
 ## <font color=#DF3439>🗃️File Management</font>
 
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
@@ -39,7 +37,7 @@ You can freely costumize schedules just for your own!
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
 Play your favorite song in terminal!  
-Features including:  
+Features including:
 
 1. Customizable UI layout 🆊
 2. Customizable versualizations 🎴
@@ -57,6 +55,5 @@ Features including:
 4. Bases calculator 🐙
 
 ## 🧐<font color=#DF3439>To Be Continued</font>
-
 
 ###### 🤔 *( I do know that my git name is a bit of problem, please just ignore it~ )*
