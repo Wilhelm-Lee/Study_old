@@ -1,8 +1,8 @@
-package com.study.STORAGE;
+package com.study.storage;
 
-import com.study.OUTPUT.BasicOutput;
-import com.study.PROCESSORS.BasicFunctions;
-import com.study.PROCESSORS.FileManager;
+import com.study.output.BasicOutput;
+import com.study.processors.BasicFunctions;
+import com.study.processors.FileManager;
 
 import java.io.File;
 import java.time.LocalDateTime;

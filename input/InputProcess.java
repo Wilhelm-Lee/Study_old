@@ -1,4 +1,4 @@
-package com.study.INPUT;
+package com.study.input;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;

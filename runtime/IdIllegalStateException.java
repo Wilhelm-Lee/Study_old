@@ -1,16 +1,17 @@
-package com.study.RUNTIME;
+package com.study.runtime;
 
-import com.study.OUTPUT.BasicOutput;
-import com.study.STORAGE.BasicVariables;
+import com.study.output.BasicOutput;
+import com.study.storage.BasicVariables;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author william
  */
 
-public class IdNotMatchException
+public class IdIllegalStateException
 		extends Exception {
 
-	public static final String CLASS_NAME = "IdNotMatchException";
+	protected static final @NotNull String CLASS_NAME = "IdIllegalStateException";
 
 	static final long serialVersionUID = 1L;
 
@@ -19,7 +20,7 @@ public class IdNotMatchException
 	 * The cause is not initialized, and may subsequently be initialized by a
 	 * call to {@link #initCause}.
 	 */
-	public IdNotMatchException() {
+	public IdIllegalStateException() {
 
 		super();
 	}
@@ -32,11 +33,11 @@ public class IdNotMatchException
 	 * @param message the detail message. The detail message is saved for
 	 *                later retrieval by the {@link #getMessage()} method.
 	 */
-	public IdNotMatchException( String message ) {
+	public IdIllegalStateException( String message ) {
 
 		BasicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-				IdNotMatchException.CLASS_NAME,
+				IdIllegalStateException.CLASS_NAME,
 				message
 		);
 	}
@@ -55,15 +56,14 @@ public class IdNotMatchException
 	 *                unknown.)
 	 * @since 1.4
 	 */
-	public IdNotMatchException(
+	public IdIllegalStateException(
 			String message,
 			Throwable cause
 	) {
 
-		BasicOutput.log(
-				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-				cause,
-				message
+		super(
+				message,
+				cause
 		);
 	}
 
@@ -81,7 +81,7 @@ public class IdNotMatchException
 	 *              unknown.)
 	 * @since 1.4
 	 */
-	public IdNotMatchException( Throwable cause ) {
+	public IdIllegalStateException( Throwable cause ) {
 
 		BasicOutput.log(
 				cause,
@@ -103,21 +103,18 @@ public class IdNotMatchException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdNotMatchException(
+	protected IdIllegalStateException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,
 			boolean writableStackTrace
 	) {
 
-		BasicOutput.log(
-				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
+		super(
+				message,
 				cause,
-				String.format(
-						"%b, %b",
-						enableSuppression,
-						writableStackTrace
-				)
+				enableSuppression,
+				writableStackTrace
 		);
 	}
 }

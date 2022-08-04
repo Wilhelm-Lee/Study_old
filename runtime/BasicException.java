@@ -1,7 +1,7 @@
-package com.study.RUNTIME;
+package com.study.runtime;
 
-import com.study.OUTPUT.BasicOutput;
-import com.study.STORAGE.BasicVariables;
+import com.study.output.BasicOutput;
+import com.study.storage.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 /**

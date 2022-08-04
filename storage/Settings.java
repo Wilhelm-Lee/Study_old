@@ -1,4 +1,4 @@
-package com.study.STORAGE;
+package com.study.storage;
 
 import org.jetbrains.annotations.NotNull;
 

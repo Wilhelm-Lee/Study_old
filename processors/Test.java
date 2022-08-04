@@ -1,4 +1,4 @@
-package com.study.PROCESSORS;
+package com.study.processors;
 
 import java.util.Arrays;
 import java.util.Scanner;

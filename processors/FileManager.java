@@ -1,8 +1,8 @@
-package com.study.PROCESSORS;
+package com.study.processors;
 
-import com.study.INPUT.BasicInput;
-import com.study.OUTPUT.BasicOutput;
-import com.study.STORAGE.BasicVariables;
+import com.study.input.BasicInput;
+import com.study.output.BasicOutput;
+import com.study.storage.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

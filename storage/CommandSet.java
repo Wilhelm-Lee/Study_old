@@ -1,5 +1,8 @@
-package com.study.STORAGE;
+package com.study.storage;
 
+/**
+ * @author william
+ */
 public class CommandSet {
 
 	/**

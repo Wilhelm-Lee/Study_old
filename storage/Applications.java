@@ -1,9 +1,9 @@
-package com.study.STORAGE;
+package com.study.storage;
 
-import com.study.OUTPUT.BasicOutput;
-import com.study.PROCESSORS.BasicFunctions;
-import com.study.PROCESSORS.FileManager;
-import com.study.RUNTIME.BasicException;
+import com.study.output.BasicOutput;
+import com.study.processors.BasicFunctions;
+import com.study.processors.FileManager;
+import com.study.runtime.BasicException;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

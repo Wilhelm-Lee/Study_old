@@ -1,7 +1,7 @@
-package com.study.INPUT;
+package com.study.input;
 
-import com.study.OUTPUT.BasicOutput;
-import com.study.STORAGE.BasicVariables;
+import com.study.output.BasicOutput;
+import com.study.storage.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;

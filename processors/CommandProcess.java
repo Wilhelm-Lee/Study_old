@@ -1,4 +1,4 @@
-package com.study.PROCESSORS;
+package com.study.processors;
 
 public class CommandProcess {
 

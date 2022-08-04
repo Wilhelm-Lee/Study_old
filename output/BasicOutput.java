@@ -1,7 +1,7 @@
-package com.study.OUTPUT;
+package com.study.output;
 
-import com.study.STORAGE.BasicVariables;
-import com.study.STORAGE.Settings;
+import com.study.storage.BasicVariables;
+import com.study.storage.Settings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

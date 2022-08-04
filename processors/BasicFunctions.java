@@ -1,6 +1,6 @@
-package com.study.PROCESSORS;
+package com.study.processors;
 
-import com.study.STORAGE.BasicVariables;
+import com.study.storage.BasicVariables;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
