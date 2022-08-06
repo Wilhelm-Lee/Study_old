@@ -16,7 +16,7 @@ package com.study.processors;
  * JAVA DOES NOT HAVE UNSIGNED DATA IN STANDARD
  * https://github.com/jOOQ/jOOU for more "unsigned"
  * *-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
- * | <!>Signature    DataType        Range(pow)                        Range(dec/hex)                                        DefaultValue        Size                Note                |
+ * | <!>Signature    DataType       Range(pow)                        Range(dec/hex)                                        DefaultValue        Size                Note                |
  * +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
  * |    \            boolean              0 to 1                                             0 to 1                          false               1 Bit                                   |
  * |    signed       byte              -2^4 to 2^4 - 1                                    -128 to 127                        0                   1 Byte / 8 Bits                         |
