@@ -22,22 +22,25 @@ public class CommandSet {
 	public static final char[] _TIME_F =
 			new char[]
 					{
-							' ',
+							'\0',
 							// no flg: "DD dd MM, YY"
 							'f',
 							// Format date & time with yours
 							's'
 							// format Simply/Shortly: "HH-mm-ss"
 					};
-	/** Users do not actually need to type in capitalized for all */
+	/**
+	 * Users do not actually need to type in capitalized for all
+	 */
 	public static final String[] _TIME_FLAG =
 			new String[]
 					{
-							" ",
+							"\000",
 							// no flg: "DD dd MM, YY"
 							"FORMAT",
 							// FORMAT date & time with yours
 							"SHORT"
 							// format simply/SHORTly: "HH-mm-ss"
 					};
+
 }

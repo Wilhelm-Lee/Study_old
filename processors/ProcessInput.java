@@ -1,6 +1,6 @@
 package com.study.processors;
 
-public class CommandProcess {
+public class ProcessInput {
 
 	void commandProcess( String[] cmd ) {
 

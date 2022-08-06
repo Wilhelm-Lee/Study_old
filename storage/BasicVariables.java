@@ -21,8 +21,8 @@ public class BasicVariables {
 	public static final char DOT = '.';
 	public static final char SPACE = ' ';
 	public static final char SLASH = '/';
-	public static final char ENDL = '\n';
-	public static final char TABULATION = '\t';
+	public static final String ENDL = "\n";
+	public static final String TABULATION = "\t";
 	public static final String TARGET = "Target" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_FILE_STRING = "File" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_PATH_STRING = "Path" + BasicVariables.SPACE;
