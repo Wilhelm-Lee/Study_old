@@ -1,162 +1,139 @@
 package com.study.storage;
 
-import com.study.output.BasicOutput;
-import com.study.processors.BasicFunctions;
-import com.study.processors.FileManager;
-import com.study.runtime.BasicException;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * @author william
  */
-public class Applications {
 
-	protected static final String CLASS_NAME = "Applications";
+public class BasicVariables {
 
-	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
+    /**
+     * Everything here must be {@code public}!!!<p>
+     * Everything here must be {@code static}!!!<p>
+     * Some variables would be used with adding a {@code SPACE} followed after itself as if you might or will
+     */
 
-	public static class TodoList {
+    public static final String ABOUT_PROJECT_NAME = "Study";
+    public static final String ABOUT_PROJECT_VERSION = "Aug7th2022_PROTOTYPE";
+    public static final String ABOUT_PROJECT_AUTHOR_NAME = "William Michael";
+    public static final String ABOUT_PROJECT_AUTHOR_GITHUB = "https://github.com/MichealWilliamLR/Study";
 
-		public static final String CLASS_NAME = "TodoList";
+    public static final String HELP_HELP_CMD = "{ h help }";
+    public static final String HELP_HELP_CMT = "Print this help";
+    public static final String HELP_EXIT_CMD = "{ exit }";
+    public static final String HELP_EXIT_CMT = "Exit the programme"; // LAST WORK HERE
 
-		private static final TodoList todoList = new TodoList();
-		/**
-		 * Due to Settings.HOME_PATH is not a constant variable, cannot use final here
-		 */
-		public String TODOLIST_FILE = "/TodoList.study";
-		public final File TARGET_FILE = new File(
-				BasicVariables.STUDY_PATH_STRING,
-				TODOLIST_FILE
-		);
+    public static final @NotNull String CLASS_NAME = "BasicVariables";
 
-		// S -?-> E
-		private TodoList.@NotNull Item createScheduleS_E(
-				String itemName,
-				LocalDateTime itemTimeStampLocalDateTimeStart,
-				LocalDateTime itemTimeStampLocalDateTimeEnd,
-				int level
-		) {
+    public static final char DOT = '.';
+    public static final char SPACE = ' ';
+    public static final char SLASH = '/';
+    public static final String ENDL = "\n";
+    public static final String TABULATION = "\t";
+    public static final String TARGET = "Target" + BasicVariables.SPACE;
+    public static final String FILE_MANAGER_TARGET_TYPE_FILE_STRING = "File" + BasicVariables.SPACE;
+    public static final String FILE_MANAGER_TARGET_TYPE_PATH_STRING = "Path" + BasicVariables.SPACE;
+    public static final String FILE_MANAGER_OUTPUT_TEXT_TARGET_FILE_DOES_NOT_EXIST = "Target file does not exist" +
+                                                                                     BasicVariables.SPACE;
+    public static final String FILE_MANAGER_OUTPUT_TEXT_TARGET_PATH_DOES_NOT_EXIST = "Target path does not exist" +
+                                                                                     BasicVariables.SPACE;
+    public static final String FILE_MANAGER_OUTPUT_TEXT_HAD_ALREADY_EXISTED = BasicVariables.SPACE +
+                                                                              "had already existed";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_FAILED_CAUSED_AND_CANCELED_BY_USER = BasicVariables.SPACE +
+                                                                                             "failed, caused & canceled by user";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_HOW_WOULD_YOU_LIKE_TO = "How would you like to" +
+                                                                                BasicVariables.SPACE;
+    public static final String FILE_MANAGER_OUTPUT_TEXT_QUESTIONMARK_YN = BasicVariables.SPACE + "? y/n";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_Y = "Y";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_YES = "YES";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_N = "N";
+    public static final String FILE_MANAGER_OUTPUT_TEXT_NO = "NO";
+    public static final String FILE_MANAGER_ACTIONS_CREATING = "CREATING" + BasicVariables.SPACE;
+    public static final String FILE_MANAGER_FILE_CREATING_SUCCESS = "File Creating Succeed" + BasicVariables.SPACE;
+    public static final String FILE_MANAGER_FILE_CREATING_FAILED = "File Creating Failed" + BasicVariables.SPACE;
+    public static final String LINUX_COMMAND_TOUCH = "touch", LINUX_COMMAND_MKDIR = "mkdir";
+    public static final int META_YEAR = 1970;
+    public static final LocalDateTime META_YEAR_LOCAL_DATE_TIME = LocalDateTime.of(
+            // YEAR
+            META_YEAR,
+            // MONTH
+            1,
+            // DATE
+            1,
+            // HOUR
+            0,
+            // MINUTE
+            0,
+            // SECOND
+            0,
+            // NANO SECOND
+            0
+    );
+    public static final int TIME_ZONE_OFFSET_EAST_EIGHT = 8;
+    public static final String TERMINAL_COLOR_DEFAULT_CODE_BEFORE_COLOR_CONTENT = "\033[";
+    public static final String TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT = "m";
+    public static final String BASIC_OUTPUT_LOG_FORMAT_FRONT = "Front";
+    /*
+     * *---------------------------------------------------------------------------------*
+     * |               COLOR    BELONG_TO        TYPE    NOTE                            |
+     * +---------------------------------------------------------------------------------+
+     * |                CYAN    -> Request       <OUT>                                   |
+     * |                BLUE    -> Info          <OUT>                                   |
+     * |              YELLOW    -> Warn          <OUT>                                   |
+     * |                 RED    -> Error         <OUT>                                   |
+     * |               White    -> Regular       <IN>                                    |
+     * |                Blue    -> Ans           <IN>                                    |
+     * |       GREEN(Ground)    -> Reply-Local   <IN>    Not Scheduled To Use Yet        |
+     * |           CYAN(Sky)    -> Reply-Remote  <IN>    Not Scheduled To Use Yet        |
+     * *---------------------------------------------------------------------------------*
+     * ...............................................................July 15th, 2022.....
+     */
+    /**
+     * Hello are you happy people?    -- Droopy Dog (1943 - 1958)
+     */
+    public static final String BASIC_OUTPUT_LOG_TYPE_REQUEST = "Request";
+    public static final String BASIC_OUTPUT_LOG_TYPE_INFO = "Info";
+    public static final String BASIC_OUTPUT_LOG_TYPE_WARN = "Warning";
+    public static final String BASIC_OUTPUT_LOG_TYPE_ERROR = "Error";
+    public static final String BASIC_INPUT_RECORDER_TYPE_REGULAR = "Regular";
+    public static final String BASIC_INPUT_RECORDER_TYPE_ANSWER = "Answer";
+    public static final String BASIC_INPUT_RECORDER_TYPE_REPLY_LOCAL = "Reply_Local";
+    public static final String BASIC_INPUT_RECORDER_TYPE_REPLY_REMOTE = "Reply_Remote";
+    public static final String BASIC_OUTPUT_LOG_FORMAT_COLOR_FRONT = "3";
+    public static final String BASIC_OUTPUT_LOG_FORMAT_COLOR_BACK = "4";
+    /**
+     * {@code TERMINAL_COLOR_RESET}: As what previous one was,
+     * for the sections of which the both which are {@code Front}|{@code Back} and {@code color}
+     */
+    public static final char TERMINAL_COLOR_BLACK = '0';
+    public static final char TERMINAL_COLOR_RED = '1';
+    public static final char TERMINAL_COLOR_GREEN = '2';
+    public static final char TERMINAL_COLOR_YELLOW = '3';
+    public static final char TERMINAL_COLOR_BLUE = '4';
+    public static final char TERMINAL_COLOR_MAGENTA = '5';
+    public static final char TERMINAL_COLOR_CYAN = '6';
+    public static final char TERMINAL_COLOR_WHITE = '7';
+    public static final char TERMINAL_COLOR_RESET = '8';
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_NONE = 0;
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_NORMAL = 1;
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_IMPOTENT = 2;
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_URGENT = 3;
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_SERIOUS = 4;
+    public static final int APPLICATIONS_TODOLIST_ITEM_URGENCY_LEVEL_IMMEDIATE = 5;
 
-			TodoList.Item newItem = new TodoList.Item();
+    public static final String USER_NAME = System.getProperty( "user.name" );
+    public static final String HOME_PATH_STRING = "/home" + BasicVariables.SLASH + USER_NAME;
+    public static final String DOCUMENTS_PATH_STRING = "/Documents";
+    public static final String STUDY_PATH_STRING = HOME_PATH_STRING +
+                                                   BasicVariables.DOCUMENTS_PATH_STRING +
+                                                   "/StudyFiles";
+    /**
+     * Starts from 1
+     */
+    public static long applicationsTodoListItemIdLoadUp = 1;
+    public static long timeLineIdLoadUp = 1;
 
-			newItem.id = BasicVariables.applicationsTodoListItemIdLoadUp + 1;
-			newItem.itemName = itemName;
-			newItem.itemDateTimeStartInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
-					itemTimeStampLocalDateTimeStart,
-					itemTimeStampLocalDateTimeEnd,
-					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
-			);
-			newItem.itemDateTimeEndInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
-					itemTimeStampLocalDateTimeStart,
-					itemTimeStampLocalDateTimeEnd,
-					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
-			);
-			newItem.level = level;
-			//     /  =(o|_E_E_E_|___A___|_Z_Z_Z_|_Y___Y_|
-			// (:P)[x] {]|_EEE___|__AAA__|___Z___|___Y___|
-			//     \  =(o|_E_E_E_|_A___A_|_Z_Z_Z_|___Y___|
-			//        "
-
-//			TODO: TimeLine.onCreate(  )
-
-			return newItem;
-		}
-
-		// ? -D-> E
-		private TodoList.Item createSchedule_DE(
-				String itemName,
-				LocalDateTime itemTimeStampLocalDateTimeDuration,
-				LocalDateTime itemTimeStampLocalDateTimeEnd,
-				int level
-		) {
-
-			TodoList.Item newItem = new TodoList.Item();
-			LocalDateTime tmpLDTStart = LocalDateTime.of(
-					itemTimeStampLocalDateTimeEnd.getYear() - itemTimeStampLocalDateTimeDuration.getYear(),
-					itemTimeStampLocalDateTimeEnd.getMonthValue() - itemTimeStampLocalDateTimeDuration.getMonthValue(),
-					itemTimeStampLocalDateTimeEnd.getDayOfMonth() - itemTimeStampLocalDateTimeDuration.getDayOfMonth(),
-					itemTimeStampLocalDateTimeEnd.getHour() - itemTimeStampLocalDateTimeDuration.getHour(),
-					itemTimeStampLocalDateTimeEnd.getMinute() - itemTimeStampLocalDateTimeDuration.getMinute(),
-					itemTimeStampLocalDateTimeEnd.getSecond() - itemTimeStampLocalDateTimeDuration.getSecond(),
-					itemTimeStampLocalDateTimeEnd.getNano() - itemTimeStampLocalDateTimeDuration.getNano()
-			);
-
-			newItem.itemDateTimeStartInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
-					tmpLDTStart,
-					itemTimeStampLocalDateTimeEnd
-			);
-
-			return newItem;
-		}
-
-		// S -D-> ?
-		private TodoList.Item createScheduleSD_(
-				String itemName,
-				LocalDateTime itemTimeStampLocalDateTimeStart,
-				LocalDateTime itemTimeStampLocalDateTimeDuration,
-				int level
-		) {
-
-			TodoList.Item newItem = new TodoList.Item();
-			LocalDateTime tmpLDTEnd = LocalDateTime.of(
-					itemTimeStampLocalDateTimeStart.getYear() + itemTimeStampLocalDateTimeDuration.getYear(),
-					itemTimeStampLocalDateTimeStart.getMonthValue() +
-					itemTimeStampLocalDateTimeDuration.getMonthValue(),
-					itemTimeStampLocalDateTimeStart.getDayOfMonth() +
-					itemTimeStampLocalDateTimeDuration.getDayOfMonth(),
-					itemTimeStampLocalDateTimeStart.getHour() + itemTimeStampLocalDateTimeDuration.getHour(),
-					itemTimeStampLocalDateTimeStart.getMinute() + itemTimeStampLocalDateTimeDuration.getMinute(),
-					itemTimeStampLocalDateTimeStart.getSecond() + itemTimeStampLocalDateTimeDuration.getSecond(),
-					itemTimeStampLocalDateTimeStart.getNano() + itemTimeStampLocalDateTimeDuration.getNano()
-			);
-
-			newItem.itemDateTimeStartInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
-					itemTimeStampLocalDateTimeStart,
-					tmpLDTEnd
-			);
-
-			return newItem;
-		}
-
-		public void onCreate() {
-
-			// Use @isAnomalous to judge whether onCreate(File, boolean) is anomalous -> true: false
-			if ( ! fc.onCreate(
-					todoList.TARGET_FILE,
-					false
-			) ) {
-				// Where Exception happens
-				BasicOutput.log(
-						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
-						Applications.CLASS_NAME,
-						new BasicException().getLocalizedMessage()
-				);
-			}
-		}
-
-		public static class Item {
-
-			public static final String CLASS_NAME = "Item";
-			private final TodoList.Item item = new TodoList.Item();
-			protected int level;
-			protected long id;
-			protected String itemName;
-			protected long itemDateTimeStartInSeconds;
-			protected long itemDateTimeEndInSeconds;
-			private final TimeLine timeLine = null;
-
-			public void onCreate(
-
-			) {
-				// Initialize variables
-				// TODO: 16/07/2022 Hi, William. Come and fix this! &#xD83D;&#xDE00;
-
-			}
-
-		}
-	}
 }
