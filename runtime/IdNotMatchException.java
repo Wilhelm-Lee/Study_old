@@ -103,7 +103,7 @@ public class IdNotMatchException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdNotMatchException(
+	public IdNotMatchException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,

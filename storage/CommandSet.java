@@ -18,7 +18,7 @@ public class CommandSet {
 	/**
 	 * Print out local date & time
 	 */
-	public static final String _TIME = "TIME";
+	public static final String _TIME = "TIME"; // LAST VIEWED HERE
 	public static final char[] _TIME_F =
 			new char[]
 					{

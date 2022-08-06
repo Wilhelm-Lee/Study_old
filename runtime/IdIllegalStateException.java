@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class IdIllegalStateException
 		extends Exception {
 
-	protected static final @NotNull String CLASS_NAME = "IdIllegalStateException";
+	public static final @NotNull String CLASS_NAME = "IdIllegalStateException";
 
 	static final long serialVersionUID = 1L;
 
@@ -103,7 +103,7 @@ public class IdIllegalStateException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdIllegalStateException(
+	public IdIllegalStateException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,

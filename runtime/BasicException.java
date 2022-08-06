@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class BasicException
 		extends Throwable {
 
-	protected static final @NotNull String CLASS_NAME = "BasicException";
+	public static final @NotNull String CLASS_NAME = "BasicException";
 
 	static final long serialVersionUID = 1L;
 
@@ -103,7 +103,7 @@ public class BasicException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected BasicException(
+	public BasicException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,

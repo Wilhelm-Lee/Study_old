@@ -15,7 +15,7 @@ import java.time.ZoneOffset;
  */
 public class Applications {
 
-	protected static final String CLASS_NAME = "Applications";
+	public static final String CLASS_NAME = "Applications";
 
 	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
 
@@ -142,11 +142,11 @@ public class Applications {
 
 			public static final String CLASS_NAME = "Item";
 			private final TodoList.Item item = new TodoList.Item();
-			protected int level;
-			protected long id;
-			protected String itemName;
-			protected long itemDateTimeStartInSeconds;
-			protected long itemDateTimeEndInSeconds;
+			public int level;
+			public long id;
+			public String itemName;
+			public long itemDateTimeStartInSeconds;
+			public long itemDateTimeEndInSeconds;
 			private final TimeLine timeLine = null;
 
 			public void onCreate(

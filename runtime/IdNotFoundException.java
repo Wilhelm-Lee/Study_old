@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class IdNotFoundException
 		extends Exception {
 
-	protected static final @NotNull String CLASS_NAME = "IdNotFoundException";
+	public static final @NotNull String CLASS_NAME = "IdNotFoundException";
 
 	static final long serialVersionUID = 1L;
 
@@ -103,7 +103,7 @@ public class IdNotFoundException
 	 *                           be writable
 	 * @since 1.7
 	 */
-	protected IdNotFoundException(
+	public IdNotFoundException(
 			String message,
 			Throwable cause,
 			boolean enableSuppression,

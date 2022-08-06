@@ -21,9 +21,9 @@ public class TimeLine {
 			BasicVariables.STUDY_PATH_STRING,
 			String.valueOf( BasicVariables.timeLineIdLoadUp )
 	);
-	protected long startTimeStampInSeconds = 0L, endTimeStampInSeconds = 0L;
-	protected long length = 0L;
-	protected String fileNameBase = null;
+	public long startTimeStampInSeconds = 0L, endTimeStampInSeconds = 0L;
+	public long length = 0L;
+	public String fileNameBase = null;
 
 	private static void preparation(
 			LocalDateTime startTimeStamp,
@@ -70,7 +70,7 @@ public class TimeLine {
 
 	}
 
-	protected static TimeLine onCreate(
+	public static TimeLine onCreate(
 			LocalDateTime startTimeStamp,
 			LocalDateTime endTimeStamp,
 			long length
