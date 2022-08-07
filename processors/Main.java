@@ -50,21 +50,21 @@ import java.util.Vector;
  */
 public class Main {
 
-    public static void main( String[] args ) {
+	public static void main( String[] args ) {
 
-        BasicOutput basicOutput = new BasicOutput();
-        boolean exit = false;
+		BasicOutput basicOutput = new BasicOutput();
+		boolean exit = false;
 
-        while ( ! exit ) {
+		while ( ! exit ) {
 
-            String userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
+			String userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
 
-            Vector<String> userInput = new Vector<>( 0 );
+			Vector<String> userInput = new Vector<>( 0 );
 
 
-            basicOutput.greetings();
+			basicOutput.greetings();
 
-        }
+		}
 
-    }
+	}
 }

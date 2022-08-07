@@ -142,12 +142,12 @@ public class Applications {
 
 			public static final String CLASS_NAME = "Item";
 			private final TodoList.Item item = new TodoList.Item();
+			private final TimeLine timeLine = null;
 			public int level;
 			public long id;
 			public String itemName;
 			public long itemDateTimeStartInSeconds;
 			public long itemDateTimeEndInSeconds;
-			private final TimeLine timeLine = null;
 
 			public void onCreate(
 

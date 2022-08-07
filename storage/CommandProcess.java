@@ -15,13 +15,22 @@ public class CommandProcess {
 			"Github: " + BasicVariables.ABOUT_PROJECT_AUTHOR_GITHUB + ENDL;
 
 	public static final String DOC_HELP =
-			"Usage: <command> [...]" + ENDL +
-			"Commands:" + ENDL +
-			TABULATION + BasicVariables.HELP_HELP_CMD + BasicVariables.HELP_HELP_CMT + ENDL +
-			TABULATION + BasicVariables.HELP_EXIT_CMD + BasicVariables.HELP_EXIT_CMT + ENDL // LAST WORKED HERE TODO: add +
+			"Usage: <command> [...]" +
+			ENDL +
+			"Commands:" +
+			ENDL +
+			TABULATION +
+			BasicVariables.HELP_HELP_CMD +
+			BasicVariables.HELP_HELP_CMT +
+			ENDL +
+			TABULATION +
+			BasicVariables.HELP_EXIT_CMD +
+			BasicVariables.HELP_EXIT_CMT +
+			ENDL // LAST WORKED HERE TODO: add +
 			;
 
 	public static void help() {
+
 		System.out.println( DOC_ABOUT );
 	}
 
