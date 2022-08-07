@@ -26,7 +26,7 @@ Also, developing such (Mightily) useful tools is really kind of enjoyment for me
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
 By using self-defining class: <b><font color=#00CC00>TimeLine</font></b><br>
-You can freely costumize schedules just for your own!
+You can freely customize schedules just for your own!
 
 ## <font color=#DF3439>🗃️File Management</font>
 
@@ -40,7 +40,7 @@ Play your favorite song in terminal!
 Features including:
 
 1. Customizable UI layout 🆊
-2. Customizable versualizations 🎴
+2. Customizable visualizations 🎴
 3. Star your songs ⭐
 4. Changing playback speed ⏩
 5. Customizable hotkeys #️⃣
@@ -50,7 +50,7 @@ Features including:
 > <font color=#555555>**IN DEVELOPMENT YET, NOT FOR FINAL REPRESENTATION 🤯**</font>
 
 1. Regular calculator 🧮
-2. Secientific calculator ⅀
+2. Scientific calculator ⅀
 3. Logical calculator ¬∧
 4. Bases calculator 🐙
 
