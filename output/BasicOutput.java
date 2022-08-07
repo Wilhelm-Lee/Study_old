@@ -151,7 +151,6 @@ public class BasicOutput {
 								  + Settings.greetingsEndSideSymbol;
 
 		// Do printing
-
 		System.out.print( BasicOutput.dyeing(
 				true,
 				BasicVariables.TERMINAL_COLOR_YELLOW

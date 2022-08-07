@@ -27,7 +27,7 @@ public class Applications {
 		/**
 		 * Due to Settings.HOME_PATH is not a constant variable, cannot use final here
 		 */
-		public String TODOLIST_FILE = "/TodoList.study";
+		public final String TODOLIST_FILE = "/TodoList.study";
 		public final File TARGET_FILE = new File(
 				BasicVariables.STUDY_PATH_STRING,
 				TODOLIST_FILE

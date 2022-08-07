@@ -14,9 +14,9 @@ import java.time.ZoneOffset;
 public class TimeLine {
 
 	public static final String CLASS_NAME = "TimeLine";
-	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
-	private static final TimeLine timeLine = new TimeLine();
-	private final String FILE_NAME_EXTENSION = BasicVariables.DOT + TimeLine.CLASS_NAME;
+	private static final FileManager.FileCreator FILE_CREATOR = new FileManager.FileCreator();
+	private static final TimeLine TIME_LINE = new TimeLine();
+	private final String FILE_NAME_EXTENSION = BasicVariables.PERIOD + TimeLine.CLASS_NAME;
 	private final File TARGET_FILE = new File(
 			BasicVariables.STUDY_PATH_STRING,
 			String.valueOf( BasicVariables.timeLineIdLoadUp )
@@ -31,25 +31,25 @@ public class TimeLine {
 	) {
 
 		try {
-			timeLine.length = BasicFunctions.durationOfLocalDateTimeToSecond(
+			TIME_LINE.length = BasicFunctions.durationOfLocalDateTimeToSecond(
 					startTimeStamp,
 					endTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
-			timeLine.startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+			TIME_LINE.startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
 					BasicVariables.META_YEAR_LOCAL_DATE_TIME,
 					startTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
-			timeLine.endTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
+			TIME_LINE.endTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(
 					BasicVariables.META_YEAR_LOCAL_DATE_TIME,
 					endTimeStamp,
 					ZoneOffset.ofHours( BasicVariables.TIME_ZONE_OFFSET_EAST_EIGHT )
 			);
 
 			// Create new file(s) for newTimeLine & Output procession result (Success or not)
-			if ( fc.onCreate(
-					timeLine.TARGET_FILE,
+			if ( FILE_CREATOR.onCreate(
+					TIME_LINE.TARGET_FILE,
 					false
 			) ) {
 				BasicOutput.log(
@@ -87,7 +87,7 @@ public class TimeLine {
 		 *  Initialize @newTimeLine
 		 */
 
-		timeLine.fileNameBase = String.valueOf( BasicVariables.timeLineIdLoadUp );
+		TIME_LINE.fileNameBase = String.valueOf( BasicVariables.timeLineIdLoadUp );
 
 		newTimeLine.length = length;
 		newTimeLine.startTimeStampInSeconds = BasicFunctions.durationOfLocalDateTimeToSecond(

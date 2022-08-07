@@ -1,9 +1,13 @@
 package com.study.storage;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * @author william
  */
 public class CommandSet {
+
+	public static final @NotNull String CLASS_NAME = "CommandSet";
 
 	/**
 	 * Run Help-Doc

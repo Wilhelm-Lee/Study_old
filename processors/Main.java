@@ -39,6 +39,23 @@ package com.study.processors;
  * ..................................................................................................................................................................August 7th, 2022.....
  */
 
+/*
+ *      + ---------------- < ------------------- Visualizations ----------------- < ----------------- +
+ *      V                                                                                             ^
+ * User Input                                                                                  Compute Output
+ *      V                                                                                             ^
+ * Catch by BasicInput                                                                        Catch by BasicOutput
+ *      V                                                                                             ^
+ * Send to BasicIOProcess.BasicInputProcess                                    Generate new outputting results and send them
+ *      V                                                                                             ^
+ * Being proceeded and turned into cmd, sent to CommandProcess      Being turned into results, sent to BasicIOProcess.BasicOutputProcess
+ *      V                                                                                             ^
+ * Collect module cmd from CommandSet then proceed                     Collect module output-text from BasicVariables then proceed
+ *      V                                                                                             ^
+ *      + ---------------- > --------------------- Operating -------------------- > ----------------- +
+ *
+ */
+
 import com.study.input.BasicInput;
 import com.study.output.BasicOutput;
 import com.study.storage.BasicVariables;

@@ -16,23 +16,42 @@ public class BasicVariables {
 	 * Some variables would be used with adding a {@code SPACE} followed after itself as if you might or will
 	 */
 
+	public static final @NotNull String CLASS_NAME = "BasicVariables";
+
+	public static final char COLON = ':';
+	public static final char SEMICOLON = ';';
+	public static final char PERIOD = '.';
+	public static final char COMMA = ',';
+	public static final char SPACE = ' ';
+	public static final char SLASH = '/';
+	public static final String ENDL = "\n";
+	public static final String TABULATION = "\t";
+
 	public static final String ABOUT_PROJECT_NAME = "Study";
 	public static final String ABOUT_PROJECT_VERSION = "Aug7th2022_PROTOTYPE";
 	public static final String ABOUT_PROJECT_AUTHOR_NAME = "William Michael";
 	public static final String ABOUT_PROJECT_AUTHOR_GITHUB = "https://github.com/MichealWilliamLR/Study";
 
-	public static final String HELP_HELP_CMD = "{ h help }";
+	public static final String HELP_HELP_CMD = "{ h | help }";
 	public static final String HELP_HELP_CMT = "Print this help";
 	public static final String HELP_EXIT_CMD = "{ exit }";
-	public static final String HELP_EXIT_CMT = "Exit the programme"; // LAST WORKED HERE
+	public static final String HELP_EXIT_CMT = "Exit Study";
+	public static final String HELP_TIME_CMD = "{ time }";
+	public static final String HELP_TIME_CMT = "Print out local date & time";
 
-	public static final @NotNull String CLASS_NAME = "BasicVariables";
+	public static final String DOC_CMD_NOT_FOUND = "Illegal argument";
+	public static final String DOC_ABOUT =
+			"Project: " + ABOUT_PROJECT_NAME + ENDL +
+			"Version: " + ABOUT_PROJECT_VERSION + ENDL +
+			"Author: " + ABOUT_PROJECT_AUTHOR_NAME + ENDL +
+			"Github: " + ABOUT_PROJECT_AUTHOR_GITHUB + ENDL;
+	public static final String DOC_HELP =
+			"Usage: <command> [...]" + ENDL +
+			"Commands:" + ENDL +
+			TABULATION + HELP_HELP_CMD + TABULATION + HELP_HELP_CMT + ENDL +
+			TABULATION + HELP_EXIT_CMD + TABULATION + HELP_EXIT_CMT + ENDL +
+			TABULATION + HELP_TIME_CMD + TABULATION + HELP_TIME_CMT + ENDL;
 
-	public static final char DOT = '.';
-	public static final char SPACE = ' ';
-	public static final char SLASH = '/';
-	public static final String ENDL = "\n";
-	public static final String TABULATION = "\t";
 	public static final String TARGET = "Target" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_FILE_STRING = "File" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_PATH_STRING = "Path" + BasicVariables.SPACE;
