@@ -27,31 +27,6 @@ public class BasicVariables {
 	public static final String ENDL = "\n";
 	public static final String TABULATION = "\t";
 
-	public static final String ABOUT_PROJECT_NAME = "Study";
-	public static final String ABOUT_PROJECT_VERSION = "Aug7th2022_PROTOTYPE";
-	public static final String ABOUT_PROJECT_AUTHOR_NAME = "William Michael";
-	public static final String ABOUT_PROJECT_AUTHOR_GITHUB = "https://github.com/MichealWilliamLR/Study";
-
-	public static final String HELP_HELP_CMD = "{ h | help }";
-	public static final String HELP_HELP_CMT = "Print this help";
-	public static final String HELP_EXIT_CMD = "{ exit }";
-	public static final String HELP_EXIT_CMT = "Exit Study";
-	public static final String HELP_TIME_CMD = "{ time }";
-	public static final String HELP_TIME_CMT = "Print out local date & time";
-
-	public static final String DOC_CMD_NOT_FOUND = "Illegal argument";
-	public static final String DOC_ABOUT =
-			"Project: " + ABOUT_PROJECT_NAME + ENDL +
-			"Version: " + ABOUT_PROJECT_VERSION + ENDL +
-			"Author: " + ABOUT_PROJECT_AUTHOR_NAME + ENDL +
-			"Github: " + ABOUT_PROJECT_AUTHOR_GITHUB + ENDL;
-	public static final String DOC_HELP =
-			"Usage: <command> [...]" + ENDL +
-			"Commands:" + ENDL +
-			TABULATION + HELP_HELP_CMD + TABULATION + HELP_HELP_CMT + ENDL +
-			TABULATION + HELP_EXIT_CMD + TABULATION + HELP_EXIT_CMT + ENDL +
-			TABULATION + HELP_TIME_CMD + TABULATION + HELP_TIME_CMT + ENDL;
-
 	public static final String TARGET = "Target" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_FILE_STRING = "File" + BasicVariables.SPACE;
 	public static final String FILE_MANAGER_TARGET_TYPE_PATH_STRING = "Path" + BasicVariables.SPACE;
@@ -96,6 +71,8 @@ public class BasicVariables {
 	public static final String TERMINAL_COLOR_DEFAULT_CODE_AFTER_COLOR_CONTENT = "m";
 	public static final String BASIC_OUTPUT_LOG_FORMAT_FRONT = "Front";
 	/*
+	 * [ TABLE ColorArrangement ]
+	 *
 	 * *---------------------------------------------------------------------------------*
 	 * |               COLOR    BELONG_TO        TYPE    NOTE                            |
 	 * +---------------------------------------------------------------------------------+
@@ -155,4 +132,75 @@ public class BasicVariables {
 	public static long applicationsTodoListItemIdLoadUp = 1;
 	public static long timeLineIdLoadUp = 1;
 
+	/**
+	 * @author william
+	 */
+	public static class CommandSet {
+
+		public static final @NotNull String CLASS_NAME = "CommandSet";
+
+		/**
+		 * -------------------------------------------
+		 * Exit the programme
+		 */
+		public static final String EXIT = "EXIT";
+
+		/**
+		 * -------------------------------------------
+		 * Print out local date & time
+		 */
+		public static final String TIME = "TIME";
+		/** no flg: "DD dd MM, YY"             */
+		public static final char TIME_F_EMPTY = '\0';
+		/** Format date & time with yours      */
+		public static final char TIME_F_f = 'f';
+		/** format Simply/Shortly: "HH-mm-ss"  */
+		public static final char TIME_F_s = 's';
+
+		/*
+		 * There's no need to type in all capitalization
+		 */
+
+		/** no flg: "DD dd MM, YY" */
+		public static final String TIME_FLAG_EMPTY = "\000";
+		/** Format date & time with yours */
+		public static final String TIME_FLAG_FORMAT = "FORMAT";
+		/** format Simply/Shortly: "HH-mm-ss" */
+		public static final String TIME_FLAG_SHORT = "SHORT";
+
+		/**
+		 * -------------------------------------------
+		 * Run Help-Doc
+		 */
+		public static final String HELP = "HELP";
+		/** Print help for HELP */
+		public static final String HELP_FLAG_HELP = HELP;
+		/** Print help for EXIT */
+		public static final String HELP_FLAG_EXIT = EXIT;
+		/** Print help for TIME */
+		public static final String HELP_FLAG_TIME = TIME;
+
+		public static final String ABOUT_PROJECT_NAME = "Study";
+		public static final String ABOUT_PROJECT_VERSION = "Aug7th2022_PROTOTYPE";
+		public static final String ABOUT_PROJECT_AUTHOR_NAME = "William Michael";
+		public static final String ABOUT_PROJECT_AUTHOR_GITHUB = "https://github.com/MichealWilliamLR/Study";
+		public static final String DOC_ABOUT =
+				"Project: " + ABOUT_PROJECT_NAME + ENDL +
+				"Version: " + ABOUT_PROJECT_VERSION + ENDL +
+				"Author: " + ABOUT_PROJECT_AUTHOR_NAME + ENDL +
+				"Github: " + ABOUT_PROJECT_AUTHOR_GITHUB + ENDL;
+		public static final String HELP_HELP_CMD = "{ h | help }";
+		public static final String HELP_HELP_CMT = "Print this help";
+		public static final String HELP_EXIT_CMD = "{ exit }";
+		public static final String HELP_EXIT_CMT = "Exit Study";
+		public static final String HELP_TIME_CMD = "{ time }";
+		public static final String HELP_TIME_CMT = "Print out local date & time";
+		public static final String DOC_HELP =
+				"Usage: <command> [...]" + ENDL +
+				"Commands:" + ENDL +
+				TABULATION + HELP_HELP_CMD + TABULATION + HELP_HELP_CMT + ENDL +
+				TABULATION + HELP_EXIT_CMD + TABULATION + HELP_EXIT_CMT + ENDL +
+				TABULATION + HELP_TIME_CMD + TABULATION + HELP_TIME_CMT + ENDL;
+		public static final String DOC_CMD_NOT_FOUND = "Illegal argument";
+	}
 }

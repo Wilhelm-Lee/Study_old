@@ -1,8 +1,7 @@
 package com.study.storage;
 
 import com.study.output.BasicOutput;
-import com.study.processors.BasicFunctions;
-import com.study.processors.FileManager;
+import com.study.processors.ProcessFile;
 import com.study.runtime.BasicException;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +16,7 @@ public class Applications {
 
 	public static final String CLASS_NAME = "Applications";
 
-	private static final FileManager.FileCreator fc = new FileManager.FileCreator();
+	private static final ProcessFile.FileCreator fc = new ProcessFile.FileCreator();
 
 	public static class TodoList {
 

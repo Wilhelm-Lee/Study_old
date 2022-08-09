@@ -1,6 +1,8 @@
 package com.study.processors;
 
 /*
+ * [ TABLE Visibility ]
+ *
  * *----------------------------------------------------------------------*
  * |   Modifier          Class        Package      Subclass     World     |
  * +----------------------------------------------------------------------+
@@ -13,6 +15,8 @@ package com.study.processors;
  */
 
 /*
+ * [ TABLE DataType ]
+ *
  * JAVA DOES NOT HAVE UNSIGNED DATA IN STANDARD
  * https://github.com/jOOQ/jOOU for more "unsigned"
  * [ 1 Byte == 8 bits ]
@@ -27,9 +31,9 @@ package com.study.processors;
  * |    signed       char             -2^16 to 2^16 - 1                                 -32768 to 32767                      '\u0000'            2 Byte / 16 Bits    Unicode             |
  * | <!>unsigned     char                 0 to 2^32 - 1                                      0 to 65535                      '\u0000'            2 Byte / 16 Bits                        |
  * |    signed       short            -2^16 to 2^16 - 1                                 -32768 to 32767                      0                   2 Byte / 16 Bits                        |
- * | <!>unsigned     short                0 to 2^32 - 1                                      0 to 4294967295                 0                   2 Byte / 16 Bits                        |
+ * | <!>unsigned     short                0 to 2^32 - 1                                      0 to 65535                      0                   2 Byte / 16 Bits                        |
  * |    signed       int              -2^32 to 2^32 - 1                            -2147483648 to 2147483647                 0                   4 Byte / 32 Bits                        |
- * | <!>unsigned     int                  0 to 2^64 - 1                                      0 to 9223372036854775807        0                   4 Byte / 32 Bits                        |
+ * | <!>unsigned     int                  0 to 2^64 - 1                                      0 to 4294967294                 0                   4 Byte / 32 Bits                        |
  * |    unsigned     float           2^-149 to (2-2^-23)·2^127                0x1.effeteP+127f to 0x0.000002P-126f           0.0f                4 Byte / 32 Bits    Standard: IEEE 754  |
  * |    signed       long             -2^64 to 2^64 - 1                   -9223372036854775808 to 9223372036854775807        0                   8 Byte / 64 Bits                        |
  * | <!>unsigned     long                 0 to 2^64 - 1                   -9223372036854775808 to 9223372036854775807        0                   8 Byte / 64 Bits                        |
@@ -46,9 +50,9 @@ package com.study.processors;
  *      V                                                                                             ^
  * Catch by BasicInput                                                                        Catch by BasicOutput
  *      V                                                                                             ^
- * Send to BasicIOProcess.BasicInputProcess                                    Generate new outputting results and send them
+ * Send to ProcessIO.ProcessInput                                              Generate new outputting results and send them
  *      V                                                                                             ^
- * Being proceeded and turned into cmd, sent to CommandProcess      Being turned into results, sent to BasicIOProcess.BasicOutputProcess
+ * Being proceeded and turned into cmd, sent to ProcessCommand      Being turned into results, sent to ProcessIO.BasicOutputProcess
  *      V                                                                                             ^
  * Collect module cmd from CommandSet then proceed                     Collect module output-text from BasicVariables then proceed
  *      V                                                                                             ^
@@ -72,14 +76,17 @@ public class Main {
 		BasicOutput basicOutput = new BasicOutput();
 		boolean exit = false;
 
+		String userInputRaw;
+
+		Vector<String> userInput = new Vector<>( 0 );
+
 		while ( ! exit ) {
 
-			String userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
-
-			Vector<String> userInput = new Vector<>( 0 );
-
-
 			basicOutput.greetings();
+
+			userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
+
+
 
 		}
 

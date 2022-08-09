@@ -20,6 +20,10 @@ public class BasicInput {
 			StandardCharsets.UTF_8
 	);
 
+	public static String recorder() {
+		return BasicInput.BASIC_SCANNER.nextLine();
+	}
+
 	public static String recorder( @NotNull String typeOfInput ) {
 
 		System.out.print( BasicOutput.dyeing(

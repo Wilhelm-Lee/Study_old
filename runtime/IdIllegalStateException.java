@@ -61,10 +61,12 @@ public class IdIllegalStateException
 			Throwable cause
 	) {
 
-		super(
-				message,
-				cause
+		BasicOutput.log(
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
+				cause,
+				message
 		);
+
 	}
 
 	/**
@@ -110,11 +112,15 @@ public class IdIllegalStateException
 			boolean writableStackTrace
 	) {
 
-		super(
-				message,
+		BasicOutput.log(
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
-				enableSuppression,
-				writableStackTrace
+				message +
+				String.format(
+						"%b, %b",
+						enableSuppression,
+						writableStackTrace
+				)
 		);
 	}
 }

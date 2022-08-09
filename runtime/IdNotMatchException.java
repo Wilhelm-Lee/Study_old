@@ -113,6 +113,7 @@ public class IdNotMatchException
 		BasicOutput.log(
 				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
+				message +
 				String.format(
 						"%b, %b",
 						enableSuppression,

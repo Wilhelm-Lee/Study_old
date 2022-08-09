@@ -1,8 +1,7 @@
 package com.study.storage;
 
 import com.study.output.BasicOutput;
-import com.study.processors.BasicFunctions;
-import com.study.processors.FileManager;
+import com.study.processors.ProcessFile;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -14,7 +13,7 @@ import java.time.ZoneOffset;
 public class TimeLine {
 
 	public static final String CLASS_NAME = "TimeLine";
-	private static final FileManager.FileCreator FILE_CREATOR = new FileManager.FileCreator();
+	private static final ProcessFile.FileCreator FILE_CREATOR = new ProcessFile.FileCreator();
 	private static final TimeLine TIME_LINE = new TimeLine();
 	private final String FILE_NAME_EXTENSION = BasicVariables.PERIOD + TimeLine.CLASS_NAME;
 	private final File TARGET_FILE = new File(
@@ -54,7 +53,7 @@ public class TimeLine {
 			) ) {
 				BasicOutput.log(
 						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-						FileManager.FileCreator.CLASS_NAME,
+						ProcessFile.FileCreator.CLASS_NAME,
 						BasicVariables.FILE_MANAGER_FILE_CREATING_SUCCESS
 				);
 			}

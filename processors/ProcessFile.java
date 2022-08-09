@@ -13,17 +13,17 @@ import java.util.List;
 /**
  * @author william
  */
-public class FileManager {
+public class ProcessFile {
 
-	public static final String CLASS_NAME = "FileManager";
+	public static final String CLASS_NAME = "ProcessFile";
 
 	public static class FileCreator {
 
 		public static final String CLASS_NAME = "FileCreator";
 
 		List<String> cmd = new ArrayList<>( 0 );
-		Runtime runtime = null;
-		Process process = null;
+		Runtime runtime;
+		Process process;
 		boolean isAllRight = true;
 
 		private boolean ifAsk(
@@ -60,16 +60,16 @@ public class FileManager {
 
 			try {
 
-				this.cmd.clear();
+				cmd.clear();
 
 				if ( BasicVariables.FILE_MANAGER_TARGET_TYPE_FILE_STRING.equalsIgnoreCase( targetType ) ) {
-					this.cmd.add( BasicVariables.LINUX_COMMAND_TOUCH );
-					this.cmd.add( targetObject.getAbsolutePath() );
+					cmd.add( BasicVariables.LINUX_COMMAND_TOUCH );
+					cmd.add( targetObject.getAbsolutePath() );
 				} else {
-					this.cmd.add( BasicVariables.LINUX_COMMAND_MKDIR );
+					cmd.add( BasicVariables.LINUX_COMMAND_MKDIR );
 					// the flag
-					this.cmd.add( "-p" );
-					this.cmd.add( targetObject.getAbsolutePath() );
+					cmd.add( "-p" );
+					cmd.add( targetObject.getAbsolutePath() );
 				}
 
 				// if not exists
@@ -79,7 +79,7 @@ public class FileManager {
 					if ( ifAskNeeded ) {
 						if ( ifAsk( targetObject ) ) {
 							runtime = Runtime.getRuntime();
-							process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
+							process = runtime.exec( cmd.toArray( new String[ 0 ] ) );
 						} else {
 							requestDenied(
 									BasicVariables.FILE_MANAGER_ACTIONS_CREATING,
@@ -89,7 +89,7 @@ public class FileManager {
 						}
 					} else {
 						runtime = Runtime.getRuntime();
-						process = runtime.exec( this.cmd.toArray( new String[ cmd.size() ] ) );
+						process = runtime.exec( cmd.toArray( new String[ 0 ] ) );
 					}
 				} else {
 					BasicOutput.log(

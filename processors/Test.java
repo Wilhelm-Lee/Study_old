@@ -15,9 +15,9 @@ public class Test {
 				BasicOutput.dyeing(
 						true,
 						BasicVariables.TERMINAL_COLOR_MAGENTA
-				) +
-				CommandProcess.help( "help" )
+				)
 		);
+		ProcessCommand.commandProcess();
 
 	}
 }

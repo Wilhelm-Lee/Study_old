@@ -61,9 +61,10 @@ public class IdNotFoundException
 			Throwable cause
 	) {
 
-		super(
-				message,
-				cause
+		BasicOutput.log(
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
+				cause,
+				message
 		);
 	}
 
@@ -110,11 +111,15 @@ public class IdNotFoundException
 			boolean writableStackTrace
 	) {
 
-		super(
-				message,
+		BasicOutput.log(
+				BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
 				cause,
-				enableSuppression,
-				writableStackTrace
+				message +
+				String.format(
+						"%b, %b",
+						enableSuppression,
+						writableStackTrace
+				)
 		);
 	}
 }
