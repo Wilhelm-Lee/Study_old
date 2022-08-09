@@ -181,7 +181,7 @@ public class BasicVariables {
 		public static final String HELP_FLAG_TIME = TIME;
 
 		public static final String ABOUT_PROJECT_NAME = "Study";
-		public static final String ABOUT_PROJECT_VERSION = "Aug7th2022_PROTOTYPE";
+		public static final String ABOUT_PROJECT_VERSION = "Aug9th2022_PROTOTYPE";
 		public static final String ABOUT_PROJECT_AUTHOR_NAME = "William Michael";
 		public static final String ABOUT_PROJECT_AUTHOR_GITHUB = "https://github.com/MichealWilliamLR/Study";
 		public static final String DOC_ABOUT =
