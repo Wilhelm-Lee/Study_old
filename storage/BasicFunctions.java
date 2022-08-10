@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 
 public class BasicFunctions {
 
-	// All method should be written in form of Recursive-Call
+	// All method should be written in form of Recursive-Call if possible
 
 	/* PERMEATE CODE: */
 	public static final @NotNull String CLASS_NAME = "BasicFunctions";

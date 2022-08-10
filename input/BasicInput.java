@@ -21,6 +21,7 @@ public class BasicInput {
 	);
 
 	public static String recorder() {
+
 		return BasicInput.BASIC_SCANNER.nextLine();
 	}
 

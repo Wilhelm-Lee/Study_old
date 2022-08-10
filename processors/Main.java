@@ -52,7 +52,7 @@ package com.study.processors;
  *      V                                                                                             ^
  * Send to ProcessIO.ProcessInput                                              Generate new outputting results and send them
  *      V                                                                                             ^
- * Being proceeded and turned into cmd, sent to ProcessCommand      Being turned into results, sent to ProcessIO.BasicOutputProcess
+ * Being proceeded and turned into cmd, sent to ProcessCommand      Being turned into results, sent to ProcessIO.ProcessOutput
  *      V                                                                                             ^
  * Collect module cmd from CommandSet then proceed                     Collect module output-text from BasicVariables then proceed
  *      V                                                                                             ^
@@ -64,8 +64,6 @@ import com.study.input.BasicInput;
 import com.study.output.BasicOutput;
 import com.study.storage.BasicVariables;
 
-import java.util.Vector;
-
 /**
  * @author william
  */
@@ -74,11 +72,11 @@ public class Main {
 	public static void main( String[] args ) {
 
 		BasicOutput basicOutput = new BasicOutput();
+		ProcessIO.ProcessInput processInput = new ProcessIO.ProcessInput();
+
 		boolean exit = false;
 
 		String userInputRaw;
-
-		Vector<String> userInput = new Vector<>( 0 );
 
 		while ( ! exit ) {
 
@@ -86,6 +84,7 @@ public class Main {
 
 			userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
 
+			String[] userInput = processInput.onCreate( userInputRaw );
 
 
 		}

@@ -122,10 +122,10 @@ public class BasicVariables {
 
 	public static final String USER_NAME = System.getProperty( "user.name" );
 	public static final String HOME_PATH_STRING = "/home" + BasicVariables.SLASH + USER_NAME;
+	public static final String DOCUMENTS_PATH_STRING = "/Documents";
 	public static final String STUDY_PATH_STRING = HOME_PATH_STRING +
 												   BasicVariables.DOCUMENTS_PATH_STRING +
 												   "/StudyFiles";
-	public static final String DOCUMENTS_PATH_STRING = "/Documents";
 	/**
 	 * Starts from 1
 	 */
@@ -150,22 +150,34 @@ public class BasicVariables {
 		 * Print out local date & time
 		 */
 		public static final String TIME = "TIME";
-		/** no flg: "DD dd MM, YY"             */
+		/**
+		 * no flg: "DD dd MM, YY"
+		 */
 		public static final char TIME_F_EMPTY = '\0';
-		/** Format date & time with yours      */
+		/**
+		 * Format date & time with yours
+		 */
 		public static final char TIME_F_f = 'f';
-		/** format Simply/Shortly: "HH-mm-ss"  */
+		/**
+		 * format Simply/Shortly: "HH-mm-ss"
+		 */
 		public static final char TIME_F_s = 's';
 
 		/*
 		 * There's no need to type in all capitalization
 		 */
 
-		/** no flg: "DD dd MM, YY" */
+		/**
+		 * no flg: "DD dd MM, YY"
+		 */
 		public static final String TIME_FLAG_EMPTY = "\000";
-		/** Format date & time with yours */
+		/**
+		 * Format date & time with yours
+		 */
 		public static final String TIME_FLAG_FORMAT = "FORMAT";
-		/** format Simply/Shortly: "HH-mm-ss" */
+		/**
+		 * format Simply/Shortly: "HH-mm-ss"
+		 */
 		public static final String TIME_FLAG_SHORT = "SHORT";
 
 		/**
@@ -173,11 +185,17 @@ public class BasicVariables {
 		 * Run Help-Doc
 		 */
 		public static final String HELP = "HELP";
-		/** Print help for HELP */
+		/**
+		 * Print help for HELP
+		 */
 		public static final String HELP_FLAG_HELP = HELP;
-		/** Print help for EXIT */
+		/**
+		 * Print help for EXIT
+		 */
 		public static final String HELP_FLAG_EXIT = EXIT;
-		/** Print help for TIME */
+		/**
+		 * Print help for TIME
+		 */
 		public static final String HELP_FLAG_TIME = TIME;
 
 		public static final String ABOUT_PROJECT_NAME = "Study";
