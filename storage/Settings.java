@@ -20,5 +20,5 @@ public class Settings {
 	public static @NotNull String greetingsBeginSideSymbol = "$" + BasicVariables.SPACE;
 	public static @NotNull String greetingsEndSideSymbol = BasicVariables.SPACE + ">>" + BasicVariables.SPACE;
 	public LocalDateTime localDateTime = LocalDateTime.now();
-	public DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM-dd-yy|HH:mm:ss" );
+	public DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM-dd-yy" );
 }

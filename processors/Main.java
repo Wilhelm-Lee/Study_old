@@ -76,16 +76,15 @@ public class Main {
 
 		boolean exit = false;
 
-		String userInputRaw;
-
 		while ( ! exit ) {
 
 			basicOutput.greetings();
 
-			userInputRaw = BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR );
+			int rtnCode = processInput.onCreate( BasicInput.recorder( BasicVariables.BASIC_INPUT_RECORDER_TYPE_REGULAR ) );
 
-			String[] userInput = processInput.onCreate( userInputRaw );
+			if ( rtnCode != 0 ) {
 
+			}
 
 		}
 

@@ -16,7 +16,7 @@ public class ProcessCommand {
 
 	private static final Scanner SCN = new Scanner( System.in );
 
-	public static void ProcessCommand( String[] userInput ) {
+	public static int onCreate( String[] userInput ) {
 
 		for (
 				int i = 0;
@@ -26,31 +26,55 @@ public class ProcessCommand {
 
 			String cmd_idx = userInput[ i ];
 
-			process( cmd_idx );
+			int rtnCode = process( cmd_idx );
+
+			if ( rtnCode != 0 ) {
+				return rtnCode;
+			}
 
 		}
+
+		return 0;
 
 	}
 
-	private static void process( String cmd ) {
+	private static int process( String cmd ) {
 
 		ProcessIO.ProcessOutput processOutput = new ProcessIO.ProcessOutput();
 
-		if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.HELP ) ) {
-			processOutput.onCreate(
-					BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-					cmd_help_help()
-			);
+		if ( ! cmd.isEmpty() ) {
 
-		} else if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.EXIT ) ) {
-			System.exit( 0 );
+			if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.HELP ) ) {
+				processOutput.onCreate(
+						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
+						cmd_help_help()
+				);
 
-		} else if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.TIME ) ) {
-			processOutput.onCreate(
-					BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
-					cmd_time().toString()
-			);
+				return BasicVariables.ConsoleReturn.ERR_NONE;
+
+			} else if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.EXIT ) ) {
+
+
+			} else if ( cmd.equalsIgnoreCase( BasicVariables.CommandSet.TIME ) ) {
+				processOutput.onCreate(
+						BasicVariables.BASIC_OUTPUT_LOG_TYPE_INFO,
+						cmd_time().toString()
+				);
+				return BasicVariables.ConsoleReturn.ERR_NONE;
+
+			} else {
+				processOutput.onCreate(
+						BasicVariables.BASIC_OUTPUT_LOG_TYPE_ERROR,
+						BasicVariables.CommandSet.CMD_NOT_FOUND
+				);
+
+				return BasicVariables.ConsoleReturn.ERR_ILLEGAL_INPUT;
+
+			}
+
 		}
+
+		return BasicVariables.ConsoleReturn.ERR_ILLEGAL_INPUT_FINAL;
 
 	}
 
@@ -82,7 +106,7 @@ public class ProcessCommand {
 		return switch ( INPUT ) {
 			case "ABOUT" -> BasicVariables.CommandSet.DOC_ABOUT;
 			case "HELP" -> BasicVariables.CommandSet.DOC_HELP;
-			default -> BasicVariables.CommandSet.DOC_CMD_NOT_FOUND;
+			default -> BasicVariables.CommandSet.CMD_NOT_FOUND;
 		};
 
 	}

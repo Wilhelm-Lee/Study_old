@@ -219,6 +219,15 @@ public class BasicVariables {
 				TABULATION + HELP_HELP_CMD + TABULATION + HELP_HELP_CMT + ENDL +
 				TABULATION + HELP_EXIT_CMD + TABULATION + HELP_EXIT_CMT + ENDL +
 				TABULATION + HELP_TIME_CMD + TABULATION + HELP_TIME_CMT + ENDL;
-		public static final String DOC_CMD_NOT_FOUND = "Illegal argument";
+		public static final String CMD_NOT_FOUND = "Illegal argument";
 	}
+
+	public static class ConsoleReturn {
+
+		public static final char ERR_NONE = 0;
+		public static final char ERR_ILLEGAL_INPUT = 1;
+		public static final char ERR_ILLEGAL_INPUT_FINAL = 2;
+
+	}
+
 }

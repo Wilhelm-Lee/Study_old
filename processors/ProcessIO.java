@@ -15,9 +15,9 @@ public class ProcessIO {
 
 		public static final @NotNull String CLASS_NAME = "ProcessInput";
 
-		public String[] onCreate( @NotNull String userInputRaw ) {
+		public int onCreate( @NotNull String userInputRaw ) {
 
-			return userInputRaw.split( String.valueOf( BasicVariables.SPACE ) );
+			return ProcessCommand.onCreate( userInputRaw.split( String.valueOf( BasicVariables.SPACE ) ) );
 
 		}
 
@@ -47,6 +47,7 @@ public class ProcessIO {
 
 			BasicOutput.log(
 					outputType,
+					initiator,
 					userOutputRaw
 			);
 
