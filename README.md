@@ -1,4 +1,4 @@
-Due to reconstructions of project structure in my IDE for more conveniences of near-future developing  
+Due to reconstructions of project structures in my IDE for more conveniences of future developing  
 
 **This repository is no longer in support**
 
